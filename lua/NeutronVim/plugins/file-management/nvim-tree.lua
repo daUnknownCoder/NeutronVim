@@ -11,7 +11,7 @@ return {
     local WIDTH_RATIO = 1.0
 
     nvimtree.setup({
-      filters = { custom = { '*.tmp', '.git' } },
+      filters = { custom = { '*.tmp' } },
       view = {
         relativenumber = true,
         float = {

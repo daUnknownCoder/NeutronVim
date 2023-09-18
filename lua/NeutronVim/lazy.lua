@@ -16,6 +16,10 @@ vim.g.mapleader = " "
 
 require("lazy").setup({
   { import = "NeutronVim.plugins" },
+  { import = "NeutronVim.plugins.ui" },
+  { import = "NeutronVim.plugins.file-management" },
+  { import = "NeutronVim.plugins.cmp-lsp" },
+  { import = "NeutronVim.plugins.git" },
   -- { import = "NeutronVim.plugins.lsp"},
 }, {
   install = {

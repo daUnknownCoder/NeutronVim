@@ -21,6 +21,7 @@ return {
       }
     })
     telescope.load_extension("fzf")
+    telescope.load_extension("lazygit")
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', 'ff', builtin.find_files, { desc = "Find Files Fuzzily" })
     vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Git integration ?" })

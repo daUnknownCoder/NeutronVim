@@ -16,7 +16,7 @@ keymap("n", "N", "Nzzzv")
 keymap("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
-keymap({"n", "v"}, "<leader>y", [["+y]])
+keymap("v", "<leader>y", [["+y]])
 keymap("n", "<leader>Y", [["+Y]])
 
 keymap({"n", "v"}, "<leader>d", [["_d]])

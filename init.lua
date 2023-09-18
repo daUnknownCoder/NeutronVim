@@ -1,4 +1,5 @@
 -- Neovim Plugin Management
+
 require("NeutronVim.lazy")
 
 -- Neovim configuration

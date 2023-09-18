@@ -20,8 +20,8 @@ return {
       ]]
       dashboard.section.header.val = vim.split(logo, "\n")
       dashboard.section.buttons.val = {
-        dashboard.button("n", " " .. " File Manager [Nvim-Tree]", ":NvimTreeFindFileToggle <CR>", { silent = true } ),
         dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>", { silent = true } ),
+        dashboard.button("n", " " .. " File Manager [Nvim-Tree]", ":NvimTreeFindFileToggle <CR>", { silent = true } ),
         dashboard.button("N", " " .. " New file", ":ene <BAR> startinsert <CR>", { silent = true } ),
         dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>", { silent = true } ),
         dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>", { silent = true } ),

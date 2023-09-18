@@ -23,68 +23,78 @@ return {
       "hrsh7th/cmp-calc",
       "f3fora/cmp-spell",
       "hrsh7th/cmp-nvim-lsp-signature-help",
+      "onsails/lspkind.nvim",
     },
     event = "InsertEnter",
     opts = function()
       local cmp = require "cmp"
       local snip_status_ok, luasnip = pcall(require, "luasnip")
-      local kind_icons = {
-        Array = " ",
-        Boolean = " ",
-        Class = "ﴯ",
-        Color = "",
-        Constant = "",
-        Constructor = "",
-        Copilot = " ",
-        Enum = "",
-        EnumMember = " ",
-        Event = " ",
-        Field = " ",
-        File = "",
-        Folder = " ",
-        Function = "",
-        Interface = " ",
-        Key = " ",
-        Keyword = "",
-        Method = " ",
-        Module = " ",
-        Namespace = " ",
-        Null = " ",
-        Number = " ",
-        Object = " ",
-        Operator = " ",
-        Package = " ",
-        Property = "ﰠ",
-        Reference = " ",
-        Snippet = "",
-        String = " ",
-        Struct = " ",
-        Text = " ",
-        TypeParameter = " ",
-        Unit = "",
-        Value = "",
-        Variable = " ",
-      }
+      local lspkind = require("lspkind")
+      lspkind.init({
+        mode = "symbol_text",
+        symbol_map = {
+          Array = " ",
+          Boolean = " ",
+          Class = "ﴯ",
+          Color = "",
+          Constant = "",
+          Constructor = "",
+          Copilot = " ",
+          Enum = "",
+          EnumMember = " ",
+          Event = " ",
+          Field = " ",
+          File = "",
+          Folder = " ",
+          Function = "",
+          Interface = " ",
+          Key = " ",
+          Keyword = "",
+          Method = " ",
+          Module = " ",
+          Namespace = " ",
+          Null = " ",
+          Number = " ",
+          Object = " ",
+          Operator = " ",
+          Package = " ",
+          Property = "ﰠ",
+          Reference = " ",
+          Snippet = "",
+          String = " ",
+          Struct = " ",
+          Text = "󰉿",
+          TypeParameter = " ",
+          Unit = "",
+          Value = "",
+          Variable = "󰀫",
+        }
+      })
       if not snip_status_ok then return end
+      vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "silver", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "gold", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "red", bg = "NONE" })
       local border_opts = {
         border = { "●", "─", "●", "│", "●", "─", "●", "│" },
-        winhighlight = "Normal:NormalFloat,FloatBorder:Number,CursorLine:PmenuSel,Search:None",
+        winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
       }
       local function has_words_before()
         local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
       end
-      vim.opt.completeopt = "menu,menuone,preview,noselect",
       cmp.setup({
         preselect = cmp.PreselectMode.None,
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
-            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+            vim_item.kind = lspkind.presets.default[vim_item.kind]
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
               spell = "[Spellings]",
-              buffer = "[Buffer]",
+              buffer = "[Text]",
               luasnip = "[Snip]",
               treesitter = "[Treesitter]",
               calc = "[Calculator]",
@@ -116,6 +126,8 @@ return {
         },
         matching = {
           disallow_fuzzy_matching = false,
+          disallow_fullfuzzy_matching = false,
+          disallow_partial_fuzzy_matching = false,
         },
         mapping = {
           ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
@@ -152,7 +164,30 @@ return {
           end, { "i", "s" }),
         },
         sources = cmp.config.sources {
-          { name = "nvim_lsp", priority = 1000 },
+          {
+            name = "nvim_lsp",
+            entry_filter = function(entry, context)
+              local kind = entry:get_kind()
+              local line = context.cursor_line
+              local col = context.cursor.col
+              local char_before_cursor = string.sub(line, col - 1, col)
+              if char_before_cursor == "." then
+                if kind == 2 or kind == 5 then
+                  return true
+                else
+                  return false
+                end
+              elseif string.match(line, "^%s*%w*$") then
+                if kind == 2 or kind == 5 then
+                  return true
+                else
+                  return false
+                end
+              end
+              return true
+            end,
+            priority = 1000,
+          },
           { name = "luasnip", priority = 750 },
           { name = 'nvim_lsp_signature_help', priority = 500 },
           { name = "buffer", priority = 500 },
@@ -166,7 +201,7 @@ return {
                     return true
                 end,
             },
-            priority = 500,
+            priority = 100,
           },
         },
       })

@@ -67,21 +67,20 @@ return {
       }
       if not snip_status_ok then return end
       local border_opts = {
-        border = "rounded",
-        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        border = { "●", "─", "●", "│", "●", "─", "●", "│" },
+        winhighlight = "Normal:NormalFloat,FloatBorder:Number,CursorLine:PmenuSel,Search:None",
       }
-
       local function has_words_before()
         local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
       end
-      vim.opt.completeopt = "menu,menuone,noselect"
+      vim.opt.completeopt = "menu,menuone,preview,noselect",
       cmp.setup({
         preselect = cmp.PreselectMode.None,
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
-            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) --Concatenate the icons with name of the item-kind
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
               spell = "[Spellings]",

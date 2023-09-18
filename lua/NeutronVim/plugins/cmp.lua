@@ -1,0 +1,187 @@
+return {
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+      region_check_events = "CursorMoved",
+    },
+    config = function(_, opts)
+      if opts then require("luasnip").config.setup(opts) end
+      vim.tbl_map(function(type) require("luasnip.loaders.from_" .. type).lazy_load() end, { "vscode", "snipmate", "lua" })
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-calc",
+      "f3fora/cmp-spell",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+    },
+    event = "InsertEnter",
+    opts = function()
+      local cmp = require "cmp"
+      local snip_status_ok, luasnip = pcall(require, "luasnip")
+      local kind_icons = {
+        Array = " ",
+        Boolean = " ",
+        Class = "ﴯ",
+        Color = "",
+        Constant = "",
+        Constructor = "",
+        Copilot = " ",
+        Enum = "",
+        EnumMember = " ",
+        Event = " ",
+        Field = " ",
+        File = "",
+        Folder = " ",
+        Function = "",
+        Interface = " ",
+        Key = " ",
+        Keyword = "",
+        Method = " ",
+        Module = " ",
+        Namespace = " ",
+        Null = " ",
+        Number = " ",
+        Object = " ",
+        Operator = " ",
+        Package = " ",
+        Property = "ﰠ",
+        Reference = " ",
+        Snippet = "",
+        String = " ",
+        Struct = " ",
+        Text = " ",
+        TypeParameter = " ",
+        Unit = "",
+        Value = "",
+        Variable = " ",
+      }
+      if not snip_status_ok then return end
+      local border_opts = {
+        border = "rounded",
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+      }
+
+      local function has_words_before()
+        local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+      end
+      vim.opt.completeopt = "menu,menuone,noselect"
+      cmp.setup({
+        preselect = cmp.PreselectMode.None,
+        formatting = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) --Concatenate the icons with name of the item-kind
+            vim_item.menu = ({
+              nvim_lsp = "[LSP]",
+              spell = "[Spellings]",
+              buffer = "[Buffer]",
+              luasnip = "[Snip]",
+              treesitter = "[Treesitter]",
+              calc = "[Calculator]",
+              nvim_lua = "[Lua]",
+              path = "[Path]",
+              nvim_lsp_signature_help = "[Signature]",
+              cmdline = "[Command]"
+            })[entry.source.name]
+            return vim_item
+          end,
+        },
+        snippet = {
+          expand = function(args) luasnip.lsp_expand(args.body) end,
+        },
+        duplicates = {
+          nvim_lsp = 1,
+          luasnip = 1,
+          cmp_tabnine = 1,
+          buffer = 1,
+          path = 1,
+        },
+        confirm_opts = {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = false,
+        },
+        window = {
+          completion = cmp.config.window.bordered(border_opts),
+          documentation = cmp.config.window.bordered(border_opts),
+        },
+        matching = {
+          disallow_fuzzy_matching = false,
+        },
+        mapping = {
+          ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+          ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+          ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+          ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+          ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+          ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+          ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+          ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+          ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+          ["<C-y>"] = cmp.config.disable,
+          ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
+          ["<CR>"] = cmp.mapping.confirm { select = false },
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            elseif has_words_before() then
+              cmp.complete()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        },
+        sources = cmp.config.sources {
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip", priority = 750 },
+          { name = 'nvim_lsp_signature_help', priority = 500 },
+          { name = "buffer", priority = 500 },
+          { name = "path", priority = 250 },
+          { name = 'calc', priority = 100 },
+          {
+            name = 'spell',
+            option = {
+                keep_all_entries = false,
+                enable_in_context = function()
+                    return true
+                end,
+            },
+            priority = 500,
+          },
+        },
+      })
+      cmp.setup.cmdline(':', {
+        sources = cmp.config.sources({
+          { name = 'path' },
+          { name = 'cmdline' },
+        })
+      })
+      cmp.setup.cmdline('/', {
+        sources = {
+          { name = 'buffer' },
+        }
+      })
+    end,
+  },
+}

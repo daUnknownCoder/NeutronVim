@@ -20,16 +20,16 @@ require("lazy").setup({
   { import = "NeutronVim.plugins.file-management" },
   { import = "NeutronVim.plugins.cmp-lsp" },
   { import = "NeutronVim.plugins.git" },
-  -- { import = "NeutronVim.plugins.lsp"},
-}, {
-  install = {
-    colorscheme = { "tokyonight-night" },
-  },
-  checker = {
-    enabled = true,
-    notify = false,
-  },
-  change_detection = {
-    notify = false,
-  },
-})
+}, 
+  {
+    install = {
+      colorscheme = { "tokyonight-night" },
+    },
+    checker = {
+      enabled = true,
+      notify = false,
+    },
+    change_detection = {
+      notify = false,
+    },
+  })

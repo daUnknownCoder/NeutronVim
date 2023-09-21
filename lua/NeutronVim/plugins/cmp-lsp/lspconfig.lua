@@ -11,7 +11,9 @@ return {
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local lspsaga = require("lspsaga")
-    lspsaga.setup()
+    lspsaga.setup({
+        rename_prompt_prefix = "🚀 ",
+    })
     local map = vim.api.nvim_buf_set_keymap
     local keymap = vim.keymap.set
     local on_attach = function(client, bufnr)

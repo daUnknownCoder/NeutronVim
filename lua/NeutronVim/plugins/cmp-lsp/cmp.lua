@@ -91,18 +91,17 @@ return {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
             vim_item.kind = lspkind.presets.default[vim_item.kind]
-            vim_item.menu = ({
+            vim_item.menu = "➥ " .. (({
               nvim_lsp = "[LSP]",
-              spell = "[Spellings]",
+              spell = "[Spell]",
               buffer = "[Text]",
               luasnip = "[Snip]",
               treesitter = "[Treesitter]",
-              calc = "[Calculator]",
-              nvim_lua = "[Lua]",
+              calc = "[Calc]",
               path = "[Path]",
               nvim_lsp_signature_help = "[Signature]",
-              cmdline = "[Command]"
-            })[entry.source.name]
+              cmdline = "[Cmd]",
+            })[entry.source.name] or "🚀 ")
             return vim_item
           end,
         },
@@ -132,14 +131,9 @@ return {
         mapping = {
           ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
           ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
-          ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-          ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-          ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-          ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-          ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-          ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+          ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+          ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-          ["<C-y>"] = cmp.config.disable,
           ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
           ["<CR>"] = cmp.mapping.confirm { select = false },
           ["<Tab>"] = cmp.mapping(function(fallback)

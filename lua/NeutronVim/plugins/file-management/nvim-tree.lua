@@ -7,8 +7,8 @@ return {
     local nvimtree = require("nvim-tree")
     vim.opt.termguicolors = true
 
-    local HEIGHT_RATIO = 1.0
-    local WIDTH_RATIO = 1.0
+    local HEIGHT_RATIO = 0.8
+    local WIDTH_RATIO = 0.8
 
     nvimtree.setup({
       filters = { custom = { '*.tmp', "*.git" } },
@@ -59,8 +59,6 @@ return {
               arrow_open = "▼",
             },
           },
-        },
-        icons = {
           webdev_colors = true,
           git_placement = "before",
           modified_placement = "after",
@@ -73,31 +71,7 @@ return {
             git = true,
             modified = true,
           },
-
-          glyphs = {
-            default = "",
-            symlink = "",
-            bookmark = "",
-            modified = "●",
-            folder = {
-              arrow_closed = "►",
-              arrow_open = "▼",
-              symlink = "",
-              symlink_open = "",
-            },
-
-            git = {
-              unstaged = "✗",
-              staged = "✓",
-              unmerged = "",
-              renamed = "➜",
-              untracked = "★",
-              deleted = "",
-              ignored = "◌",
-            },
-          },
         },
-        highlight_modified = "all",
       },
       modified = {
         enable = true,

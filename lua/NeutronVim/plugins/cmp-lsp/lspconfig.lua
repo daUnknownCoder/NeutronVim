@@ -14,11 +14,10 @@ return {
     saga.setup()
     local map = vim.api.nvim_buf_set_keymap
     local keymap = vim.keymap.set
-    local on_attach = function(bufnr)
+    local on_attach = function(client, bufnr)
       local opts = { noremap = true, silent = true, buffer = bufnr }
-
       keymap("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-      keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
+      keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
       keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
       map(0, "n", "<leader>ca", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", {silent = true, noremap = true})
       map(0, "n", "gr", "<cmd>Lspsaga rename<cr>", {silent = true, noremap = true})

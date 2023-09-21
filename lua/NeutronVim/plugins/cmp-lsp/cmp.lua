@@ -203,12 +203,20 @@ return {
         sources = cmp.config.sources({
           { name = 'path' },
           { name = 'cmdline' },
-        })
+        }),
+        window = {
+          completion = cmp.config.window.bordered(border_opts),
+          documentation = cmp.config.window.bordered(border_opts),
+        },
       })
       cmp.setup.cmdline('/', {
         sources = {
           { name = 'buffer' },
-        }
+        },
+        window = {
+          completion = cmp.config.window.bordered(border_opts),
+          documentation = cmp.config.window.bordered(border_opts),
+        },
       })
     end,
   },

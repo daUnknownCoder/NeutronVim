@@ -26,6 +26,7 @@ return {
         dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>", { silent = true } ),
         dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>", { silent = true } ),
         dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>", { silent = true } ),
+        dashboard.button("L", " " .. " LazyGit", ":LazyGit<CR>", { silent = true } ),
         dashboard.button("q", " " .. " Quit", ":qa<CR>", { silent = true } ),
       }
       for _, button in ipairs(dashboard.section.buttons.val) do

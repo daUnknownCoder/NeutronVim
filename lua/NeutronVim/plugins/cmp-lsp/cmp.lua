@@ -79,7 +79,7 @@ return {
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "red", bg = "NONE" })
       local border_opts = {
         border = { "●", "─", "●", "│", "●", "─", "●", "│" },
-        winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
+        winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:Special,Search:CmpItemAbbrMatchFuzzy",
       }
       local function has_words_before()
         local line, col = (table.unpack)(vim.api.nvim_win_get_cursor(0))
@@ -188,8 +188,8 @@ return {
             end,
             priority = 1000,
           },
-          { name = "luasnip", priority = 750 },
           { name = 'nvim_lsp_signature_help', priority = 500 },
+          { name = "luasnip", priority = 750 },
           { name = "buffer", priority = 500 },
           { name = "path", priority = 250 },
           { name = 'calc', priority = 100 },

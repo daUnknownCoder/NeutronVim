@@ -12,7 +12,7 @@ return {
         icons = {
           package_installed = "🗸 ",
           package_uninstalled = "✗ ",
-          package_pending = "∞ ",
+          package_pending = "⚡ ",
         }
       }
     })

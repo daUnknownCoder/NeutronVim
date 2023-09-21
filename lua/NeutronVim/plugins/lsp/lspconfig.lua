@@ -12,7 +12,7 @@ return {
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local lspsaga = require("lspsaga")
     lspsaga.setup({
-        rename_prompt_prefix = "🚀 ",
+        rename_prompt_prefix = '⚡',
     })
     local map = vim.api.nvim_buf_set_keymap
     local keymap = vim.keymap.set
@@ -32,8 +32,8 @@ return {
       keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opt2)
       keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opt2)
       map(0, "n", "K",  "<cmd>Lspsaga hover_doc<cr>", opt1)
-      map(0, "n", "<C-f>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>", opt1)
-      map(0, "n", "<C-b>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>", opt1)
+      map(0, "n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1, '<c-u>')<cr>", {})
+      map(0, "n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1, '<c-d>')<cr>", {})
     end
     local capabilities = cmp_nvim_lsp.default_capabilities()
     local signs = { Error = "", Warn = "", Hint = "", Info = "" }

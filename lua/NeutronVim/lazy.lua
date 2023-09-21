@@ -15,12 +15,15 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 
 require("lazy").setup({
-  { import = "NeutronVim.plugins" },
   { import = "NeutronVim.plugins.ui" },
   { import = "NeutronVim.plugins.file-management" },
-  { import = "NeutronVim.plugins.cmp-lsp" },
+  { import = "NeutronVim.plugins.cmp" },
+  { import = "NeutronVim.plugins.lsp" },
+  { import = "NeutronVim.plugins.init" },
+  { import = "NeutronVim.plugins.terminal" },
+  { import = "NeutronVim.plugins.statusline" },
   { import = "NeutronVim.plugins.git" },
-}, 
+},
   {
     install = {
       colorscheme = { "tokyonight-night" },

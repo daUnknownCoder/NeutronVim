@@ -1,6 +1,6 @@
 return {
   -- Asynchronous highlight for all color type value [Hex, name, etc]
-  { 
+  {
     "NvChad/nvim-colorizer.lua",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -10,6 +10,7 @@ return {
   -- Very useless but a good stress buster
   {
     'eandrju/cellular-automaton.nvim',
+    event = "VeryLazy",
   },
   -- TMUX type navigation
   {
@@ -24,6 +25,7 @@ return {
   -- Generate dummy text
   {
     "derektata/lorem.nvim",
+    event = "VeryLazy",
     config = function()
       local lorem = require("lorem")
       lorem.setup({
@@ -64,15 +66,6 @@ return {
     config = function()
       require("autoclose").setup()
     end,
-  },
-  -- Navigation using LSP symbols
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = {
-      { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" }
-    },
-    config = true,
   },
   -- Surrounding brackets in nvim
   {

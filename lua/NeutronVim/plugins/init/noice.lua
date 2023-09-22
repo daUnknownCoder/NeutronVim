@@ -11,7 +11,7 @@ return {
         },
         {
           progress = {
-            view = "",
+            view = "fidget",
           },
         },
       },
@@ -47,17 +47,5 @@ return {
   dependencies = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
-    {
-      "j-hui/fidget.nvim",
-      tag = "legacy",
-      event = "LspAttach",
-      opts = function()
-        require("fidget").setup({
-          window = {
-            blend = 1,
-          }
-        })
-      end
-    },
-  }
+  },
 }

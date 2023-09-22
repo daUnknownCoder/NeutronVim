@@ -92,6 +92,7 @@ return {
   -- Surrounding brackets in nvim
   {
     'echasnovski/mini.surround',
+    event = "InsertEnter",
     version = '*',
     config = function()
       require("mini.surround").setup({

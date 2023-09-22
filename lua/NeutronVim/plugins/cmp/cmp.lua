@@ -1,7 +1,9 @@
 return {
   {
     "L3MON4D3/LuaSnip",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
     opts = {
       history = true,
       delete_check_events = "TextChanged",
@@ -23,53 +25,48 @@ return {
       "hrsh7th/cmp-calc",
       "f3fora/cmp-spell",
       "hrsh7th/cmp-nvim-lsp-signature-help",
-      "onsails/lspkind.nvim",
     },
     event = "InsertEnter",
     opts = function()
       local cmp = require "cmp"
       local snip_status_ok, luasnip = pcall(require, "luasnip")
-      local lspkind = require("lspkind")
-      lspkind.init({
-        mode = "symbol_text",
-        symbol_map = {
-          Array = " ",
-          Boolean = " ",
-          Class = "ﴯ",
-          Color = "",
-          Constant = "",
-          Constructor = "",
-          Copilot = " ",
-          Enum = "",
-          EnumMember = " ",
-          Event = " ",
-          Field = " ",
-          File = "",
-          Folder = " ",
-          Function = "",
-          Interface = " ",
-          Key = " ",
-          Keyword = "",
-          Method = " ",
-          Module = " ",
-          Namespace = " ",
-          Null = " ",
-          Number = " ",
-          Object = " ",
-          Operator = " ",
-          Package = " ",
-          Property = "ﰠ",
-          Reference = " ",
-          Snippet = "",
-          String = " ",
-          Struct = " ",
-          Text = "󰉿",
-          TypeParameter = " ",
-          Unit = "",
-          Value = "",
-          Variable = "󰀫",
-        }
-      })
+      local kind_icons = {
+        Array = " ",
+        Boolean = " ",
+        Class = "ﴯ",
+        Color = "",
+        Constant = "",
+        Constructor = "",
+        Copilot = " ",
+        Enum = "",
+        EnumMember = " ",
+        Event = " ",
+        Field = " ",
+        File = "",
+        Folder = " ",
+        Function = "",
+        Interface = " ",
+        Key = " ",
+        Keyword = "",
+        Method = " ",
+        Module = " ",
+        Namespace = " ",
+        Null = " ",
+        Number = " ",
+        Object = " ",
+        Operator = " ",
+        Package = " ",
+        Property = "ﰠ",
+        Reference = " ",
+        Snippet = "",
+        String = " ",
+        Struct = " ",
+        Text = "󰉿",
+        TypeParameter = " ",
+        Unit = "",
+        Value = "",
+        Variable = "󰀫",
+      }
       if not snip_status_ok then return end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
@@ -90,17 +87,17 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
-            vim_item.kind = lspkind.presets.default[vim_item.kind]
+            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
             vim_item.menu = "➥ " .. (({
-              nvim_lsp = "[LSP]",
-              spell = "[Spell]",
-              buffer = "[Text]",
-              luasnip = "[Snip]",
-              treesitter = "[Treesitter]",
-              calc = "[Calc]",
-              path = "[Path]",
-              nvim_lsp_signature_help = "[Signature]",
-              cmdline = "[Cmd]",
+              nvim_lsp = "｢LSP｣",
+              spell = "｢Spell｣",
+              buffer = "｢Text｣",
+              luasnip = "｢Snip｣",
+              treesitter = "｢Treesitter｣",
+              calc = "｢Calc｣",
+              path = "｢Path｣",
+              nvim_lsp_signature_help = "｢Signature｣",
+              cmdline = "｢Cmd｣",
             })[entry.source.name] or "🚀 ")
             return vim_item
           end,

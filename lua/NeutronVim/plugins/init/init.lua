@@ -41,7 +41,7 @@ return {
     opts = {
       select = { backend = { "telescope", "builtin" } },
     },
-    config = function()
+    config = function(_, opts)
       require("dressing").setup()
     end,
   },
@@ -61,18 +61,84 @@ return {
   },
   -- Autopairing brackets and inverted commas
   {
-    'm4xshen/autoclose.nvim',
+    "echasnovski/mini.pairs",
     event = "InsertEnter",
+    version = "*",
     config = function()
-      require("autoclose").setup()
+      require("mini.pairs").setup()
+    end,
+  },
+  -- Illuminating equivalent words in current buffer under the cursor
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      delay = 200,
+      large_file_cutoff = 2000,
+      large_file_overrides = {
+        providers = { "lsp" },
+      },
+    },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
+      vim.keymap.set("n", "<a-p>", function()
+        require("illuminate").goto_next_reference()
+      end)
+      vim.keymap.set("n", "<a-n>", function()
+        require("illuminate").goto_prev_reference()
+      end)
     end,
   },
   -- Surrounding brackets in nvim
   {
-    "kylechui/nvim-surround",
-    event = "BufEnter",
+    'echasnovski/mini.surround',
+    version = '*',
     config = function()
-      require("nvim-surround").setup()
+      require("mini.surround").setup({
+        mappings = {
+          add = 'aa',
+          delete = 'ad',
+          find = 'af',
+          find_left = '',
+          highlight = 'ah',
+          replace = 'ar',
+          update_n_lines = 'an',
+        }
+      })
     end
   },
+  -- Useless but looks good :D
+  {
+    "echasnovski/mini.animate",
+    event = "VeryLazy",
+    opts = function()
+      local mouse_scrolled = false
+      for _, scroll in ipairs({ "Up", "Down" }) do
+        local key = "<ScrollWheel" .. scroll .. ">"
+        vim.keymap.set({ "", "i" }, key, function()
+          mouse_scrolled = true
+          return key
+        end, { expr = true })
+      end
+
+      local animate = require("mini.animate")
+      return {
+        resize = {
+          timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),
+        },
+        scroll = {
+          timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+          subscroll = animate.gen_subscroll.equal({
+            predicate = function(total_scroll)
+              if mouse_scrolled then
+                mouse_scrolled = false
+                return false
+              end
+              return total_scroll > 1
+            end,
+          }),
+        },
+      }
+    end,
+  }
 }

@@ -11,7 +11,7 @@ return {
         },
         {
           progress = {
-            enabled = false,
+            view = "",
           },
         },
       },
@@ -20,7 +20,7 @@ return {
         command_palette = false,
         long_message_to_split = true,
         inc_rename = false,
-        lsp_doc_border = false,
+        lsp_doc_border = true,
       },
       routes = {
         {
@@ -33,7 +33,7 @@ return {
       },
       cmdline = {
         format = {
-          cmdline = { pattern = "^:", icon = "", lang = "vim" },
+          cmdline = { pattern = "^:", icon = "►", lang = "vim" },
           search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
           search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
           filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
@@ -47,5 +47,17 @@ return {
   dependencies = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
-    }
+    {
+      "j-hui/fidget.nvim",
+      tag = "legacy",
+      event = "LspAttach",
+      opts = function()
+        require("fidget").setup({
+          window = {
+            blend = 1,
+          }
+        })
+      end
+    },
+  }
 }

@@ -76,5 +76,5 @@ return {
         end,
       })
     end,
-  }
+  },
 }

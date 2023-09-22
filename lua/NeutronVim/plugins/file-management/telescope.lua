@@ -16,9 +16,9 @@ return {
         mappings = {
           i = {
             ["<C-f>"] = actions.send_selected_to_qflist + actions.open_qflist,
-          }
-        }
-      }
+          },
+        },
+      },
     })
     telescope.load_extension("fzf")
     telescope.load_extension("lazygit")

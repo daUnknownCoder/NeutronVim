@@ -74,7 +74,7 @@ return {
       vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE", bold = true, italic = true })
       vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "gold", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "lightred", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "crimson", bg = "NONE" })
       local border_opts = {
         border = { "●", "─", "●", "│", "●", "─", "●", "│" },
         winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:Special,Search:CmpItemAbbrMatchFuzzy",

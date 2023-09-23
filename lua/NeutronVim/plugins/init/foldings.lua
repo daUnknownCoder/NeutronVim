@@ -12,6 +12,12 @@ return {
     vim.o.fillchars = [[eob: ,fold: ,foldopen:▼,foldsep: ,foldclose:►]]
     vim.keymap.set('n', '<leader>qa', ufo.openAllFolds)
     vim.keymap.set('n', '<leader>q', ufo.closeAllFolds)
+    vim.keymap.set('n', 'K', function()
+      local winid = require('ufo').peekFoldedLinesUnderCursor()
+      if not winid then
+        require('lspsaga.hover').render_hover_doc()
+      end
+    end)
     ufo.setup({
       provider_selector = function()
         return { 'treesitter', 'indent' }

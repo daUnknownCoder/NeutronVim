@@ -1,5 +1,7 @@
 {
     "diagnostics.disable": [
         "unused-local",
+        "undefined-doc-name",
+        "undefined-global",
     ]
 }

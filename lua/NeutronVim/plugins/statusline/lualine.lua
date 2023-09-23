@@ -31,6 +31,7 @@ return {
           },
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           { "filename", path = 0, symbols = { modified = " ✎ ", readonly = "  ", unnamed = " [None] " } },
+          { require("dr-lsp").lspCount },
         },
         lualine_x = {
           {

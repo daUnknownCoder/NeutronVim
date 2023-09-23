@@ -1,12 +1,13 @@
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  event = "BufEnter",
   opts = function()
     return {
       options = {
         theme = "auto",
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "nvim-tree" } },
       },
       sections = {
         lualine_a = { "mode" },

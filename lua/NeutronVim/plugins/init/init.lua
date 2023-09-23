@@ -145,6 +145,7 @@ return {
   -- Markdown files editing preview
   {
     "iamcco/markdown-preview.nvim",
+    event = "VeryLazy",
     build = "cd app && npm install",
     config = function()
       vim.g.mkdp_filetypes =

@@ -26,7 +26,6 @@ return {
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local lspsaga = require("lspsaga")
-    require("nvim-code-action-menu").setup()
     vim.cmd [[let g:code_action_menu_window_border = 'rounded']]
     lspsaga.setup({
       rename_prompt_prefix = '⚡',

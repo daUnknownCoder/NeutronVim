@@ -2,7 +2,7 @@ return {
   -- Asynchronous highlight for all color type value [Hex, name, etc]
   {
     "NvChad/nvim-colorizer.lua",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "BufReadPost",
     config = function()
       require("colorizer").setup()
     end,
@@ -41,7 +41,7 @@ return {
     opts = {
       select = { backend = { "telescope", "builtin" } },
     },
-    config = function(_, opts)
+    config = function()
       require("dressing").setup()
     end,
   },
@@ -56,7 +56,7 @@ return {
   -- Quick [un/c]ommenting using 'gcc'
   {
     "numToStr/Comment.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "BufReadPost",
     config = true,
   },
   -- Autopairing brackets and inverted commas
@@ -71,7 +71,7 @@ return {
   -- Illuminating equivalent words in current buffer under the cursor
   {
     "RRethy/vim-illuminate",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       delay = 200,
       large_file_cutoff = 2000,
@@ -111,7 +111,7 @@ return {
   -- Useless but looks good :D
   {
     "echasnovski/mini.animate",
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = function()
       local mouse_scrolled = false
       for _, scroll in ipairs({ "Up", "Down" }) do
@@ -141,6 +141,42 @@ return {
         },
       }
     end,
+  },
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    config = function()
+      local icons = require("NeutronVim.core.icons")
+      require("fidget").setup({
+        text = {
+          spinner = "dots",
+          done = icons.ui.Tick,
+        },
+        timer = {
+          spinner_rate = 150,
+          fidget_decay = 1000,
+          task_decay = 1000,
+        },
+        window = {
+          blend = 0,
+          border = "rounded",
+        },
+        fmt = {
+          fidget = function(fidget_name, spinner)
+            return string.format("%s %s", spinner, fidget_name)
+          end,
+          task = function(task_name, message, percentage)
+            return string.format(
+              "%s%s [%s]",
+              message,
+              percentage and string.format(" (%s%%)", percentage) or "",
+              task_name
+            )
+          end,
+        },
+      })
+    end
   },
   -- Markdown files editing preview
   {

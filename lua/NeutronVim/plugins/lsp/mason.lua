@@ -1,19 +1,20 @@
 return {
   "williamboman/mason.nvim",
-  lazy = false,
+  event = "VeryLazy",
   dependencies = {
-    "williamboman/mason-lspconfig.nvim",
+    { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
   },
   config = function()
+    local icons = require("NeutronVim.core.icons")
     local mason = require("mason")
     local mason_lspconfig = require("mason-lspconfig")
 
     mason.setup({
       ui = {
         icons = {
-          package_installed = "🗸 ",
-          package_uninstalled = "✗ ",
-          package_pending = "⚡ ",
+          package_installed = icons.ui.Check,
+          package_uninstalled = icons.ui.Close,
+          package_pending = icons.ui.Electric,
         }
       }
     })
@@ -23,7 +24,6 @@ return {
         "tsserver",
         "html",
         "cssls",
-        "tailwindcss",
         "lua_ls",
         "pyright",
       },

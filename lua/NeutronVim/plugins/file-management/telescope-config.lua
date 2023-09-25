@@ -1,37 +1,40 @@
 return {
-  {
-    "nvim-telescope/telescope.nvim",
-    lazy = true,
-    tag = '0.1.2',
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-      },
-      "nvim-tree/nvim-web-devicons",
-      "xiyaowong/telescope-emoji.nvim",
-      'nvim-lua/popup.nvim',
-      'nvim-telescope/telescope-media-files.nvim',
-      'ibhagwan/fzf-lua',
-      {
-        "AckslD/nvim-neoclip.lua",
-        config = function()
-          require('neoclip').setup()
-        end,
-      },
-    },
+	{
+		"nvim-telescope/telescope.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+				event = "VeryLazy",
+			},
+			{ "nvim-tree/nvim-web-devicons", event = "BufEnter", },
+			{ "xiyaowong/telescope-emoji.nvim", event = "VeryLazy" },
+			{ 'nvim-lua/popup.nvim', event = "VeryLazy" },
+			{ 'nvim-telescope/telescope-media-files.nvim', event = "VeryLazy" },
+			{ 'ibhagwan/fzf-lua', event = "VeryLazy" },
+			{
+				"AckslD/nvim-neoclip.lua",
+				event = "BufEnter",
+			},
+		},
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
+      local icons = require("NeutronVim.core.icons")
 
+      require('neoclip').setup()
       telescope.setup({
         defaults = {
-          prompt_prefix = '🔭 ',
-          selection_caret = '🔬 ',
+          prompt_prefix = icons.ui.Telescope,
+          selection_caret = icons.ui.Plug,
           mappings = {
             i = {
-              ["<C-f>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              ["<C-f>"] = function()
+                actions.send_selected_to_qflist()
+                actions.open_qflist()
+              end,
             },
           },
         },
@@ -41,6 +44,7 @@ return {
       telescope.load_extension("emoji")
       telescope.load_extension('media_files')
       telescope.load_extension('neoclip')
+      telescope.load_extension("lazygit")
       local builtin = require('telescope.builtin')
       local keymap = vim.keymap.set
       keymap('n', 'ff', builtin.find_files, { desc = "Find Files Fuzzily" })
@@ -53,5 +57,5 @@ return {
       keymap('n', 'fe', '<cmd>Telescope emoji<CR>', { desc = "Emoji search - copy - paste" })
       keymap('n', 'fm', '<cmd>Telescope media_files<CR>', { desc = "Preview media files" })
     end
-  },
+	},
 }

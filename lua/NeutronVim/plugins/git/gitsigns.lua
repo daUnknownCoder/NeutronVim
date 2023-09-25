@@ -1,19 +1,20 @@
 return {
   "lewis6991/gitsigns.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  event = "BufWinEnter",
   config = function()
+    local icons = require("NeutronVim.core.icons")
     require('gitsigns').setup {
       signs = {
-        add          = { text = '│' },
-        change       = { text = '│' },
-        delete       = { text = '_' },
-        topdelete    = { text = '‾' },
-        changedelete = { text = '~' },
-        untracked    = { text = '┆' },
+        add          = { text = icons.ui.Electric },
+        change       = { text = icons.ui.Edge },
+        delete       = { text = icons.ui.Trash },
+        topdelete    = { text = icons.ui.Top },
+        changedelete = { text = icons.ui.Close },
+        untracked    = { text = icons.ui.Pencil },
       },
       signcolumn = true,
       numhl      = true,
-      linehl     = true,
+      linehl     = false,
       word_diff  = false,
       watch_gitdir = {
         follow_files = true
@@ -24,15 +25,14 @@ return {
         virt_text = true,
         virt_text_pos = 'eol',
         delay = 1000,
-        ignore_whitespace = false,
+        ignore_whitespace = true,
       },
       current_line_blame_formatter = ' <author>, <author_time:%R> - <summary>',
       sign_priority = 6,
       update_debounce = 100,
-      status_formatter = nil, -- Use default
-      max_file_length = 40000, -- Disable if file is longer than this (in lines)
+      status_formatter = nil,
+      max_file_length = 40000,
       preview_config = {
-        -- Options passed to nvim_open_win
         border = 'single',
         style = 'minimal',
         relative = 'cursor',

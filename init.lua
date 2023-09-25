@@ -1,10 +1,12 @@
--- Neovim Plugin Management
+-- NeutronVim Plugin Management
 
 require("NeutronVim.lazy")
 
--- Neovim configuration
+-- NeutronVim required files
 require("NeutronVim.core.remaps")
 require("NeutronVim.core.opts")
+require("NeutronVim.core.init")
+require("NeutronVim.core.icons")
 
 vim.opt.background = "dark"
 

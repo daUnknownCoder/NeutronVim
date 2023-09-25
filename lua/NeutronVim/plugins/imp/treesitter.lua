@@ -2,15 +2,17 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = "BufEnter",
+    event = "BufWinEnter",
+    lazy = true,
     dependencies = {
-      "HiPhish/rainbow-delimiters.nvim",
-      "windwp/nvim-ts-autotag",
+      { "HiPhish/rainbow-delimiters.nvim", event = "VeryLazy" },
+      { "windwp/nvim-ts-autotag", event = "VeryLazy" },
       {
         'nvim-treesitter/playground',
-        config = function()
-          vim.keymap.set("n", "<leader>pl", "<cmd>TSPlaygroundToggle<CR>")
-        end,
+        keys = {
+          { "<leader>pl", "<cmd>TSPlaygroundToggle<CR>" },
+        },
+        event = "VeryLazy",
       },
     },
     config = function()

@@ -39,5 +39,4 @@ keymap("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 keymap("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
-
 keymap("n", "`", "<C-w><C-w>")

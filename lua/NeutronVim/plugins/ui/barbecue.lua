@@ -1,6 +1,6 @@
 return {
   "utilyre/barbecue.nvim",
-  events = "VeryLazy",
+  events = "BufEnter",
   name = "barbecue",
   version = "*",
   dependencies = {
@@ -10,7 +10,7 @@ return {
   config = function()
     local barbecue = require("barbecue")
 
-    vim.opt.updatetime = 200
+    vim.opt.updatetime = 500
 
     barbecue.setup({
       create_autocmd = false,

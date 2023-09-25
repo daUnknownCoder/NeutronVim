@@ -2,7 +2,10 @@ return {
   {
     "L3MON4D3/LuaSnip",
     dependencies = {
-      "rafamadriz/friendly-snippets",
+      {
+        "rafamadriz/friendly-snippets",
+        event = "InsertEnter",
+      }
     },
     opts = {
       history = true,
@@ -18,63 +21,31 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-calc",
-      "f3fora/cmp-spell",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
+      { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
+      { "hrsh7th/cmp-buffer", event = "InsertEnter" },
+      { "hrsh7th/cmp-nvim-lua", event = "InsertEnter" },
+      { "octaltree/cmp-look", event = "InsertEnter" },
+      { "hrsh7th/cmp-path", event = "InsertEnter" },
+      { "hrsh7th/cmp-emoji", event = "InsertEnter" },
+      { "ray-x/cmp-treesitter", event = "InsertEnter" },
+      { "hrsh7th/cmp-cmdline", event = "InsertEnter" },
+      { "hrsh7th/cmp-calc", event = "InsertEnter" },
+      { "f3fora/cmp-spell", event = "InsertEnter" },
+      { "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" },
     },
     event = "InsertEnter",
     opts = function()
-      local cmp = require "cmp"
+      local cmp = require("cmp")
       local snip_status_ok, luasnip = pcall(require, "luasnip")
-      local kind_icons = {
-        Array = " ",
-        Boolean = " ",
-        Class = "ﴯ",
-        Color = "",
-        Constant = "",
-        Constructor = "",
-        Copilot = " ",
-        Enum = "",
-        EnumMember = " ",
-        Event = " ",
-        Field = " ",
-        File = "",
-        Folder = " ",
-        Function = "",
-        Interface = " ",
-        Key = " ",
-        Keyword = "",
-        Method = " ",
-        Module = " ",
-        Namespace = " ",
-        Null = " ",
-        Number = " ",
-        Object = " ",
-        Operator = " ",
-        Package = " ",
-        Property = "ﰠ",
-        Reference = " ",
-        Snippet = "",
-        String = " ",
-        Struct = " ",
-        Text = "󰉿",
-        TypeParameter = " ",
-        Unit = "",
-        Value = "",
-        Variable = "󰀫",
-      }
+      local icons = require('NeutronVim.core.icons')
+      local kind_icons = icons.kind
       if not snip_status_ok then return end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE", bold = true, italic = true })
       vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "gold", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "green", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ff3e00", bg = "NONE" })
       local border_opts = {
         border = { "●", "─", "●", "│", "●", "─", "●", "│" },
         winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:Special,Search:CmpItemAbbrMatchFuzzy",
@@ -92,10 +63,13 @@ return {
             vim_item.menu = "➥ " .. (({
               nvim_lsp = "｢LSP｣",
               spell = "｢Spell｣",
-              buffer = "｢Text｣",
+              buffer = "｢Buffer｣",
               luasnip = "｢Snip｣",
               treesitter = "｢Treesitter｣",
               calc = "｢Calc｣",
+              nvim_lua = "｢Lua｣",
+              look = "｢Look｣",
+              emoji = "｢Emoji｣",
               path = "｢Path｣",
               nvim_lsp_signature_help = "｢Signature｣",
               cmdline = "｢Cmd｣",
@@ -180,21 +154,27 @@ return {
             end,
             priority = 1000,
           },
-          { name = 'nvim_lsp_signature_help', priority = 500 },
           { name = "luasnip", priority = 750 },
+          { name = "treesitter", priority = 750 },
+          { name = 'nvim_lsp_signature_help', priority = 500 },
           { name = "buffer", priority = 500 },
+          { name = "nvim_lua", priority = 500 },
           { name = "path", priority = 250 },
-          { name = 'calc', priority = 100 },
+          { name = "emoji", priority = 200 },
           {
             name = 'spell',
             option = {
-                keep_all_entries = false,
-                enable_in_context = function()
-                    return true
-                end,
+              keep_all_entries = false,
+              enable_in_context = function()
+                return true
+              end,
             },
             priority = 100,
           },
+          { name = 'calc', priority = 100 },
+        },
+        experimental = {
+          ghost_text = true,
         },
       })
       cmp.setup.filetype('gitcommit', {

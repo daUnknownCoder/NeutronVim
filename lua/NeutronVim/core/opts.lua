@@ -37,7 +37,7 @@ local options = {
   undofile = true,
   backspace = "indent,eol,start",
 
-  updatetime = 50,
+  updatetime = 250,
 
   title = true,
   titlestring = "Neovim - %t",
@@ -45,8 +45,8 @@ local options = {
 }
 
 vim.opt.iskeyword:append("-")
-vim.opt.shortmess:append("IsF")
-
+vim.opt.shortmess:append({ W = true, I = true, c = true })
+vim.g.markdown_recommended_style = 0
 
 for option, value in pairs(options) do
   vim.opt[option] = value

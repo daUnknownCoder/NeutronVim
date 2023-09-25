@@ -1,8 +1,9 @@
 return {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  event = "BufEnter",
+  event = "BufWinEnter",
   opts = function()
+    local icons = require("NeutronVim.core.icons")
     return {
       options = {
         theme = "auto",
@@ -11,7 +12,15 @@ return {
       },
       sections = {
         lualine_a = { "mode" },
-        lualine_b = { "branch" },
+        lualine_b = {
+          {
+            'branch',
+            icon = icons.git.Branch,
+            fmt = function(str)
+              return str:sub(1, 16)
+            end,
+          },
+        },
         lualine_c = {
           {
             "diagnostics",
@@ -31,8 +40,7 @@ return {
             },
           },
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { "filename", path = 0, symbols = { modified = " ✎ ", readonly = "  ", unnamed = " [None] " } },
-          { require("dr-lsp").lspCount },
+          { "filename", symbols = { modified = " ✎ ", readonly = "  ", unnamed = " [None] " }, path = 0 },
         },
         lualine_x = {
           {

@@ -1,6 +1,6 @@
 return {
   "akinsho/toggleterm.nvim",
-  event = "VeryLazy",
+  event = "BufReadPost",
   keys = {
     { "<leader>\\", "<cmd>ToggleTerm<CR>" },
   },

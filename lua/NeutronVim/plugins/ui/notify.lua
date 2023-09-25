@@ -1,10 +1,11 @@
 return {
   "rcarriga/nvim-notify",
-  event = "BufReadPre",
+  event = "BufReadPost",
   config = function()
     vim.opt.termguicolors = true
     vim.notify = require("notify")
     local notify = require("notify")
+    local icons = require("NeutronVim.core.icons")
 
     notify.setup({
       minimum_width = 50,
@@ -12,13 +13,20 @@ return {
       render = "default",
       stages = "fade",
       timeout = 2000,
-      fps = 60,
+      fps = 30,
       max_height = function()
         return math.floor(vim.o.lines * 0.75)
       end,
       max_width = function()
         return math.floor(vim.o.columns * 0.75)
       end,
+      icons = {
+        DEBUG = icons.ui.Bug,
+        ERROR = icons.diagnostics.Error,
+        INFO = icons.diagnostics.Information,
+        TRACE = icons.ui.Bookmark,
+        WARN = icons.diagnostics.Warning,
+      },
     })
 
     local severity = {

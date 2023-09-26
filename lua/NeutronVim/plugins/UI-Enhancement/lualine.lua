@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  event = "BufWinEnter",
+  event = "VimEnter",
   lazy = true,
   opts = function()
     local icons = require("NeutronVim.core.icons")
@@ -8,7 +8,7 @@ return {
       options = {
         theme = "auto",
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha", "nvim-tree" } },
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "NvimTree" } },
       },
       sections = {
         lualine_a = { "mode" },
@@ -43,20 +43,6 @@ return {
           { "filename", symbols = { modified = " ✎ ", readonly = "  ", unnamed = " [None] " }, path = 0 },
         },
         lualine_x = {
-          {
-            ---@diagnostic disable-next-line: undefined-field
-            require("noice").api.status.command.get,
-            ---@diagnostic disable-next-line: undefined-field
-            cond = require("noice").api.status.command.has,
-            color = { fg = "#ff9e64" },
-          },
-          {
-            ---@diagnostic disable-next-line: undefined-field
-            require("noice").api.status.mode.get,
-            ---@diagnostic disable-next-line: undefined-field
-            cond = require("noice").api.status.mode.has,
-            color = { fg = "#ff9e64" },
-          },
           { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = { fg = "#ff9e64" } },
         },
         lualine_y = {

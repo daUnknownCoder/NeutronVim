@@ -54,12 +54,12 @@ return {
       },
       {
         'folke/neodev.nvim',
-        event = "VeryLazy",
+        event = "LspAttach",
         lazy = true,
       },
       {
         "folke/neoconf.nvim",
-        event = "VeryLazy",
+        event = "LspAttach",
         lazy = true,
       }
     },

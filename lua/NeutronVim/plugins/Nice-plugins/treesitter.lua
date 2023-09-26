@@ -5,14 +5,14 @@ return {
     event = "BufReadPost",
     lazy = true,
     dependencies = {
-      { "HiPhish/rainbow-delimiters.nvim", event = "VeryLazy" },
-      { "windwp/nvim-ts-autotag", event = "VeryLazy" },
+      { "HiPhish/rainbow-delimiters.nvim", event = "BufReadPost", lazy = true },
       {
         'nvim-treesitter/playground',
         keys = {
           { "<leader>pl", "<cmd>TSPlaygroundToggle<CR>" },
         },
-        event = "VeryLazy",
+        event = "BufReadPost",
+        lazy = true,
       },
     },
     config = function()
@@ -28,11 +28,16 @@ return {
         indent = {
           enable = true
         },
-        autotag = {
-          enable = true
-        },
       }
       local rainbow_delimiters = require 'rainbow-delimiters'
+
+      vim.cmd [[highlight RainbowDelimiterRed guifg=#E06C75 gui=nocombine]]
+      vim.cmd [[highlight RainbowDelimiterYellow guifg=darkyellow gui=nocombine]]
+      vim.cmd [[highlight RainbowDelimiterGreen guifg=lime gui=nocombine]]
+      vim.cmd [[highlight RainbowDelimiterOrange guifg=orange gui=nocombine]]
+      vim.cmd [[highlight RainbowDelimiterBlue guifg=#61AFEF gui=nocombine]]
+      vim.cmd [[highlight RainbowDelimiterViolet guifg=violet gui=nocombine]]
+
       vim.g.rainbow_delimiters = {
         strategy = {
           [''] = rainbow_delimiters.strategy['global'],
@@ -52,7 +57,6 @@ return {
           'RainbowDelimiterCyan',
         },
       }
-      require("nvim-ts-autotag").setup()
     end,
   },
   {

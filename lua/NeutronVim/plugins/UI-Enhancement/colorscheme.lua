@@ -1,5 +1,6 @@
 return {
   "folke/tokyonight.nvim",
+  event = "VeryLazy",
   lazy = false,
   config = function()
     require("tokyonight").setup({

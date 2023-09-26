@@ -14,28 +14,29 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
+local icons = require("NeutronVim.core.icons")
 
 require("lazy").setup({
   -- UI Enhancement
-  { import = "NeutronVim.plugins.ui" },
+  { import = "NeutronVim.plugins.UI-Enhancement" },
 
   -- File Managers
-  { import = "NeutronVim.plugins.file-management" },
+  { import = "NeutronVim.plugins.File-Management" },
 
   -- Autocompletion
-  { import = "NeutronVim.plugins.cmp" },
+  { import = "NeutronVim.plugins.Autocompletion" },
 
   -- LSP
-  { import = "NeutronVim.plugins.lsp" },
+  { import = "NeutronVim.plugins.LSP" },
 
-  -- Required by NeutronVim
-  { import = "NeutronVim.plugins.imp" },
+  -- Nice Plugins for NeutronVim
+  { import = "NeutronVim.plugins.Nice-plugins" },
 
   -- Terminal
-  { import = "NeutronVim.plugins.terminal" },
+  { import = "NeutronVim.plugins.Terminal" },
 
   -- Git
-  { import = "NeutronVim.plugins.git" },
+  { import = "NeutronVim.plugins.Git-Integration" },
 },
   {
     install = {
@@ -46,6 +47,10 @@ require("lazy").setup({
       notify = false,
     },
     change_detection = {
-      notify = false,
+      notify = true,
+    },
+    ui = {
+      border = "rounded",
+      title = " " .. icons.ui.Electric .. "La" .. icons.ui.Sleep .. "y " .. icons.ui.Electric,
     },
   })

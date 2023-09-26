@@ -1,6 +1,6 @@
 return {
   'theprimeagen/harpoon',
-  event = "BufWinEnter",
+  event = "BufReadPost",
   lazy = true,
   config = function()
     local mark = require("harpoon.mark")

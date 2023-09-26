@@ -37,7 +37,7 @@ local options = {
   undofile = true,
   backspace = "indent,eol,start",
 
-  updatetime = 250,
+  updatetime = 50,
 
   title = true,
   titlestring = "Neovim - %t",

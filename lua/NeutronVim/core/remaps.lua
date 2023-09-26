@@ -34,7 +34,6 @@ keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
 keymap({ "n", "v" }, "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-keymap("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
 
 keymap("n", "<leader><leader>", function()
     vim.cmd("so")

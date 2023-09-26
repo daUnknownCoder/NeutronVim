@@ -19,7 +19,7 @@ return {
           selection_caret = icons.ui.Plug,
           prompt_prefix = icons.ui.Telescope,
           initial_mode = "insert",
-          sorting_strategy = "ascending",
+          sorting_strategy = "descending",
           layout_strategy = "horizontal",
           layout_config = {
             horizontal = {

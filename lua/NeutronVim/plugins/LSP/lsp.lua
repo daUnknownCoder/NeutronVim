@@ -1,7 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" },
+    event = "BufReadPost",
     lazy = true,
     dependencies = {
       {
@@ -59,6 +59,7 @@ return {
       },
       {
         "folke/neoconf.nvim",
+        cmd = "Neoconf",
         event = "LspAttach",
         lazy = true,
       }
@@ -134,6 +135,13 @@ return {
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+        vim.lsp.handlers.signature_help, {
+          border = "rounded",
+          focusable = false,
+          relative = "cursor",
+        }
+      )
       vim.diagnostic.config({
         virtual_text = {
           enabled = true,

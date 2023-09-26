@@ -41,7 +41,7 @@ return {
       },
       cmdline = {
         format = {
-          cmdline = { pattern = "^:", icon = " ", lang = "vim" },
+          cmdline = { pattern = "^:", icon = ">_", lang = "vim" },
         },
       },
     },

@@ -1,10 +1,13 @@
 return {
   "utilyre/barbecue.nvim",
-  events = "LspAttach",
+  event = "BufReadPost",
+  lazy = true,
   name = "barbecue",
   version = "*",
   dependencies = {
     "SmiteshP/nvim-navic",
+    event = "BufReadPost",
+    lazy = true,
   },
   config = function()
     local barbecue = require("barbecue")

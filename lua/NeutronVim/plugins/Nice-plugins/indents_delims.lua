@@ -3,7 +3,7 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPost",
     lazy = true,
-    config = function()
+    config = function(_, opts)
       local indents = require("indent_blankline")
 
       vim.opt.termguicolors = true
@@ -38,8 +38,8 @@ return {
         "help",
         "alpha",
         "dashboard",
-        "neo-tree",
         "Trouble",
+        "NvimTree",
         "lazy",
         "mason",
         "notify",

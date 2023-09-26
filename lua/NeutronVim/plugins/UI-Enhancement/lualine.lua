@@ -8,7 +8,7 @@ return {
       options = {
         theme = "auto",
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha", "NvimTree" } },
+        disabled_filetypes = { statusline = { "dashboard", "alpha", "NvimTree", "Telescope" } },
       },
       sections = {
         lualine_a = { "mode" },

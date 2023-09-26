@@ -44,6 +44,7 @@ local options = {
   clipboard = "unnamedplus",
 }
 
+vim.g.loaded_netrwPlugin = false
 vim.opt.iskeyword:append("-")
 vim.opt.shortmess:append({ W = true, I = true, c = true })
 vim.g.markdown_recommended_style = 0

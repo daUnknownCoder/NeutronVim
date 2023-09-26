@@ -5,6 +5,7 @@ return {
       {
         "rafamadriz/friendly-snippets",
         event = "InsertEnter",
+        lazy = true,
       }
     },
     opts = {
@@ -17,25 +18,24 @@ return {
       vim.tbl_map(function(type) require("luasnip.loaders.from_" .. type).lazy_load() end, { "vscode", "snipmate", "lua" })
     end,
     event = "InsertEnter",
+    lazy = true,
   },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      { "saadparwaiz1/cmp_luasnip", event = "InsertEnter" },
-      { "hrsh7th/cmp-buffer", event = "InsertEnter" },
-      { "hrsh7th/cmp-nvim-lua", event = "InsertEnter" },
-      { "octaltree/cmp-look", event = "InsertEnter" },
-      { "hrsh7th/cmp-path", event = "InsertEnter" },
-      { "hrsh7th/cmp-emoji", event = "InsertEnter" },
-      { "ray-x/cmp-treesitter", event = "InsertEnter" },
-      { "hrsh7th/cmp-cmdline", event = "InsertEnter" },
-      { "hrsh7th/cmp-calc", event = "InsertEnter" },
-      { "f3fora/cmp-spell", event = "InsertEnter" },
-      { "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" },
-      {
-        'Exafunction/codeium.vim',
-        event = "InsertEnter",
-      }
+      { "saadparwaiz1/cmp_luasnip", event = "InsertEnter", lazy = true },
+      { "hrsh7th/cmp-buffer", event = "InsertEnter", lazy = true },
+      { "hrsh7th/cmp-nvim-lua", event = "InsertEnter", lazy = true },
+      { "octaltree/cmp-look", event = "InsertEnter", lazy = true },
+      { "hrsh7th/cmp-path", event = "InsertEnter", lazy = true },
+      { "hrsh7th/cmp-emoji", event = "InsertEnter", lazy = true },
+      { "ray-x/cmp-treesitter", event = "InsertEnter", lazy = true },
+      { "hrsh7th/cmp-cmdline", event = "InsertEnter",lazy = true },
+      { "hrsh7th/cmp-calc", event = "InsertEnter", lazy = true },
+      { "f3fora/cmp-spell", event = "InsertEnter", lazy = true },
+      { "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter", lazy = true },
+      { 'Exafunction/codeium.vim', event = "InsertEnter", lazy = true },
+      lazy = true
     },
     event = "InsertEnter",
     opts = function()
@@ -55,10 +55,6 @@ return {
         border = { "●", "─", "●", "│", "●", "─", "●", "│" },
         winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:Special,Search:CmpItemAbbrMatchFuzzy",
       }
-      local function has_words_before()
-        local line, col = (table.unpack)(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-      end
       set( 'i', '<C-a>', function () return vim.fn['codeium#Accept']() end, { expr = true } )
       set( 'i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true } )
       set( 'i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true } )
@@ -69,9 +65,9 @@ return {
         ---@diagnostic disable-next-line: missing-fields
         formatting = {
           fields = { "kind", "abbr", "menu" },
-          format = function(entry, vim_item)
-            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
-            vim_item.menu = "➥ " .. (({
+          format = function(entry, item)
+            item.kind = string.format("%s %s", kind_icons[item.kind], item.kind or "TS" )
+            item.menu = "➥ " .. (({
               nvim_lsp = "｢LSP｣",
               spell = "｢Spell｣",
               buffer = "｢Buffer｣",
@@ -85,7 +81,7 @@ return {
               nvim_lsp_signature_help = "｢Signature｣",
               cmdline = "｢Cmd｣",
             })[entry.source.name] or "🚀 ")
-            return vim_item
+            return item
           end,
         },
         snippet = {
@@ -126,8 +122,6 @@ return {
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
             else
               fallback()
             end

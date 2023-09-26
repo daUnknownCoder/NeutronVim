@@ -2,8 +2,9 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     lazy = true,
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     dependencies = {
       { "HiPhish/rainbow-delimiters.nvim", event = "BufReadPost", lazy = true },
       {
@@ -31,8 +32,8 @@ return {
       }
       local rainbow_delimiters = require 'rainbow-delimiters'
 
-      vim.cmd [[highlight RainbowDelimiterRed guifg=#E06C75 gui=nocombine]]
-      vim.cmd [[highlight RainbowDelimiterYellow guifg=darkyellow gui=nocombine]]
+      vim.cmd [[highlight RainbowDelimiterRed guifg=silver gui=nocombine]]
+      vim.cmd [[highlight RainbowDelimiterYellow guifg=turquoise gui=nocombine]]
       vim.cmd [[highlight RainbowDelimiterGreen guifg=lime gui=nocombine]]
       vim.cmd [[highlight RainbowDelimiterOrange guifg=orange gui=nocombine]]
       vim.cmd [[highlight RainbowDelimiterBlue guifg=#61AFEF gui=nocombine]]

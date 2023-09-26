@@ -14,7 +14,7 @@ return {
       ui = {
         icons = {
           package_installed = icons.ui.Check,
-          package_uninstalled = icons.ui.Close,
+          package_uninstalled = icons.ui.Uncheck,
           package_pending = icons.ui.Electric,
         }
       }

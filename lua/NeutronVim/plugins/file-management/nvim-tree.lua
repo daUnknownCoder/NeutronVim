@@ -1,10 +1,8 @@
 return {
   {
     "nvim-tree/nvim-tree.lua",
-    event = "BufReadPost",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
+    event = "VeryLazy",
+    lazy = true,
     config = function()
       local nvimtree = require("nvim-tree")
       local icons = require("NeutronVim.core.icons")

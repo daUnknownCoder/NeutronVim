@@ -2,21 +2,23 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		event = "VeryLazy",
+    lazy = true,
 		dependencies = {
-			{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
+			{ "nvim-lua/plenary.nvim", event = "VeryLazy", lazy = true },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
 				event = "VeryLazy",
+        lazy = true,
 			},
-			{ "nvim-tree/nvim-web-devicons", event = "BufEnter", },
-			{ "xiyaowong/telescope-emoji.nvim", event = "VeryLazy" },
-			{ 'nvim-lua/popup.nvim', event = "VeryLazy" },
-			{ 'nvim-telescope/telescope-media-files.nvim', event = "VeryLazy" },
-			{ 'ibhagwan/fzf-lua', event = "VeryLazy" },
+			{ "xiyaowong/telescope-emoji.nvim", event = "VeryLazy", lazy = true },
+			{ 'nvim-lua/popup.nvim', event = "VeryLazy", lazy = true },
+			{ 'nvim-telescope/telescope-media-files.nvim', event = "VeryLazy", lazy = true },
+			{ 'ibhagwan/fzf-lua', event = "VeryLazy", lazy = true },
 			{
 				"AckslD/nvim-neoclip.lua",
-				event = "BufEnter",
+				event = "VeryLazy",
+        lazy = true,
 			},
 		},
     config = function()
@@ -31,8 +33,9 @@ return {
           selection_caret = icons.ui.Plug,
           mappings = {
             i = {
-              ["<C-f>"] = function()
+              ["<C-q>"] = function()
                 actions.send_selected_to_qflist()
+                ---@diagnostic disable-next-line: missing-parameter
                 actions.open_qflist()
               end,
             },

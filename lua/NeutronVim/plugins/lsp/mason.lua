@@ -1,8 +1,9 @@
 return {
   "williamboman/mason.nvim",
-  event = "VeryLazy",
+  event = "BufReadPost",
+  lazy = true,
   dependencies = {
-    { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
+    { "williamboman/mason-lspconfig.nvim", event = "BufReadPost" },
   },
   config = function()
     local icons = require("NeutronVim.core.icons")

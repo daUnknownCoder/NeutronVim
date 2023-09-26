@@ -2,7 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = "BufWinEnter",
+    event = "BufReadPost",
     lazy = true,
     dependencies = {
       { "HiPhish/rainbow-delimiters.nvim", event = "VeryLazy" },
@@ -16,6 +16,7 @@ return {
       },
     },
     config = function()
+      ---@diagnostic disable-next-line: missing-fields
       require'nvim-treesitter.configs'.setup {
         ensure_installed = { "vimdoc", "javascript", "c", "lua", "python", "query" },
         sync_install = false,
@@ -58,6 +59,7 @@ return {
     "luckasRanarison/tree-sitter-hypr",
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      ---@diagnostic disable-next-line: inject-field
       parser_config.hypr = {
         install_info = {
           url = "https://github.com/luckasRanarison/tree-sitter-hypr",
@@ -66,6 +68,8 @@ return {
         },
         filetype = "hypr",
       }
-    end
+    end,
+    lazy = true,
+    ft = "hypr",
   }
 }

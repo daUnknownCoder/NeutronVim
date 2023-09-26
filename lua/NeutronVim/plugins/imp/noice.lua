@@ -2,9 +2,10 @@ return {
   {
     "folke/noice.nvim",
     dependencies = {
-      { "MunifTanjim/nui.nvim", event = "VeryLazy" },
+      { "MunifTanjim/nui.nvim", event = "VeryLazy", lazy = true },
     },
     event = "VeryLazy",
+    lazy = true,
     opts = {
       lsp = {
         override = {
@@ -21,6 +22,9 @@ return {
         message = {
           enabled = false,
         },
+        hover = {
+          enabled = false,
+        }
       },
       presets = {
         long_message_to_split = true,
@@ -38,12 +42,6 @@ return {
       cmdline = {
         format = {
           cmdline = { pattern = "^:", icon = " ", lang = "vim" },
-          search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-          search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
-          filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
-          lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-          help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
-          input = {},
         },
       },
     },

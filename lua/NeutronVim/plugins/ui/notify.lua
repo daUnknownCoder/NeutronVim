@@ -1,12 +1,14 @@
 return {
   "rcarriga/nvim-notify",
   event = "BufReadPost",
+  lazy = true,
   config = function()
     vim.opt.termguicolors = true
     vim.notify = require("notify")
     local notify = require("notify")
     local icons = require("NeutronVim.core.icons")
 
+    ---@diagnostic disable-next-line: missing-fields
     notify.setup({
       minimum_width = 50,
       background_colour = "#1d2021",
@@ -34,6 +36,7 @@ return {
       "warn",
       "info",
     }
+    ---@diagnostic disable-next-line: duplicate-set-field
     vim.lsp.handlers["window/showMessage"] = function(method, params)
       vim.notify(method.message, severity[params.type])
     end

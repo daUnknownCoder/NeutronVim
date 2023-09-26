@@ -1,6 +1,7 @@
 return {
   'kevinhwang91/nvim-ufo',
   event = "BufReadPost",
+  lazy = true,
   dependencies = 'kevinhwang91/promise-async',
   config = function()
     local ufo = require("ufo")

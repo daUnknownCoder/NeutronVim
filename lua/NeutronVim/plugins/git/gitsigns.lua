@@ -1,6 +1,9 @@
 return {
   "lewis6991/gitsigns.nvim",
-  event = "BufWinEnter",
+  event = "BufReadPost",
+  dependencies = {
+    { "kdheepak/lazygit.nvim", event = "VeryLazy", lazy = true },
+  },
   config = function()
     local icons = require("NeutronVim.core.icons")
     require('gitsigns').setup {

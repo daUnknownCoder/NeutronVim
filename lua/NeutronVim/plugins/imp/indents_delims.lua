@@ -1,7 +1,8 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "VeryLazy",
+    event = "BufReadPost",
+    lazy = true,
     config = function()
       local indents = require("indent_blankline")
 
@@ -52,7 +53,7 @@ return {
   {
     "echasnovski/mini.indentscope",
     version = false,
-    event = "VeryLazy",
+    event = "BufReadPost",
     opts = {
       symbol = "│",
       options = { try_as_border = true },

@@ -1,60 +1,66 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
+    lazy = true,
     dependencies = {
       {
         "antosha417/nvim-lsp-file-operations",
         config = true,
-        event = "LspAttach"
+        event = "LspAttach",
+        lazy = true,
       },
       {
         "hrsh7th/cmp-nvim-lsp",
-        event = "LspAttach"
+        event = "InsertEnter",
+        lazy = true,
       },
       {
         'weilbith/nvim-code-action-menu',
         cmd = 'CodeActionMenu',
         event = "LspAttach",
+        lazy = true,
       },
       {
         "folke/trouble.nvim",
         event = "LspAttach",
+        lazy = true,
       },
       {
         'filipdutescu/renamer.nvim',
         branch = 'master',
+        event = "LspAttach",
+        lazy = true,
       },
       {
         'wiliamks/nice-reference.nvim',
         event = "LspAttach",
+        lazy = true,
       },
       {
         'rmagatti/goto-preview',
         event = "LspAttach",
+        lazy = true,
       },
       {
         "lewis6991/hover.nvim",
         event = "LspAttach",
+        lazy = true,
       },
       {
         "ray-x/lsp_signature.nvim",
         event = "LspAttach",
-      },
-      {
-        'ray-x/navigator.lua',
-        dependencies = {
-          { 'ray-x/guihua.lua', build = 'cd lua/fzy && make', event = "LspAttach" },
-        },
-        event = "LspAttach",
+        lazy = true,
       },
       {
         'folke/neodev.nvim',
         event = "VeryLazy",
+        lazy = true,
       },
       {
         "folke/neoconf.nvim",
         event = "VeryLazy",
+        lazy = true,
       }
     },
     config = function()
@@ -63,44 +69,6 @@ return {
       local lspconfig = require("lspconfig")
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
       local icons = require("NeutronVim.core.icons")
-      local M = {}
-      M.icons = {
-        Array = " ",
-        Boolean = " ",
-        Class = "ﴯ",
-        Color = "",
-        Constant = "",
-        Constructor = ' ',
-        Copilot = " ",
-        Enum = "",
-        EnumMember = " ",
-        Event = " ",
-        Field = ' ',
-        File = "",
-        Folder = " ",
-        Function = "",
-        Interface = ' ',
-        Key = " ",
-        Keyword = "",
-        Method = " ",
-        Module = " ",
-        Namespace = " ",
-        Null = " ",
-        Number = " ",
-        Object = " ",
-        Operator = " ",
-        Package = " ",
-        Property = "ﰠ",
-        Reference = ' ',
-        Snippet = ' ',
-        String = " ",
-        Struct = ' ',
-        Text = ' ',
-        TypeParameter = " ",
-        Unit = "",
-        Value = "",
-        Variable = "󰀫",
-      }
       require("hover").setup {
         init = function()
           require("hover.providers.lsp")
@@ -147,29 +115,6 @@ return {
           vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
           vim.api.nvim_command [[augroup END]]
         end
-        if client.resolved_capabilities.document_highlight then
-          vim.cmd [[ hi! LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow ]]
-          vim.cmd [[ hi! LspReferenceText cterm=bold ctermbg=red guibg=LightYellow ]]
-          vim.cmd [[hi! LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow ]]
-          vim.api.nvim_create_augroup('lsp_document_highlight', {
-            clear = false
-          })
-          vim.api.nvim_clear_autocmds({
-            buffer = bufnr,
-            group = 'lsp_document_highlight',
-          })
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-            group = 'lsp_document_highlight',
-            buffer = bufnr,
-            callback = vim.lsp.buf.document_highlight,
-          })
-          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-            group = 'lsp_document_highlight',
-            buffer = bufnr,
-            callback = vim.lsp.buf.clear_references,
-          })
-        end
-        vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
         require("lsp_signature").on_attach({
           bind = true,
           padding = "",
@@ -185,19 +130,6 @@ return {
         Hint = icons.diagnostics.Hint,
         Info = icons.diagnostics.Info
       }
-      function M.setup()
-        local kinds = vim.lsp.protocol.CompletionItemKind
-        for i, kind in ipairs(kinds) do
-          kinds[i] = M.icons[kind] or kind
-        end
-      end
-      vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
-        signs = true,
-        underline = true,
-        update_in_insert = true,
-      })
-
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -223,27 +155,6 @@ return {
         underline = true,
         severity_sort = false,
       })
-      ---@diagnostic disable-next-line: unused-local
-      function PrintDiagnostics(opts, bufnr, line_nr, client_id)
-        opts = opts or { ['lnum'] = line_nr }
-        bufnr = bufnr or 0
-        line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
-
-        local line_diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr, line_nr, opts, client_id)
-        if vim.tbl_isempty(line_diagnostics) then return end
-
-        local diagnostic_message = ""
-        for i, diagnostic in ipairs(line_diagnostics) do
-          diagnostic_message = diagnostic_message .. string.format("%d: %s", i, diagnostic.message or "")
-          print(diagnostic_message)
-          if i ~= #line_diagnostics then
-            diagnostic_message = diagnostic_message .. "\n"
-          end
-        end
-        vim.api.nvim_echo({ { diagnostic_message, "Normal" } }, false, {})
-      end
-
-      vim.cmd [[ autocmd! CursorHold * lua PrintDiagnostics() ]]
       lspconfig["html"].setup({
         capabilities = capabilities,
         on_attach = on_attach,

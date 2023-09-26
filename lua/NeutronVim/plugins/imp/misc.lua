@@ -4,28 +4,37 @@ return {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPost",
     config = function()
-      require("colorizer").setup()
+      require("colorizer").setup({
+        user_default_options = {
+          css = true,
+        }
+      })
     end,
+    lazy = true,
   },
   -- Very useless but a good stress buster
   {
     'eandrju/cellular-automaton.nvim',
     event = "VeryLazy",
+    lazy = true,
   },
   -- TMUX type navigation
   {
     "christoomey/vim-tmux-navigator",
     event = "VeryLazy",
+    lazy = true,
   },
   -- Read/Write to files with root access
   {
     "lambdalisue/suda.vim",
     event = "VeryLazy",
+    lazy = true,
   },
   -- Generate dummy text
   {
     "derektata/lorem.nvim",
     event = "VeryLazy",
+    lazy = true,
     config = function()
       local lorem = require("lorem")
       lorem.setup({
@@ -38,6 +47,7 @@ return {
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
+    lazy = true,
     opts = {
       select = { backend = { "telescope", "builtin" } },
     },
@@ -49,6 +59,7 @@ return {
   {
     "szw/vim-maximizer",
     event = "VeryLazy",
+    lazy = true,
     keys = {
       { "<leader>sm", "<cmd>MaximizerToggle<CR>" },
     },
@@ -57,12 +68,14 @@ return {
   {
     "numToStr/Comment.nvim",
     event = "BufReadPost",
+    lazy = true,
     config = true,
   },
   -- Autopairing brackets and inverted commas
   {
     "echasnovski/mini.pairs",
     event = "InsertEnter",
+    lazy = true,
     version = "*",
     config = function()
       require("mini.pairs").setup()
@@ -71,7 +84,8 @@ return {
   -- Illuminating equivalent words in current buffer under the cursor
   {
     "RRethy/vim-illuminate",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "LspAttach",
+    lazy = true,
     opts = {
       delay = 200,
       large_file_cutoff = 2000,
@@ -92,7 +106,8 @@ return {
   -- Surrounding brackets in nvim
   {
     'echasnovski/mini.surround',
-    event = "InsertEnter",
+    event = "BufReadPost",
+    lazy = true,
     version = '*',
     config = function()
       require("mini.surround").setup({
@@ -112,6 +127,7 @@ return {
   {
     "echasnovski/mini.animate",
     event = "BufReadPost",
+    lazy = true,
     opts = function()
       local mouse_scrolled = false
       for _, scroll in ipairs({ "Up", "Down" }) do
@@ -146,6 +162,7 @@ return {
     "j-hui/fidget.nvim",
     tag = "legacy",
     event = "LspAttach",
+    lazy = true,
     config = function()
       local icons = require("NeutronVim.core.icons")
       require("fidget").setup({
@@ -178,10 +195,13 @@ return {
       })
     end
   },
+  -- nvim-web-devicons
+  { "nvim-tree/nvim-web-devicons", lazy = true },
   -- Markdown files editing preview
   {
     "iamcco/markdown-preview.nvim",
     event = "VeryLazy",
+    lazy = true,
     build = "cd app && npm install",
     config = function()
       vim.g.mkdp_filetypes =

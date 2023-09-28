@@ -8,7 +8,7 @@ return {
       options = {
         theme = "auto",
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha", "NvimTree", "Telescope" } },
+        disabled_filetypes = { statusline = { "dashboard", "alpha" } },
       },
       sections = {
         lualine_a = { "mode" },
@@ -25,24 +25,24 @@ return {
           {
             "diagnostics",
             symbols = {
-              Error = " ",
-              Warn = " ",
-              Hint = " ",
-              Info = " ",
-            },
-          },
-          {
-            "diff",
-            symbols = {
-              added = " ",
-              modified = " ",
-              removed = " ",
+              Error = icons.diagnostics.Error .. " ",
+              Warn = icons.diagnostics.Warning .. " ",
+              Hint = icons.diagnostics.Hint .. " ",
+              Info = icons.diagnostics.Info .. " ",
             },
           },
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-          { "filename", symbols = { modified = " ✎ ", readonly = "  ", unnamed = " [None] " }, path = 0 },
+          { "filename", symbols = { modified = " " .. icons.ui.Pencil, readonly = " " .. icons.ui.Lock, unnamed = " [None] " }, path = 0 },
         },
         lualine_x = {
+          {
+            "diff",
+            symbols = {
+              added = icons.git.Add .. " ",
+              modified = icons.git.Mod .. " ",
+              removed = icons.git.Remove .. " ",
+            },
+          },
           { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = { fg = "#ff9e64" } },
         },
         lualine_y = {
@@ -55,7 +55,7 @@ return {
           end,
         },
       },
-      extensions = { "nvim-tree", "lazy" },
+      extensions = { "lazy" },
     }
   end
 }

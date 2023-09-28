@@ -2,9 +2,9 @@ return {
   {
     "folke/noice.nvim",
     dependencies = {
-      { "MunifTanjim/nui.nvim", event = "VeryLazy", lazy = true },
+      { "MunifTanjim/nui.nvim", event = "BufEnter", lazy = true },
     },
-    event = "VeryLazy",
+    event = "BufEnter",
     lazy = true,
     opts = {
       lsp = {

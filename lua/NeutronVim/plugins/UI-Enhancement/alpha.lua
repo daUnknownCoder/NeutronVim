@@ -1,6 +1,7 @@
 return {
   {
     "goolord/alpha-nvim",
+    cmd = "Alpha",
     event = "BufEnter",
     lazy = true,
     opts = function()

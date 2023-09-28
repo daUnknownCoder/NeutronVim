@@ -32,7 +32,7 @@ return {
     }
   },
   -- UI Component Library
-  { "nvim-lua/plenary.nvim", event = "VeryLazy", lazy = true },
+  { "nvim-lua/plenary.nvim", event = "BufEnter", lazy = true },
   -- Read/Write to files with root access
   {
     "lambdalisue/suda.vim",
@@ -169,6 +169,13 @@ return {
           }),
         },
       }
+    end,
+  },
+  {
+    "dstein64/vim-startuptime",
+    cmd = "StartupTime",
+    config = function()
+      vim.g.startuptime_tries = 10
     end,
   },
   {

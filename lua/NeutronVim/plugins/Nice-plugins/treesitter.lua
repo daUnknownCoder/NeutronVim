@@ -1,18 +1,18 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
+    build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     lazy = true,
+    version = false,
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     dependencies = {
-      { "HiPhish/rainbow-delimiters.nvim", event = "BufReadPost", lazy = true },
       {
         'nvim-treesitter/playground',
         keys = {
           { "<leader>pl", "<cmd>TSPlaygroundToggle<CR>" },
         },
-        event = "BufReadPost",
+        cmd = "TSPlaygroundToggle",
         lazy = true,
       },
     },
@@ -30,38 +30,11 @@ return {
           enable = true
         },
       }
-      local rainbow_delimiters = require 'rainbow-delimiters'
-
-      vim.cmd [[highlight RainbowDelimiterRed guifg=silver gui=nocombine]]
-      vim.cmd [[highlight RainbowDelimiterYellow guifg=turquoise gui=nocombine]]
-      vim.cmd [[highlight RainbowDelimiterGreen guifg=lime gui=nocombine]]
-      vim.cmd [[highlight RainbowDelimiterOrange guifg=orange gui=nocombine]]
-      vim.cmd [[highlight RainbowDelimiterBlue guifg=#61AFEF gui=nocombine]]
-      vim.cmd [[highlight RainbowDelimiterViolet guifg=violet gui=nocombine]]
-
-      vim.g.rainbow_delimiters = {
-        strategy = {
-          [''] = rainbow_delimiters.strategy['global'],
-          vim = rainbow_delimiters.strategy['local'],
-        },
-        query = {
-          [''] = 'rainbow-delimiters',
-          lua = 'rainbow-blocks',
-        },
-        highlight = {
-          'RainbowDelimiterRed',
-          'RainbowDelimiterYellow',
-          'RainbowDelimiterBlue',
-          'RainbowDelimiterOrange',
-          'RainbowDelimiterGreen',
-          'RainbowDelimiterViolet',
-          'RainbowDelimiterCyan',
-        },
-      }
     end,
   },
   {
     "luckasRanarison/tree-sitter-hypr",
+    lazy = true,
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
       ---@diagnostic disable-next-line: inject-field
@@ -74,7 +47,6 @@ return {
         filetype = "hypr",
       }
     end,
-    lazy = true,
     ft = "hypr",
   }
 }

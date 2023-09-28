@@ -1,6 +1,9 @@
 return {
   "rcarriga/nvim-notify",
-  event = "BufReadPost",
+  event = "BufEnter",
+  keys = {
+      { "<leader>un", function() require("notify").dismiss({ silent = true, pending = true }) end, desc = "Dismiss all Notifications" }
+  },
   lazy = true,
   config = function()
     vim.opt.termguicolors = true

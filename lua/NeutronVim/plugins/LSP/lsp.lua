@@ -11,6 +11,14 @@ return {
         lazy = true,
       },
       {
+        "SmiteshP/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+        },
+        cmd = "Navbuddy",
+        lazy = true,
+      },
+      {
         "hrsh7th/cmp-nvim-lsp",
         event = "InsertEnter",
         lazy = true,
@@ -18,12 +26,11 @@ return {
       {
         'weilbith/nvim-code-action-menu',
         cmd = 'CodeActionMenu',
-        event = "LspAttach",
         lazy = true,
       },
       {
         "folke/trouble.nvim",
-        event = "LspAttach",
+        cmd = "Trouble",
         lazy = true,
       },
       {
@@ -34,7 +41,7 @@ return {
       },
       {
         'wiliamks/nice-reference.nvim',
-        event = "LspAttach",
+        cmd = "NiceReference",
         lazy = true,
       },
       {
@@ -69,6 +76,8 @@ return {
       require("neoconf").setup()
       local lspconfig = require("lspconfig")
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
+      local navbuddy = require("nvim-navbuddy")
+      local actions = require("nvim-navbuddy.actions")
       local icons = require("NeutronVim.core.icons")
       require("hover").setup {
         init = function()
@@ -92,17 +101,16 @@ return {
         title = icons.ui.Electric .. "Rename " .. icons.ui.Electric,
       })
       require("trouble").setup()
-      local buffer_mappings = vim.api.nvim_buf_set_keymap
       local keymap = vim.keymap.set
-      ---@diagnostic disable-next-line: unused-local
       local on_attach = function(client, bufnr)
         local keymap_opts = { noremap = true, silent = true }
         print("LSP Attached to buffer.")
+        navbuddy.attach(client, bufnr)
         keymap("n", "gf", "<cmd>NiceReference<CR>", keymap_opts)
-        buffer_mappings(0, "n", "<leader>ca", "<cmd>CodeActionMenu<CR>", keymap_opts)
-        buffer_mappings(0, "n", "gr", "<cmd>lua require('renamer').rename()<cr>", keymap_opts)
-        buffer_mappings(0, "n", "gd", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", keymap_opts)
-        buffer_mappings(0, "n", "gD", "<cmd>lua require('goto-preview').close_all_win()<cr>", keymap_opts)
+        keymap("n", "<leader>ca", "<cmd>CodeActionMenu<CR>", keymap_opts)
+        keymap("n", "gr", "<cmd>lua require('renamer').rename()<cr>", keymap_opts)
+        keymap("n", "gd", "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", keymap_opts)
+        keymap("n", "gD", "<cmd>lua require('goto-preview').close_all_win()<cr>", keymap_opts)
         keymap({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, keymap_opts)
         keymap("n", "<leader>d", vim.diagnostic.open_float, keymap_opts)
         keymap("n", "[d", vim.diagnostic.goto_prev, keymap_opts)
@@ -110,6 +118,7 @@ return {
         keymap("n", "K", require("hover").hover, keymap_opts)
         keymap("n", " K", require("hover").hover_select, keymap_opts)
         keymap("n", "td", "<cmd>Telescope diagnostics<CR>", keymap_opts)
+        keymap("n", "<leader>n", "<cmd>Navbuddy<CR>", keymap_opts)
         if client.resolved_capabilities.document_formatting then
           vim.api.nvim_command [[augroup Format]]
           vim.api.nvim_command [[autocmd! * <buffer>]]
@@ -192,6 +201,44 @@ return {
                 [vim.fn.stdpath("config") .. "/lua"] = true,
               },
             },
+          },
+        },
+      })
+      navbuddy.setup({
+        window = {
+          border = "rounded",
+          size = "75%",
+          right = {
+            preview = "always",
+          },
+          use_default_mappings = false,
+          mappings = {
+            ["<esc>"] = actions.close(),
+            ["q"] = actions.close(),
+            ["j"] = actions.next_sibling(),
+            ["<Down>"] = actions.next_sibling(),
+            ["k"] = actions.previous_sibling(),
+            ["<Up>"] = actions.next_sibling(),
+            ["h"] = actions.parent(),
+            ["<Left>"] = actions.next_sibling(),
+            ["l"] = actions.children(),
+            ["<Right>"] = actions.next_sibling(),
+            ["0"] = actions.root(),
+            ["v"] = actions.visual_name(),
+            ["V"] = actions.visual_scope(),
+            ["y"] = actions.yank_name(),
+            ["Y"] = actions.yank_scope(),
+            ["i"] = actions.insert_name(),
+            ["I"] = actions.insert_scope(),
+            ["a"] = actions.append_name(),
+            ["A"] = actions.append_scope(),
+            ["r"] = actions.rename(),
+            ["d"] = actions.delete(),
+            ["c"] = actions.comment(),
+            ["<enter>"] = actions.select(),
+            ["o"] = actions.select(),
+            ["J"] = actions.move_down(),
+            ["K"] = actions.move_up(),
           },
         },
       })

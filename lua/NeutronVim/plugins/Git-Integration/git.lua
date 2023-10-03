@@ -1,8 +1,15 @@
 return {
   "lewis6991/gitsigns.nvim",
-  event = "BufReadPost",
+  event = "BufRead",
   dependencies = {
     { "kdheepak/lazygit.nvim", cmd = "LazyGit", lazy = true },
+  },
+  keys = {
+    { "<leader>gg", "<cmd>LazyGit<CR>", desc = "LazyGit" },
+    { "gj", "<cmd>lua require('gitsigns').next_hunk()<CR>", desc = "Next Hunk" },
+    { "gk", "<cmd>lua require('gitsigns').prev_hunk()<CR>", desc = "Prev Hunk" },
+    { "gp", "<cmd>lua require('gitsigns').preview_hunk()<CR>", desc = "Preview Hunk" },
+    { "gb", "<cmd>lua require('gitsigns').blame_line()<CR>", desc = "Blame Line" },
   },
   ft = { "gitcommit", "diff" },
   init = function()
@@ -45,13 +52,13 @@ return {
         delay = 1000,
         ignore_whitespace = true,
       },
-      current_line_blame_formatter = ' <author>, <author_time:%R> - <summary>',
+      current_line_blame_formatter = ' <author>, <author_time:%R | %x > - <summary>',
       sign_priority = 6,
       update_debounce = 100,
       status_formatter = nil,
       max_file_length = 40000,
       preview_config = {
-        border = 'single',
+        border = 'rounded',
         style = 'minimal',
         relative = 'cursor',
         row = 0,

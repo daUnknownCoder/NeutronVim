@@ -32,7 +32,7 @@ return {
     }
   },
   -- UI Component Library
-  { "nvim-lua/plenary.nvim", event = "BufEnter", lazy = true },
+  { "nvim-lua/plenary.nvim", lazy = true },
   -- Read/Write to files with root access
   {
     "lambdalisue/suda.vim",
@@ -60,7 +60,6 @@ return {
   -- Replace vim.ui.[input/attach]
   {
     "stevearc/dressing.nvim",
-    event = "BufReadPost",
     lazy = true,
     opts = {
       select = { backend = { "telescope", "builtin" } },
@@ -86,36 +85,22 @@ return {
       { "gcc", "<cmd>CommentToggle<CR>" },
     }
   },
-  -- Autopairing brackets and inverted commas
-  {
-    "echasnovski/mini.pairs",
-    event = "InsertEnter",
-    lazy = true,
-    version = "*",
-    config = function()
-      require("mini.pairs").setup()
-    end,
-  },
   -- Illuminating equivalent words in current buffer under the cursor
   {
     "RRethy/vim-illuminate",
-    event = "LspAttach",
+    event = { "BufReadPre", "BufNewFile" },
     lazy = true,
     opts = {
-      delay = 200,
-      large_file_cutoff = 2000,
-      large_file_overrides = {
-        providers = { "lsp" },
-      },
+      delay = 500,
+      large_file_cutoff = 5000,
     },
     config = function(_, opts)
       require("illuminate").configure(opts)
-      vim.keymap.set("n", "<a-p>", function()
-        require("illuminate").goto_next_reference()
-      end)
-      vim.keymap.set("n", "<a-n>", function()
-        require("illuminate").goto_prev_reference()
-      end)
+      vim.cmd([[ augroup vim_illuminate_augroup
+              autocmd!
+              autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+              augroup END
+              ]])
     end,
   },
   -- Surrounding brackets in nvim
@@ -172,16 +157,9 @@ return {
     end,
   },
   {
-    "dstein64/vim-startuptime",
-    cmd = "StartupTime",
-    config = function()
-      vim.g.startuptime_tries = 10
-    end,
-  },
-  {
     "j-hui/fidget.nvim",
     tag = "legacy",
-    event = "LspAttach",
+    event = "BufReadPost",
     lazy = true,
     config = function()
       local icons = require("NeutronVim.core.icons")

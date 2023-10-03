@@ -1,6 +1,5 @@
 return {
   "rcarriga/nvim-notify",
-  event = "BufEnter",
   keys = {
       { "<leader>un", function() require("notify").dismiss({ silent = true, pending = true }) end, desc = "Dismiss all Notifications" }
   },

@@ -2,10 +2,9 @@ return {
   {
     "folke/noice.nvim",
     dependencies = {
-      { "MunifTanjim/nui.nvim", event = "BufEnter", lazy = true },
+      { "MunifTanjim/nui.nvim", lazy = true },
     },
-    event = "BufEnter",
-    lazy = true,
+    lazy = false,
     opts = {
       lsp = {
         override = {
@@ -41,7 +40,7 @@ return {
       },
       cmdline = {
         format = {
-          cmdline = { pattern = "^:", icon = ">_", lang = "vim" },
+          cmdline = { pattern = "^:", icon = "󰞷", lang = "vim" },
         },
       },
     },

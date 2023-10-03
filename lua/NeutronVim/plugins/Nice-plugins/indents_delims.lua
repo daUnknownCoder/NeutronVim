@@ -1,7 +1,7 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPost",
+    event = "BufReadPre",
     lazy = true,
     dependencies = {
       { "HiPhish/rainbow-delimiters.nvim", event = "InsertEnter", lazy = true },
@@ -18,8 +18,6 @@ return {
       }
 
       local hooks = require "ibl.hooks"
-      -- create the highlight groups in the highlight setup hook, so they are reset
-      -- every time the colorscheme changes
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
         vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
         vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
@@ -45,7 +43,7 @@ return {
   {
     "echasnovski/mini.indentscope",
     version = false,
-    event = "BufReadPost",
+    event = "BufReadPre",
     opts = {
       symbol = "│",
       options = { try_as_border = true },

@@ -3,6 +3,9 @@ return {
     "nvim-tree/nvim-tree.lua",
     cmd = "NvimTreeFindFileToggle",
     lazy = true,
+    keys = {
+      { "<C-n>", "<cmd>NvimTreeFindFileToggle<cr>", desc = "NvimTree" },
+    },
     config = function()
       local nvimtree = require("nvim-tree")
       local icons = require("NeutronVim.core.icons")
@@ -12,6 +15,11 @@ return {
       local WIDTH_RATIO = 0.8
 
       nvimtree.setup({
+
+        hijack_cursor = true,
+        disable_netrw = true,
+        hijack_unnamed_buffer_when_opening = true,
+
         filters = { custom = { '*.tmp', "*.git" } },
         update_cwd = true,
         view = {
@@ -91,7 +99,6 @@ return {
           },
         },
       })
-      vim.keymap.set('n', '<C-n>', '<cmd>NvimTreeFindFileToggle<CR>')
     end
   },
 }

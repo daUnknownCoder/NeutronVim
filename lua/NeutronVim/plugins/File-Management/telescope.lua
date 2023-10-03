@@ -3,6 +3,16 @@ return {
 		"nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     lazy = true,
+    keys = {
+      { "ff", "<cmd>Telescope find_files<CR>", desc = "Find Files Fuzzily" },
+      { "fg", "<cmd>Telescope live_grep<CR>", desc = "Find Text" },
+      { "fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
+      { "fo", "<cmd>Telescope oldfiles<CR>", desc = "Find Recent Files Fuzzily" },
+      { "fh", "<cmd>Telescope help_tags<CR>", desc = "Find Help" },
+      { "co", "<cmd>Telescope colorscheme<CR>", desc = "Choose Colorschemes" },
+      { "fe", "<cmd>Telescope emoji<CR>", desc = "Emoji search - copy - paste" },
+      { "fp", "<cmd>Telescope neoclip<CR>", desc = "Yank Helper" },
+    },
 		dependencies = {
 			{ "xiyaowong/telescope-emoji.nvim", lazy = true, cmd = "Telescope emoji" },
 			{ "AckslD/nvim-neoclip.lua", lazy = true, cmd = "Telescope neoclip" },
@@ -42,15 +52,6 @@ return {
       })
       telescope.load_extension("emoji")
       telescope.load_extension('neoclip')
-      local keymap = vim.keymap.set
-      keymap('n', 'ff', "<cmd>Telescope find_files<CR>", { desc = "Find Files Fuzzily" })
-      keymap('n', 'fp', "<cmd>Telescope git_files<CR>", { desc = "Git integration ?" })
-      keymap('n', '<leader>po', "<cmd>Telescope oldfiles<CR>", { desc = "Find Recent Files Fuzzily" })
-      keymap('n', 'co', '<cmd>Telescope colorscheme<CR>', { desc = "Choose Colorschemes" })
-      keymap('n', '<Tab>', '<cmd>Telescope buffers<CR>', { desc = "Easily Find and Switch Buffers"})
-      keymap('n', 'fg', "<cmd>Telescope live_grep<CR>", { desc = "Find String in Project" })
-      keymap('n', 'fe', '<cmd>Telescope emoji<CR>', { desc = "Emoji search - copy - paste" })
-      keymap('n', 'fp', '<cmd>Telescope neoclip<CR>', { desc = "Yank Helper" })
     end
 	},
 }

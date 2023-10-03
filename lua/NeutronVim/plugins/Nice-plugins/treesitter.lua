@@ -2,24 +2,14 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
+    lazy = false,
     event = { "BufReadPost", "BufNewFile" },
-    lazy = true,
     version = false,
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    dependencies = {
-      {
-        'nvim-treesitter/playground',
-        keys = {
-          { "<leader>pl", "<cmd>TSPlaygroundToggle<CR>" },
-        },
-        cmd = "TSPlaygroundToggle",
-        lazy = true,
-      },
-    },
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = { "vimdoc", "javascript", "c", "lua", "python", "query" },
+        ensure_installed = { "vimdoc", "javascript", "c", "lua", "python", "query", "json", "vim", "regex", "markdown_inline", "bash", "hypr" },
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -33,9 +23,16 @@ return {
     end,
   },
   {
-    "luckasRanarison/tree-sitter-hypr",
+    'nvim-treesitter/playground',
+    keys = {
+      { "<leader>pl", "<cmd>TSPlaygroundToggle<CR>" },
+    },
+    cmd = "TSPlaygroundToggle",
     lazy = true,
-    config = function()
+  },
+  {
+    "luckasRanarison/tree-sitter-hypr",
+    init = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
       ---@diagnostic disable-next-line: inject-field
       parser_config.hypr = {
@@ -44,9 +41,8 @@ return {
           files = { "src/parser.c" },
           branch = "master",
         },
-        filetype = "hypr",
+        ft = { "hypr" },
       }
     end,
-    ft = "hypr",
   }
 }

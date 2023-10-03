@@ -3,7 +3,7 @@ return {
   event = "BufReadPost",
   lazy = true,
   dependencies = {
-    { "williamboman/mason-lspconfig.nvim", event = "BufReadPost" },
+    { "williamboman/mason-lspconfig.nvim", event = "BufRead" },
   },
   config = function()
     local icons = require("NeutronVim.core.icons")

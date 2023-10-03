@@ -1,14 +1,14 @@
 return {
   'nvim-lualine/lualine.nvim',
-  event = "VimEnter",
-  lazy = true,
+  lazy = false,
+  event = "BufEnter",
   opts = function()
     local icons = require("NeutronVim.core.icons")
     return {
       options = {
         theme = "auto",
         globalstatus = true,
-        disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+        disabled_filetypes = { "dashboard", "alpha", "NvimTree", "TelescopePrompt" },
       },
       sections = {
         lualine_a = { "mode" },

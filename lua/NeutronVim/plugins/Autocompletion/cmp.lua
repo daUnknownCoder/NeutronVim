@@ -1,83 +1,58 @@
 return {
   {
-    "L3MON4D3/LuaSnip",
-    dependencies = {
-      {
-        "rafamadriz/friendly-snippets",
-        event = "InsertEnter",
-        lazy = true,
-      }
-    },
-    opts = {
-      history = true,
-      delete_check_events = "TextChanged",
-      region_check_events = "CursorMoved",
-    },
-    config = function(_, opts)
-      if opts then require("luasnip").config.setup(opts) end
-      vim.tbl_map(function(type) require("luasnip.loaders.from_" .. type).lazy_load() end, { "vscode", "snipmate", "lua" })
-    end,
-    event = "InsertEnter",
-    lazy = true,
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      { "saadparwaiz1/cmp_luasnip", event = "InsertEnter", lazy = true },
-      { "hrsh7th/cmp-buffer", event = "InsertEnter", lazy = true },
-      { "hrsh7th/cmp-nvim-lua", event = "InsertEnter", lazy = true },
-      { "octaltree/cmp-look", event = "InsertEnter", lazy = true },
-      { "hrsh7th/cmp-path", event = "InsertEnter", lazy = true },
-      { "hrsh7th/cmp-emoji", event = "InsertEnter", lazy = true },
-      { "ray-x/cmp-treesitter", event = "InsertEnter", lazy = true },
-      { "hrsh7th/cmp-cmdline", event = "InsertEnter",lazy = true },
-      { "hrsh7th/cmp-calc", event = "InsertEnter", lazy = true },
-      { "f3fora/cmp-spell", event = "InsertEnter", lazy = true },
-      { "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter", lazy = true },
-      { 'Exafunction/codeium.vim', event = "InsertEnter", lazy = true },
+      { "saadparwaiz1/cmp_luasnip", lazy = true },
+      { "hrsh7th/cmp-buffer", lazy = true },
+      { "FelipeLema/cmp-async-path", lazy = true },
+      { "hrsh7th/cmp-emoji", lazy = true },
+      { "ray-x/cmp-treesitter", lazy = true },
+      { "hrsh7th/cmp-cmdline", lazy = true },
+      { "hrsh7th/cmp-nvim-lsp-signature-help", lazy = true },
+      { 'Exafunction/codeium.vim', lazy = true },
+      { "echasnovski/mini.pairs", version = "*", lazy = true },
       lazy = true
     },
     event = "InsertEnter",
     opts = function()
       local cmp = require("cmp")
-      local snip_status_ok, luasnip = pcall(require, "luasnip")
+      local snip_status_ok, luasnip = pcall(require, "NeutronVim.plugins.Autocompletion.snippets")
       local icons = require('NeutronVim.core.icons')
       local kind_icons = icons.kind
       local set = vim.keymap.set
+      require("mini.pairs").setup()
       if not snip_status_ok then return end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE", bold = true, italic = true })
+      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE", italic = true })
       vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "silver", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "gold", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "lime", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ff3e00", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "pink", bg = "NONE" })
       local border_opts = {
         border = { "●", "─", "●", "│", "●", "─", "●", "│" },
-        winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:Special,Search:CmpItemAbbrMatchFuzzy",
+        winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
       }
       set( 'i', '<C-a>', function () return vim.fn['codeium#Accept']() end, { expr = true } )
       set( 'i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true } )
       set( 'i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true } )
       set( 'i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true } )
-      ---@diagnostic disable-next-line: missing-fields
+      ---@diagnostic disable-next-line: missing-fields, redundant-parameter
       cmp.setup({
         preselect = cmp.PreselectMode.None,
         ---@diagnostic disable-next-line: missing-fields
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
-            item.kind = string.format("%s %s", kind_icons[item.kind], item.kind or "TS" )
+            item.kind = string.format("%s %s", kind_icons[item.kind], item.kind .. " ")
             item.menu = "➥ " .. (({
               nvim_lsp = "｢LSP｣",
-              spell = "｢Spell｣",
               buffer = "｢Buffer｣",
               luasnip = "｢Snip｣",
               treesitter = "｢Treesitter｣",
               calc = "｢Calc｣",
-              nvim_lua = "｢Lua｣",
-              look = "｢Look｣",
               emoji = "｢Emoji｣",
-              path = "｢Path｣",
+              async_path = "｢Path｣",
               nvim_lsp_signature_help = "｢Signature｣",
               cmdline = "｢Cmd｣",
             })[entry.source.name] or "🚀 ")
@@ -166,29 +141,18 @@ return {
           { name = 'nvim_lsp_signature_help', priority = 500 },
           { name = "buffer", priority = 500 },
           { name = "nvim_lua", priority = 500 },
-          { name = "path", priority = 250 },
+          { name = "async_path", priority = 250 },
           { name = "emoji", priority = 200 },
-          {
-            name = 'spell',
-            option = {
-              keep_all_entries = false,
-              enable_in_context = function()
-                return true
-              end,
-            },
-            priority = 100,
-          },
-          { name = 'calc', priority = 100 },
-        },
+        }
       })
-      ---@diagnostic disable-next-line: missing-fields
+      ---@diagnostic disable-next-line: missing-fields, undefined-field
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
           { name = 'git' },
           { name = 'buffer' },
           })
       })
-      ---@diagnostic disable-next-line: missing-fields
+      ---@diagnostic disable-next-line: missing-fields, undefined-field
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
@@ -197,7 +161,7 @@ return {
           })
       })
 
-      ---@diagnostic disable-next-line: missing-fields
+      ---@diagnostic disable-next-line: missing-fields, undefined-field
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {

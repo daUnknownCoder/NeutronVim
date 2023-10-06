@@ -1,9 +1,6 @@
 return {
   {
     "folke/noice.nvim",
-    dependencies = {
-      { "MunifTanjim/nui.nvim", lazy = true },
-    },
     lazy = false,
     opts = {
       lsp = {

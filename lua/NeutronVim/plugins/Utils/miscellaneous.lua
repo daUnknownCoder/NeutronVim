@@ -12,6 +12,8 @@ return {
     end,
     lazy = true,
   },
+  -- Neovim UI component library
+  { "MunifTanjim/nui.nvim", lazy = true },
   -- Very useless but a good stress buster
   {
     'eandrju/cellular-automaton.nvim',
@@ -155,43 +157,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "BufReadPost",
-    lazy = true,
-    config = function()
-      local icons = require("NeutronVim.core.icons")
-      require("fidget").setup({
-        text = {
-          spinner = "dots",
-          done = icons.ui.Tick,
-        },
-        timer = {
-          spinner_rate = 150,
-          fidget_decay = 1000,
-          task_decay = 1000,
-        },
-        window = {
-          blend = 0,
-          border = "rounded",
-        },
-        fmt = {
-          fidget = function(fidget_name, spinner)
-            return string.format("%s %s", spinner, fidget_name)
-          end,
-          task = function(task_name, message, percentage)
-            return string.format(
-              "%s%s [%s]",
-              message,
-              percentage and string.format(" (%s%%)", percentage) or "",
-              task_name
-            )
-          end,
-        },
-      })
-    end
   },
   -- nvim-web-devicons
   { "nvim-tree/nvim-web-devicons", lazy = true },

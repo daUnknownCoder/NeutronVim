@@ -15,7 +15,6 @@ return {
       local WIDTH_RATIO = 0.8
 
       nvimtree.setup({
-
         hijack_cursor = true,
         disable_netrw = true,
         hijack_unnamed_buffer_when_opening = true,

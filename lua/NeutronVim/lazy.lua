@@ -29,8 +29,8 @@ require("lazy").setup({
   -- LSP
   { import = "NeutronVim.plugins.LSP" },
 
-  -- Nice Plugins for NeutronVim
-  { import = "NeutronVim.plugins.Nice-plugins" },
+  -- Utilities for NeutronVim
+  { import = "NeutronVim.plugins.Utils" },
 
   -- Terminal
   { import = "NeutronVim.plugins.Terminal" },

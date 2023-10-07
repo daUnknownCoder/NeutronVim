@@ -28,7 +28,6 @@ local options = {
   errorbells = false,
   wrap = false,
   cursorline = true,
-  background = "dark",
 
   backup = false,
   writebackup = false,

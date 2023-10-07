@@ -111,9 +111,9 @@ return {
   },
   ui = {
     Arrow = '➜ ',
-    ArrowClosed = "►",
+    ArrowClosed = "► ",
     ArrowLeft = ' ',
-    ArrowOpen = "▼",
+    ArrowOpen = "▼ ",
     ArrowRight = ' ',
     ArrowDownandRight = '↳ ',
     Bluetooth = ' ',

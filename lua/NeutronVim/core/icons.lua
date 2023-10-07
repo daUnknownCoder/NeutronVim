@@ -99,7 +99,7 @@ return {
     TypeParameter = '󰆩 ',
     Unit = ' ',
     Value = '󰎠 ',
-    Variable = ' ',
+    Variable = ' ',
     WhileStatement = '󰑖 ',
   },
   type = {

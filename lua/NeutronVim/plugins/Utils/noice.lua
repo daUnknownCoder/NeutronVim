@@ -1,7 +1,7 @@
 return {
   {
     "folke/noice.nvim",
-    event = "CmdlineEnter",
+    event = "VimEnter",
     lazy = true,
     opts = {
       lsp = {

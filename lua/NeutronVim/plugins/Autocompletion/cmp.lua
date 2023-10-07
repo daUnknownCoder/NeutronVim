@@ -41,6 +41,18 @@ return {
       local icons = require('NeutronVim.core.icons')
       local kind_icons = icons.kind
       local set = vim.keymap.set
+      local feedkey = function(key, mode)
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+      end
+
+      local check_back_space = function()
+        local col = vim.fn.col(".") - 1
+        if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
+          return true
+        else
+          return false
+        end
+      end
       require("mini.pairs").setup()
       if not snip_status_ok then return end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
@@ -113,22 +125,26 @@ return {
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
           ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
           ["<CR>"] = cmp.mapping.confirm { select = false },
-          ["<Tab>"] = cmp.mapping(function(fallback)
+          ["<Tab>"] = cmp.mapping(function(_)
             if cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
+            elseif check_back_space() then
+              feedkey("<Tab>", "n")
             else
-              fallback()
+              feedkey("<Plug>(Tabout)", "")
             end
           end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
+          ["<S-Tab>"] = cmp.mapping(function(_)
             if cmp.visible() then
               cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
+            elseif check_back_space() then
+                feedkey("<C-d>", "i")
             else
-              fallback()
+                feedkey("<Plug>(TaboutBack)", "")
             end
           end, { "i", "s" }),
         },

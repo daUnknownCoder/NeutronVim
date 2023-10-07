@@ -1,7 +1,8 @@
 return {
   {
     "folke/noice.nvim",
-    lazy = false,
+    event = "CmdlineEnter",
+    lazy = true,
     opts = {
       lsp = {
         override = {
@@ -30,9 +31,9 @@ return {
         {
           filter = {
             event = "notify",
-            min_height = 15
+            min_height = 10
           },
-          view = 'split'
+          view = 'vsplit'
         },
       },
       cmdline = {

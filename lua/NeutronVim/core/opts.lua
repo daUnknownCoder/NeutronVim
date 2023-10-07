@@ -43,7 +43,7 @@ local options = {
   titlestring = "Neovim - %t",
   clipboard = "unnamedplus",
   shell = "/bin/bash",
-  lazyredraw = true,
+  lazyredraw = false,
 }
 
 vim.g.loaded_netrwPlugin = false

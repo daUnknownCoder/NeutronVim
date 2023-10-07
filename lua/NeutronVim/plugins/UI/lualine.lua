@@ -1,7 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   lazy = false,
-  event = "BufEnter",
+  event = "VimEnter",
   opts = function()
     local icons = require("NeutronVim.core.icons")
     return {

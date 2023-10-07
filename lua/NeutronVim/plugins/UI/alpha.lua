@@ -2,7 +2,7 @@ return {
   {
     "goolord/alpha-nvim",
     cmd = "Alpha",
-    event = "BufEnter",
+    event = { "VimEnter", "BufNewFile" },
     lazy = true,
     opts = function()
       local icons = require "NeutronVim.core.icons"

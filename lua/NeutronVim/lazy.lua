@@ -18,7 +18,7 @@ local icons = require("NeutronVim.core.icons")
 
 require("lazy").setup({
   -- UI Enhancement
-  { import = "NeutronVim.plugins.UI-Enhancement" },
+  { import = "NeutronVim.plugins.UI" },
 
   -- File Managers
   { import = "NeutronVim.plugins.File-Management" },

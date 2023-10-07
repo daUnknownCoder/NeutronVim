@@ -14,6 +14,8 @@ return {
   },
   -- Neovim UI component library
   { "MunifTanjim/nui.nvim", lazy = true },
+  -- Popup menu
+  { "nvim-lua/popup.nvim", lazy = true },
   -- Very useless but a good stress buster
   {
     'eandrju/cellular-automaton.nvim',

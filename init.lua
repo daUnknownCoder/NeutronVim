@@ -12,7 +12,7 @@ vim.opt.background = "dark"
 
 vim.cmd [[highlight Keyword gui=italic guifg=#F08753]]
 vim.cmd [[highlight Visual gui=nocombine guifg=#EA3535]]
-vim.cmd [[highlight Comment gui=italic,undercurl guifg=#a1afaf]]
+vim.cmd [[highlight Comment gui=italic,underline guifg=#a1afaf]]
 vim.cmd [[highlight Normal gui=nocombine guifg=Cyan]]
 vim.cmd [[highlight Number gui=italic guifg=#f7768e]]
 vim.cmd [[highlight String gui=italic guifg=#69ff00]]

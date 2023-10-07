@@ -64,6 +64,7 @@ return {
   -- Replace vim.ui.[input/attach]
   {
     "stevearc/dressing.nvim",
+    event = "BufReadPost",
     lazy = true,
     opts = {
       select = { backend = { "telescope", "builtin" } },

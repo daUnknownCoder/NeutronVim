@@ -135,16 +135,15 @@ return {
   },
   {
     "luckasRanarison/tree-sitter-hypr",
-    init = function()
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      ---@diagnostic disable-next-line: inject-field
-      parser_config.hypr = {
+    event = "BufRead */hypr/*.conf",
+    config = function()
+      require("nvim-treesitter.parsers").get_parser_configs().hypr = {
         install_info = {
           url = "https://github.com/luckasRanarison/tree-sitter-hypr",
           files = { "src/parser.c" },
           branch = "master",
         },
-        ft = { "hypr" },
+        filetype = "hypr",
       }
     end,
   }

@@ -1,3 +1,4 @@
+-- luacheck: ignore vim
 return {
   {
     "neovim/nvim-lspconfig",
@@ -9,16 +10,16 @@ return {
         lazy = true,
       },
       {
-        'weilbith/nvim-code-action-menu',
-        cmd = 'CodeActionMenu',
+        "weilbith/nvim-code-action-menu",
+        cmd = "CodeActionMenu",
         keys = {
           { "ca", "<cmd>CodeActionMenu<CR>", desc = "CodeActionMenu" },
         },
         lazy = true,
       },
       {
-        'filipdutescu/renamer.nvim',
-        branch = 'master',
+        "filipdutescu/renamer.nvim",
+        branch = "master",
         keys = {
           { "gr", "<cmd>lua require('renamer').rename()<cr>", desc = "Renamer" },
         },
@@ -30,7 +31,7 @@ return {
         keys = {
           { "K", "<cmd>lua require('hover').hover()<CR>", desc = "Hover" },
           { " K", "<cmd>lua require('hover').hover_select()<CR>", desc = "Hover Select" },
-        }
+        },
       },
       {
         "ray-x/lsp_signature.nvim",
@@ -40,7 +41,7 @@ return {
         "nvimdev/lspsaga.nvim",
         lazy = true,
         event = "LspAttach",
-      }
+      },
     },
     config = function()
       local lspconfig = require("lspconfig")
@@ -50,30 +51,31 @@ return {
         border = "rounded",
         outline = {
           layout = "float",
-        }
+        },
       })
       require("lspsaga.symbol.winbar").get_bar()
-      require("hover").setup {
+      require("hover").setup({
         init = function()
           require("hover.providers.lsp")
-          require('hover.providers.gh')
-          require('hover.providers.gh_user')
-          require('hover.providers.jira')
-          require('hover.providers.man')
-          require('hover.providers.dictionary')
+          require("hover.providers.gh")
+          require("hover.providers.gh_user")
+          require("hover.providers.jira")
+          require("hover.providers.man")
+          require("hover.providers.dictionary")
         end,
         preview_opts = {
-          border = 'rounded',
+          border = "rounded",
         },
         preview_window = true,
-        title = true
-      }
-      vim.cmd [[let g:code_action_menu_window_border = 'rounded']]
+        title = true,
+      })
+      vim.cmd([[let g:code_action_menu_window_border = 'rounded']])
       ---@diagnostic disable-next-line: missing-fields
       require("renamer").setup({
         title = icons.ui.Electric .. "Rename " .. icons.ui.Electric,
       })
       local keymap = vim.keymap.set
+      -- luacheck: ignore 212
       local on_attach = function(client, bufnr)
         local keymap_opts = { noremap = true, silent = true }
         print("LSP Attached to buffer.")
@@ -84,43 +86,39 @@ return {
         keymap("n", "[d", vim.diagnostic.goto_prev, keymap_opts)
         keymap("n", "]d", vim.diagnostic.goto_next, keymap_opts)
         keymap("n", "td", "<cmd>Telescope diagnostics<CR>", keymap_opts)
-        if client.resolved_capabilities.document_formatting then
-          vim.api.nvim_command [[augroup Format]]
-          vim.api.nvim_command [[autocmd! * <buffer>]]
-          vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-          vim.api.nvim_command [[augroup END]]
-        end
         require("lsp_signature").on_attach({
           bind = true,
           padding = "",
           handler_opts = {
             border = "rounded",
-          }
+          },
         }, bufnr)
       end
+      vim.cmd([[
+      set signcolumn=yes
+      autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
+             ]])
       local capabilities = cmp_nvim_lsp.default_capabilities()
       local signs = {
         Error = icons.diagnostics.Error,
         Warn = icons.diagnostics.Warning,
         Hint = icons.diagnostics.Hint,
-        Info = icons.diagnostics.Info
+        Info = icons.diagnostics.Info,
       }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-        vim.lsp.handlers.signature_help, {
-          border = "rounded",
-          focusable = false,
-          relative = "cursor",
-        }
-      )
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "rounded",
+        focusable = false,
+        relative = "cursor",
+      })
       vim.diagnostic.config({
         virtual_text = {
           enabled = true,
           prefix = icons.ui.CircleSmall,
-          source = 'always',
+          source = "always",
         },
         float = {
           show_header = true,
@@ -128,14 +126,27 @@ return {
           header = {
             icons.ui.Bug .. " Diagnostics",
           },
-          source = 'always',
-          border = 'rounded',
+          source = "always",
+          border = "rounded",
           focusable = false,
         },
         update_in_insert = true,
         signs = true,
         underline = true,
         severity_sort = false,
+      })
+      lspconfig["rust_analyzer"].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
+        filetypes = { "rust" },
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              allFeatures = true,
+            },
+          },
+        },
       })
       lspconfig["html"].setup({
         capabilities = capabilities,
@@ -144,7 +155,6 @@ return {
       lspconfig["pyright"].setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        filetypes = { "python" },
       })
       lspconfig["cssls"].setup({
         capabilities = capabilities,
@@ -159,8 +169,8 @@ return {
         on_attach = on_attach,
         settings = {
           Lua = {
-            runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
-            completion = { keywordSnippet = "Disable", },
+            runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+            completion = { keywordSnippet = "Disable" },
             diagnostics = {
               globals = { "vim", "describe", "it", "before_each", "after_each" },
             },

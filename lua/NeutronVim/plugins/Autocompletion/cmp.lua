@@ -1,3 +1,4 @@
+-- luacheck: ignore vim
 return {
   {
     "L3MON4D3/LuaSnip",
@@ -5,8 +6,8 @@ return {
       {
         "rafamadriz/friendly-snippets",
         lazy = true,
-        event = "InsertCharPre",
-      }
+        event = "InsertEnter",
+      },
     },
     opts = {
       history = true,
@@ -14,11 +15,15 @@ return {
       region_check_events = "CursorMoved",
     },
     config = function(_, opts)
-      if opts then require("luasnip").config.setup(opts) end
-      vim.tbl_map(function(type) require("luasnip.loaders.from_" .. type).lazy_load() end, { "vscode", "snipmate", "lua" })
+      if opts then
+        require("luasnip").config.setup(opts)
+      end
+      vim.tbl_map(function(type)
+        require("luasnip.loaders.from_" .. type).lazy_load()
+      end, { "vscode", "snipmate", "lua" })
     end,
     lazy = true,
-    event = "InsertCharPre",
+    event = "InsertEnter",
   },
   {
     "hrsh7th/nvim-cmp",
@@ -30,15 +35,15 @@ return {
       { "ray-x/cmp-treesitter", lazy = true },
       { "hrsh7th/cmp-cmdline", lazy = true },
       { "hrsh7th/cmp-nvim-lsp-signature-help", lazy = true },
-      { 'Exafunction/codeium.vim', lazy = true },
+      { "Exafunction/codeium.vim", lazy = true },
       { "echasnovski/mini.pairs", version = "*", lazy = true },
-      lazy = true
+      lazy = true,
     },
     event = "InsertEnter",
     config = function()
       local cmp = require("cmp")
       local snip_status_ok, luasnip = pcall(require, "luasnip")
-      local icons = require('NeutronVim.core.icons')
+      local icons = require("NeutronVim.core.icons")
       local kind_icons = icons.kind
       local set = vim.keymap.set
       local feedkey = function(key, mode)
@@ -54,7 +59,9 @@ return {
         end
       end
       require("mini.pairs").setup()
-      if not snip_status_ok then return end
+      if not snip_status_ok then
+        return
+      end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE", italic = true })
@@ -63,13 +70,22 @@ return {
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ff3e00", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "pink", bg = "NONE" })
       local border_opts = {
-        border = { "●", "─", "●", "│", "●", "─", "●", "│" },
+        border = "rounded",
+        -- luacheck: ignore 631
         winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
       }
-      set( 'i', '<C-a>', function () return vim.fn['codeium#Accept']() end, { expr = true } )
-      set( 'i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true } )
-      set( 'i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true } )
-      set( 'i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true } )
+      set("i", "<C-a>", function()
+        return vim.fn["codeium#Accept"]()
+      end, { expr = true })
+      set("i", "<c-,>", function()
+        return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true })
+      set("i", "<c-;>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
+      end, { expr = true })
+      set("i", "<c-x>", function()
+        return vim.fn["codeium#Clear"]()
+      end, { expr = true })
       ---@diagnostic disable-next-line: missing-fields, redundant-parameter
       cmp.setup({
         preselect = cmp.PreselectMode.None,
@@ -78,22 +94,27 @@ return {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
             item.kind = string.format("%s %s", kind_icons[item.kind], item.kind .. " ")
-            item.menu = "➥ " .. (({
-              nvim_lsp = "｢LSP｣",
-              buffer = "｢Buffer｣",
-              luasnip = "｢Snip｣",
-              treesitter = "｢Treesitter｣",
-              calc = "｢Calc｣",
-              emoji = "｢Emoji｣",
-              async_path = "｢Path｣",
-              nvim_lsp_signature_help = "｢Signature｣",
-              cmdline = "｢Cmd｣",
-            })[entry.source.name] or "🚀 ")
+            item.menu = "➥ "
+              .. (
+                ({
+                  nvim_lsp = "｢LSP｣",
+                  buffer = "｢Buffer｣",
+                  luasnip = "｢Snip｣",
+                  treesitter = "｢Treesitter｣",
+                  calc = "｢Calc｣",
+                  emoji = "｢Emoji｣",
+                  async_path = "｢Path｣",
+                  nvim_lsp_signature_help = "｢Signature｣",
+                  cmdline = "｢Cmd｣",
+                })[entry.source.name] or "🚀 "
+              )
             return item
           end,
         },
         snippet = {
-          expand = function(args) luasnip.lsp_expand(args.body) end,
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
         },
         duplicates = {
           nvim_lsp = 1,
@@ -118,13 +139,13 @@ return {
           disallow_partial_matching = false,
         },
         mapping = {
-          ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-          ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+          ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+          ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
           ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
           ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
           ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-          ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
-          ["<CR>"] = cmp.mapping.confirm { select = false },
+          ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
+          ["<CR>"] = cmp.mapping.confirm({ select = false }),
           ["<Tab>"] = cmp.mapping(function(_)
             if cmp.visible() then
               cmp.select_next_item()
@@ -142,13 +163,13 @@ return {
             elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
             elseif check_back_space() then
-                feedkey("<C-d>", "i")
+              feedkey("<C-d>", "i")
             else
-                feedkey("<Plug>(TaboutBack)", "")
+              feedkey("<Plug>(TaboutBack)", "")
             end
           end, { "i", "s" }),
         },
-        sources = cmp.config.sources {
+        sources = cmp.config.sources({
           {
             name = "nvim_lsp",
             entry_filter = function(entry, context)
@@ -175,35 +196,35 @@ return {
           },
           { name = "luasnip", priority = 750 },
           { name = "treesitter", priority = 750 },
-          { name = 'nvim_lsp_signature_help', priority = 500 },
+          { name = "nvim_lsp_signature_help", priority = 500 },
           { name = "buffer", priority = 500 },
           { name = "nvim_lua", priority = 500 },
           { name = "async_path", priority = 250 },
           { name = "emoji", priority = 200 },
-        }
+        }),
       })
       ---@diagnostic disable-next-line: missing-fields, undefined-field
-      cmp.setup.filetype('gitcommit', {
+      cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources({
-          { name = 'git' },
-          { name = 'buffer' },
-          })
+          { name = "git" },
+          { name = "buffer" },
+        }),
       })
       ---@diagnostic disable-next-line: missing-fields, undefined-field
-      cmp.setup.cmdline(':', {
+      cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = 'path' },
-          { name = 'cmdline' }
-          })
+          { name = "path" },
+          { name = "cmdline" },
+        }),
       })
 
       ---@diagnostic disable-next-line: missing-fields, undefined-field
-      cmp.setup.cmdline({ '/', '?' }, {
+      cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
-          { name = 'buffer' }
-        }
+          { name = "buffer" },
+        },
       })
     end,
   },

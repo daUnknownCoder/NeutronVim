@@ -23,6 +23,7 @@ return {
           "bash",
           "toml",
           "html",
+          "rust",
           "css"
         },
         sync_install = false,

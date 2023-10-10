@@ -28,6 +28,7 @@ local options = {
   errorbells = false,
   wrap = false,
   cursorline = true,
+  completeopt = { "menuone", "noselect", "noinsert" },
 
   backup = false,
   writebackup = false,

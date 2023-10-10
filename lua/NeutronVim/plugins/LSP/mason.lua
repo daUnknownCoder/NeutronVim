@@ -16,8 +16,8 @@ return {
           package_installed = icons.ui.Check,
           package_uninstalled = icons.ui.Uncheck,
           package_pending = icons.ui.Electric,
-        }
-      }
+        },
+      },
     })
 
     mason_lspconfig.setup({
@@ -30,5 +30,5 @@ return {
       },
       automatic_installation = true,
     })
-  end
+  end,
 }

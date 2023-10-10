@@ -20,6 +20,12 @@ require("lazy").setup({
   -- UI Enhancement
   { import = "NeutronVim.plugins.UI" },
 
+  -- Formatting
+  { import = "NeutronVim.plugins.Formatting" },
+
+  -- Linting
+  { import = "NeutronVim.plugins.Linting" },
+
   -- File Managers
   { import = "NeutronVim.plugins.File-Management" },
 
@@ -37,20 +43,19 @@ require("lazy").setup({
 
   -- Git
   { import = "NeutronVim.plugins.Git-Integration" },
-},
-  {
-    install = {
-      colorscheme = { "tokyonight-night" },
-    },
-    checker = {
-      enabled = true,
-      notify = false,
-    },
-    change_detection = {
-      notify = true,
-    },
-    ui = {
-      border = "rounded",
-      title = " " .. icons.ui.Electric .. "La" .. icons.ui.Sleep .. "y " .. icons.ui.Electric,
-    },
-  })
+}, {
+  install = {
+    colorscheme = { "tokyonight-night" },
+  },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = true,
+  },
+  ui = {
+    border = "rounded",
+    title = " " .. icons.ui.Electric .. "La" .. icons.ui.Sleep .. "y " .. icons.ui.Electric,
+  },
+})

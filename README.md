@@ -1,3 +1,1 @@
 # NeutronVim
-
-#foo

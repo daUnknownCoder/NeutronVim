@@ -1,3 +1,4 @@
+-- luacheck: ignore vim
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -27,7 +28,7 @@ return {
 
       vim.g.rainbow_delimiters = { highlight = highlight }
 
-      require("ibl").setup {
+      require("ibl").setup({
         indent = {
           highlight = highlight,
           char = "│",
@@ -35,8 +36,8 @@ return {
         scope = {
           enabled = true,
         },
-      }
-    end
+      })
+    end,
   },
   {
     "echasnovski/mini.indentscope",

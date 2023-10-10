@@ -19,7 +19,6 @@ return {
       local telescope = require("telescope")
       local icons = require("NeutronVim.core.icons")
 
-      require("neoclip").setup()
       telescope.setup({
         defaults = {
           entry_prefix = icons.ui.ArrowDownandRight,

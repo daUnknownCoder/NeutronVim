@@ -21,7 +21,7 @@ return {
         },
         hover = {
           enabled = false,
-        }
+        },
       },
       presets = {
         long_message_to_split = true,
@@ -31,9 +31,9 @@ return {
         {
           filter = {
             event = "notify",
-            min_height = 10
+            min_height = 10,
           },
-          view = 'vsplit'
+          view = "split",
         },
       },
       cmdline = {

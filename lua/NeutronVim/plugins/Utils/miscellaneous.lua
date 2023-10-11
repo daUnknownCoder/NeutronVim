@@ -7,7 +7,7 @@ return {
       require("colorizer").setup({
         user_default_options = {
           css = true,
-        }
+        },
       })
     end,
     lazy = true,
@@ -18,7 +18,7 @@ return {
   { "nvim-lua/popup.nvim", lazy = true },
   -- Very useless but a good stress buster
   {
-    'eandrju/cellular-automaton.nvim',
+    "eandrju/cellular-automaton.nvim",
     lazy = true,
     keys = {
       { "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>" },
@@ -33,7 +33,7 @@ return {
       { "<C-j>", "<cmd>TmuxNavigateDown<CR>" },
       { "<C-k>", "<cmd>TmuxNavigateUp<CR>" },
       { "<C-l>", "<cmd>TmuxNavigateRight<CR>" },
-    }
+    },
   },
   -- UI Component Library
   { "nvim-lua/plenary.nvim", lazy = true },
@@ -44,7 +44,7 @@ return {
     keys = {
       { "<leader>wr", "<cmd>SudaWrite<CR>" },
       { "<leader>re", "<cmd>SudaRead<CR>" },
-    }
+    },
   },
   -- Generate dummy text
   {
@@ -59,7 +59,7 @@ return {
     end,
     keys = {
       { "<leader>ld", "<cmd>LoremIpsum<CR>" },
-    }
+    },
   },
   -- Replace vim.ui.[input/attach]
   {
@@ -88,7 +88,7 @@ return {
     config = true,
     keys = {
       { "gcc", "<cmd>CommentToggle<CR>" },
-    }
+    },
   },
   -- Illuminating equivalent words in current buffer under the cursor
   {
@@ -110,21 +110,21 @@ return {
   },
   -- Surrounding brackets in nvim
   {
-    'echasnovski/mini.surround',
+    "echasnovski/mini.surround",
     event = "BufReadPost",
     lazy = true,
-    version = '*',
+    version = "*",
     config = function()
       require("mini.surround").setup({
         mappings = {
-          add = 'aa',
-          delete = 'ad',
-          highlight = 'ah',
-          replace = 'ar',
-          update_n_lines = 'an',
-        }
+          add = "aa",
+          delete = "ad",
+          highlight = "ah",
+          replace = "ar",
+          update_n_lines = "an",
+        },
       })
-    end
+    end,
   },
   -- Useless but looks good :D
   {
@@ -172,8 +172,7 @@ return {
     },
     build = "cd app && npm install",
     config = function()
-      vim.g.mkdp_filetypes =
-      { "markdown" }
+      vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
   },

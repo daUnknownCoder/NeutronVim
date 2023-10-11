@@ -138,15 +138,6 @@ return {
       lspconfig["rust_analyzer"].setup({
         on_attach = on_attach,
         capabilities = capabilities,
-        root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
-        filetypes = { "rust" },
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = {
-              allFeatures = true,
-            },
-          },
-        },
       })
       lspconfig["html"].setup({
         capabilities = capabilities,

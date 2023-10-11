@@ -1,3 +1,4 @@
+-- luacheck: ignore vim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 ---@diagnostic disable-next-line: undefined-field

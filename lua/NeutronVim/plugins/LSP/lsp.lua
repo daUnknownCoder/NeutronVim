@@ -26,6 +26,11 @@ return {
         lazy = true,
       },
       {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        lazy = true,
+        event = "LspAttach",
+      },
+      {
         "lewis6991/hover.nvim",
         lazy = true,
         keys = {
@@ -42,11 +47,18 @@ return {
         lazy = true,
         event = "LspAttach",
       },
+      {
+        "simrat39/rust-tools.nvim",
+        lazy = true,
+        event = "LspAttach",
+        ft = { "rust" },
+      },
     },
     config = function()
       local lspconfig = require("lspconfig")
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
       local icons = require("NeutronVim.core.icons")
+      local rt = require("rust-tools")
       require("lspsaga").setup({
         border = "rounded",
         outline = {
@@ -77,27 +89,25 @@ return {
       local keymap = vim.keymap.set
       -- luacheck: ignore 212
       local on_attach = function(client, bufnr)
-        local keymap_opts = { noremap = true, silent = true }
+        local keyopts = { noremap = true, silent = true }
         print("LSP Attached to buffer.")
-        keymap("n", "go", "<cmd>Lspsaga outline<CR>", keymap_opts)
-        keymap("n", "gf", "<cmd>Lspsaga finder ref+def+imp+tyd<CR>", keymap_opts)
-        keymap({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, keymap_opts)
-        keymap("n", "<leader>d", vim.diagnostic.open_float, keymap_opts)
-        keymap("n", "[d", vim.diagnostic.goto_prev, keymap_opts)
-        keymap("n", "]d", vim.diagnostic.goto_next, keymap_opts)
-        keymap("n", "td", "<cmd>Telescope diagnostics<CR>", keymap_opts)
+        keymap("n", "go", "<cmd>Lspsaga outline<CR>", keyopts)
+        keymap("n", "gf", "<cmd>Lspsaga finder ref+def+imp+tyd<CR>", keyopts)
+        keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", keyopts)
+        keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", keyopts)
+        keymap({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, keyopts)
+        keymap("n", "td", "<cmd>Telescope diagnostics<CR>", keyopts)
         require("lsp_signature").on_attach({
           bind = true,
-          padding = "",
+          debug = true,
+          hint_enable = true,
+          padding = " ",
           handler_opts = {
             border = "rounded",
           },
         }, bufnr)
       end
-      vim.cmd([[
-      set signcolumn=yes
-      autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-             ]])
+      require("lsp_lines").setup({})
       local capabilities = cmp_nvim_lsp.default_capabilities()
       local signs = {
         Error = icons.diagnostics.Error,
@@ -109,6 +119,10 @@ return {
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
+      vim.cmd([[
+      set signcolumn=yes
+      autocmd CursorHold * Lspsaga show_line_diagnostics ++unfocus
+      ]])
       vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
         border = "rounded",
         focusable = false,
@@ -116,13 +130,14 @@ return {
       })
       vim.diagnostic.config({
         virtual_text = {
-          enabled = true,
-          prefix = icons.ui.CircleSmall,
-          source = "always",
+          enabled = false,
+        },
+        virtual_lines = {
+          enabled = false,
         },
         float = {
           show_header = true,
-          enabled = true,
+          enabled = false,
           header = {
             icons.ui.Bug .. " Diagnostics",
           },
@@ -136,8 +151,32 @@ return {
         severity_sort = false,
       })
       lspconfig["rust_analyzer"].setup({
-        on_attach = on_attach,
         capabilities = capabilities,
+        on_attach = on_attach,
+        cmd = {
+          "rustup",
+          "run",
+          "stable",
+          "rust-analyzer",
+        },
+      })
+      rt.setup({
+        tools = {
+          runnables = {
+            use_telescope = true,
+          },
+          inlay_hints = {
+            auto = true,
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+          },
+        },
+        server = {
+          on_attach = on_attach,
+          capabilities = capabilities,
+          root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
+        },
       })
       lspconfig["html"].setup({
         capabilities = capabilities,

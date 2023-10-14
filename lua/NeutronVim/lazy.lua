@@ -44,6 +44,9 @@ require("lazy").setup({
 
   -- Git
   { import = "NeutronVim.plugins.Git-Integration" },
+
+  -- Debugging
+  { import = "NeutronVim.plugins.Debugging" },
 }, {
   install = {
     colorscheme = { "tokyonight-night" },

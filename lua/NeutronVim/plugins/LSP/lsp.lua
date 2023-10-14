@@ -10,6 +10,21 @@ return {
         lazy = true,
       },
       {
+        "dgagn/diagflow.nvim",
+        lazy = true,
+        event = "LspAttach",
+        opts = {
+          format = function(diagnostic)
+            return "[LSP] " .. diagnostic.message
+          end,
+        },
+      },
+      {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        lazy = true,
+        event = "LspAttach",
+      },
+      {
         "weilbith/nvim-code-action-menu",
         cmd = "CodeActionMenu",
         keys = {
@@ -24,11 +39,6 @@ return {
           { "gr", "<cmd>lua require('renamer').rename()<cr>", desc = "Renamer" },
         },
         lazy = true,
-      },
-      {
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        lazy = true,
-        event = "LspAttach",
       },
       {
         "lewis6991/hover.nvim",
@@ -63,6 +73,9 @@ return {
         border = "rounded",
         outline = {
           layout = "float",
+        },
+        lightbulb = {
+          enable = false,
         },
       })
       require("lspsaga.symbol.winbar").get_bar()
@@ -107,7 +120,6 @@ return {
           },
         }, bufnr)
       end
-      require("lsp_lines").setup({})
       local capabilities = cmp_nvim_lsp.default_capabilities()
       local signs = {
         Error = icons.diagnostics.Error,
@@ -119,22 +131,10 @@ return {
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
-      vim.cmd([[
-      set signcolumn=yes
-      autocmd CursorHold * Lspsaga show_line_diagnostics ++unfocus
-      ]])
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
-        focusable = false,
-        relative = "cursor",
-      })
+      require("lsp_lines").setup()
       vim.diagnostic.config({
-        virtual_text = {
-          enabled = false,
-        },
-        virtual_lines = {
-          enabled = false,
-        },
+        virtual_text = false,
+        virtual_lines = true,
         float = {
           show_header = true,
           enabled = false,

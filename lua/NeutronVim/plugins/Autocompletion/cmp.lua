@@ -31,9 +31,9 @@ return {
       { "saadparwaiz1/cmp_luasnip", lazy = true },
       { "hrsh7th/cmp-buffer", lazy = true },
       { "FelipeLema/cmp-async-path", lazy = true },
+      { "petertriho/cmp-git", lazy = true },
       { "hrsh7th/cmp-emoji", lazy = true },
       { "ray-x/cmp-treesitter", lazy = true },
-      { "hrsh7th/cmp-cmdline", lazy = true },
       { "hrsh7th/cmp-nvim-lsp-signature-help", lazy = true },
       { "Exafunction/codeium.vim", lazy = true },
       { "echasnovski/mini.pairs", version = "*", lazy = true },
@@ -209,22 +209,6 @@ return {
           { name = "git" },
           { name = "buffer" },
         }),
-      })
-      ---@diagnostic disable-next-line: missing-fields, undefined-field
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-          { name = "cmdline" },
-        }),
-      })
-
-      ---@diagnostic disable-next-line: missing-fields, undefined-field
-      cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
       })
     end,
   },

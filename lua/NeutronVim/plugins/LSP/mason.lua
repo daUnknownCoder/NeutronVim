@@ -5,6 +5,17 @@ return {
   dependencies = {
     { "williamboman/mason-lspconfig.nvim", event = "BufRead" },
   },
+  opts = {
+    ensure_installed = {
+      "black",
+      "mypy",
+      "ruff",
+      "eslint_d",
+      "luacheck",
+      "prettier",
+      "stylua",
+    },
+  },
   config = function()
     local icons = require("NeutronVim.core.icons")
     local mason = require("mason")

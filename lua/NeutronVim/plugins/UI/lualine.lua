@@ -1,7 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
-    "arkav/lualine-lsp-progress",
+    { "arkav/lualine-lsp-progress", lazy = true, event = "LspAttach" },
   },
   lazy = false,
   event = "VimEnter",

@@ -71,6 +71,8 @@ return {
     },
     config = function(_, opts)
       require("dressing").setup(opts)
+      -- luacheck: ignore 113
+      vim.cmd([[autocmd FileType NvimTree let g:dressing_disable = v:true]])
     end,
   },
   -- Maximize or Minimize an open buffer while working in splits
@@ -101,6 +103,7 @@ return {
     },
     config = function(_, opts)
       require("illuminate").configure(opts)
+      -- luacheck: ignore 113
       vim.cmd([[ augroup vim_illuminate_augroup
               autocmd!
               autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
@@ -135,6 +138,7 @@ return {
       local mouse_scrolled = false
       for _, scroll in ipairs({ "Up", "Down" }) do
         local key = "<ScrollWheel" .. scroll .. ">"
+        -- luacheck: ignore 113
         vim.keymap.set({ "", "i" }, key, function()
           mouse_scrolled = true
           return key
@@ -166,12 +170,10 @@ return {
   -- Markdown files editing preview
   {
     "iamcco/markdown-preview.nvim",
-    lazy = true,
-    keys = {
-      { "<leader>md", "<cmd>MarkdownPreviewToggle<CR>" },
-    },
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     build = "cd app && npm install",
-    config = function()
+    init = function()
+      -- luacheck: ignore 112
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },

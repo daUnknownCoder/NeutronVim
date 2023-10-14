@@ -1,8 +1,6 @@
--- luacheck: ignore vim
 return {
   "rcarriga/nvim-notify",
   keys = {
-    -- luacheck: ignore vim
     {
       "<leader>un",
       function()

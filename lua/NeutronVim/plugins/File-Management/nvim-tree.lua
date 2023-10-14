@@ -1,4 +1,3 @@
--- luacheck: ignore vim
 return {
   {
     "nvim-tree/nvim-tree.lua",

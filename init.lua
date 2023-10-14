@@ -1,14 +1,16 @@
--- NeutronVim Plugin Management
+for _, source in ipairs({
+  "NeutronVim.lazy",
+  "NeutronVim.core.remaps",
+  "NeutronVim.core.opts",
+  "NeutronVim.core.init",
+  "NeutronVim.core.icons",
+}) do
+  local status_ok, fault = pcall(require, source)
+  if not status_ok then
+    vim.api.nvim_err_writeln("Error loading " .. source .. "\n\n" .. fault)
+  end
+end
 
-require("NeutronVim.lazy")
-
--- NeutronVim required files
-require("NeutronVim.core.remaps")
-require("NeutronVim.core.opts")
-require("NeutronVim.core.init")
-require("NeutronVim.core.icons")
-
--- luacheck: ignore vim
 vim.opt.background = "dark"
 
 vim.cmd([[highlight Keyword gui=italic guifg=#F08753]])

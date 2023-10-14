@@ -1,4 +1,3 @@
--- luacheck: ignore vim
 return {
   {
     "lukas-reineke/indent-blankline.nvim",

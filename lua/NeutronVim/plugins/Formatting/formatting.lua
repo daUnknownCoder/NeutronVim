@@ -1,4 +1,3 @@
--- luacheck: ignore 113
 return {
   "stevearc/conform.nvim",
   event = { "BufReadPre", "BufNewFile" },

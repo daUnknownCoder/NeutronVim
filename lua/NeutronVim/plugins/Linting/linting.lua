@@ -1,4 +1,3 @@
--- luacheck: ignore vim
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPost", "BufNewFile" },

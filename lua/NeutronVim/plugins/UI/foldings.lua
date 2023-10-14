@@ -1,4 +1,3 @@
--- luacheck: ignore 112 and 113
 return {
   "kevinhwang91/nvim-ufo",
   event = { "BufReadPost", "BufNewFile" },

@@ -12,7 +12,6 @@ return {
         sidebars = "transparent",
         floats = "transparent",
       },
-      --luacheck: ignore vim
       vim.cmd([[colorscheme tokyonight]]),
     })
   end,

@@ -1,4 +1,3 @@
--- luacheck: ignore vim
 return {
   {
     "neovim/nvim-lspconfig",

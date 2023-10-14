@@ -1,4 +1,3 @@
--- luacheck: ignore vim
 return {
   {
     "goolord/alpha-nvim",

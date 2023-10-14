@@ -3,7 +3,7 @@ return {
   event = { "BufReadPost", "BufNewFile" },
   lazy = true,
   dependencies = {
-    { "williamboman/mason-lspconfig.nvim", event = "BufRead" },
+    { "williamboman/mason-lspconfig.nvim", cmd = { "LspInstall", "LspUninstall" } },
   },
   opts = {
     ensure_installed = {

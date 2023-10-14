@@ -1,4 +1,3 @@
--- luacheck: ignore vim
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufRead",

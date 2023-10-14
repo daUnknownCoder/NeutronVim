@@ -1,14 +1,18 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "VeryLazy" },
     version = false,
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     config = function()
+      local treesitter_status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+      if not treesitter_status_ok then
+        print("treesitter not found!")
+      end
       ---@diagnostic disable-next-line: missing-fields
-      require'nvim-treesitter.configs'.setup {
+      treesitter.setup({
         ensure_installed = {
           "vimdoc",
           "javascript",
@@ -24,16 +28,16 @@ return {
           "toml",
           "html",
           "rust",
-          "css"
+          "css",
         },
         sync_install = false,
         auto_install = true,
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = false
+          additional_vim_regex_highlighting = false,
         },
         indent = {
-          enable = true
+          enable = true,
         },
         incremental_selection = {
           enable = true,
@@ -41,8 +45,8 @@ return {
             init_selection = "<c-space>",
             node_incremental = "<c-space>",
             scope_incremental = false,
-            node_decremental = "<bs>"
-          }
+            node_decremental = "<bs>",
+          },
         },
         textobjects = {
           select = {
@@ -59,14 +63,14 @@ return {
               ["ii"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
               ["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
               ["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
-            }
-          }
-        }
-      }
+            },
+          },
+        },
+      })
     end,
   },
   {
-    'nvim-treesitter/playground',
+    "nvim-treesitter/playground",
     keys = {
       { "<leader>pl", "<cmd>TSPlaygroundToggle<CR>" },
     },
@@ -74,9 +78,15 @@ return {
     lazy = true,
   },
   {
-    "nvim-treesitter/nvim-treesitter-textobjects", lazy = true, event = { "BufReadPost", "BufNewFile" },
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require'nvim-treesitter.configs'.setup {
+      local treesitter_status_ok, treesitter = pcall(require, "nvim-treesitter.configs")
+      if not treesitter_status_ok then
+        print("treesitter not found!")
+      end
+      treesitter.setup({
         textobjects = {
           select = {
             enable = true,
@@ -96,8 +106,8 @@ return {
               ["im"] = { query = "@function.inner", desc = "Select inner part of a function" },
               ["ac"] = { query = "@class.outer", desc = "Select outer part of a class" },
               ["ic"] = { query = "@class.inner", desc = "Select inner part of a class" },
-            }
-          }
+            },
+          },
         },
         move = {
           enable = true,
@@ -130,9 +140,9 @@ return {
             ["[I"] = "@conditional.outer",
             ["[L"] = "@loop.outer",
           },
-        }
-      }
-    end
+        },
+      })
+    end,
   },
   {
     "luckasRanarison/tree-sitter-hypr",
@@ -147,5 +157,5 @@ return {
         filetype = "hypr",
       }
     end,
-  }
+  },
 }

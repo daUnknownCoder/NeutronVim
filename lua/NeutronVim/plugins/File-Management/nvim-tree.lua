@@ -8,8 +8,15 @@ return {
       { "<C-n>", "<cmd>NvimTreeFindFileToggle<cr>", desc = "NvimTree" },
     },
     config = function()
-      local nvimtree = require("nvim-tree")
-      local icons = require("NeutronVim.core.icons")
+      local nvimtree_status_ok, nvimtree = pcall(require, "nvim-tree")
+      if not nvimtree_status_ok then
+        print("NvimTree not found!")
+      end
+      local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+      if not icons_ok then
+        print("Unable to import icons!")
+      end
+
       vim.opt.termguicolors = true
 
       local HEIGHT_RATIO = 0.8

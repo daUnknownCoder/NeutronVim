@@ -1,14 +1,28 @@
+-- luacheck: ignore vim
 return {
   "rcarriga/nvim-notify",
   keys = {
-      { "<leader>un", function() require("notify").dismiss({ silent = true, pending = true }) end, desc = "Dismiss all Notifications" }
+    -- luacheck: ignore vim
+    {
+      "<leader>un",
+      function()
+        require("notify").dismiss({ silent = true, pending = true })
+      end,
+      desc = "Dismiss all Notifications",
+    },
   },
   lazy = true,
   config = function()
     vim.opt.termguicolors = true
     vim.notify = require("notify")
-    local notify = require("notify")
-    local icons = require("NeutronVim.core.icons")
+    local notify_status_ok, notify = pcall(require, "notify")
+    if not notify_status_ok then
+      print("notify not found!")
+    end
+    local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+    if not icons_ok then
+      print("Unable to import icons!")
+    end
 
     ---@diagnostic disable-next-line: missing-fields
     notify.setup({

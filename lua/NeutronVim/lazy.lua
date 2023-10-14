@@ -15,9 +15,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
-local icons = require("NeutronVim.core.icons")
+local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+if not icons_ok then
+  print("Unable to import icons!")
+end
+local lazy_ok, lazy = pcall(require, "lazy")
+if not lazy_ok then
+  print("lazy not found!")
+end
 
-require("lazy").setup({
+lazy.setup({
   -- UI Enhancement
   { import = "NeutronVim.plugins.UI" },
 

@@ -7,8 +7,6 @@ return {
       { "ff", "<cmd>Telescope find_files<CR>", desc = "Find Files Fuzzily" },
       { "fg", "<cmd>Telescope live_grep<CR>", desc = "Find Text" },
       { "fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
-      { "fo", "<cmd>Telescope oldfiles<CR>", desc = "Find Recent Files Fuzzily" },
-      { "fh", "<cmd>Telescope help_tags<CR>", desc = "Find Help" },
       { "co", "<cmd>Telescope colorscheme<CR>", desc = "Choose Colorschemes" },
       { "fe", "<cmd>Telescope emoji<CR>", desc = "Emoji search - copy - paste" },
     },
@@ -16,8 +14,14 @@ return {
       { "xiyaowong/telescope-emoji.nvim", lazy = true, cmd = "Telescope emoji" },
     },
     config = function()
-      local telescope = require("telescope")
-      local icons = require("NeutronVim.core.icons")
+      local telescope_status_ok, telescope = pcall(require, "telescope")
+      if not telescope_status_ok then
+        print("Telescope not found!")
+      end
+      local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+      if not icons_ok then
+        print("Unable to import icons!")
+      end
 
       telescope.setup({
         defaults = {

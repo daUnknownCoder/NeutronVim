@@ -17,9 +17,18 @@ return {
     },
   },
   config = function()
-    local icons = require("NeutronVim.core.icons")
-    local mason = require("mason")
-    local mason_lspconfig = require("mason-lspconfig")
+    local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+    if not icons_ok then
+      print("Unable to import icons!")
+    end
+    local mason_status_ok, mason = pcall(require, "mason")
+    if not mason_status_ok then
+      print("mason not found!")
+    end
+    local mason_lspconfig_status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
+    if not mason_lspconfig_status_ok then
+      print("mason-lspconfig not found!")
+    end
 
     mason.setup({
       ui = {
@@ -30,7 +39,6 @@ return {
         },
       },
     })
-
     mason_lspconfig.setup({
       ensure_installed = {
         "tsserver",

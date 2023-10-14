@@ -4,7 +4,10 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   lazy = true,
   config = function()
-    local conform = require("conform")
+    local conform_status_ok, conform = pcall(require, "conform")
+    if not conform_status_ok then
+      print("Conform not found!")
+    end
     conform.setup({
       formatters_by_ft = {
         javascript = { "prettier" },
@@ -28,6 +31,6 @@ return {
         async = false,
         timeout_ms = 500,
       })
-    end, { desc = "Format file or range (In Visual Mode)" })
+    end, { desc = "Format file" })
   end,
 }

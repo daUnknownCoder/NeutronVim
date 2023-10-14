@@ -57,19 +57,33 @@ return {
         lazy = true,
         event = "LspAttach",
       },
-      {
-        "simrat39/rust-tools.nvim",
-        lazy = true,
-        event = "LspAttach",
-        ft = { "rust" },
-      },
     },
     config = function()
-      local lspconfig = require("lspconfig")
-      local cmp_nvim_lsp = require("cmp_nvim_lsp")
-      local icons = require("NeutronVim.core.icons")
-      local rt = require("rust-tools")
-      require("lspsaga").setup({
+      local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+      if not lspconfig_status_ok then
+        print("lspconfig not found!")
+      end
+      local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      if not cmp_nvim_lsp_status_ok then
+        print("cmp_nvim_lsp not found!")
+      end
+      local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+      if not icons_ok then
+        print("Unable to import icons!")
+      end
+      local saga_status_ok, saga = pcall(require, "lspsaga")
+      if not saga_status_ok then
+        print("lspsaga not found!")
+      end
+      local hover_status_ok, hover = pcall(require, "hover")
+      if not hover_status_ok then
+        print("hover not found!")
+      end
+      local renamer_status_ok, renamer = pcall(require, "renamer")
+      if not renamer_status_ok then
+        print("renamer not found!")
+      end
+      saga.setup({
         border = "rounded",
         outline = {
           layout = "float",
@@ -79,7 +93,7 @@ return {
         },
       })
       require("lspsaga.symbol.winbar").get_bar()
-      require("hover").setup({
+      hover.setup({
         init = function()
           require("hover.providers.lsp")
           require("hover.providers.gh")
@@ -96,7 +110,7 @@ return {
       })
       vim.cmd([[let g:code_action_menu_window_border = 'rounded']])
       ---@diagnostic disable-next-line: missing-fields
-      require("renamer").setup({
+      renamer.setup({
         title = icons.ui.Electric .. "Rename " .. icons.ui.Electric,
       })
       local keymap = vim.keymap.set
@@ -158,24 +172,6 @@ return {
           "run",
           "stable",
           "rust-analyzer",
-        },
-      })
-      rt.setup({
-        tools = {
-          runnables = {
-            use_telescope = true,
-          },
-          inlay_hints = {
-            auto = true,
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-          },
-        },
-        server = {
-          on_attach = on_attach,
-          capabilities = capabilities,
-          root_dir = require("lspconfig/util").root_pattern("Cargo.toml"),
         },
       })
       lspconfig["html"].setup({

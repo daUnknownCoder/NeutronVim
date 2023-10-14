@@ -1,12 +1,19 @@
+-- luacheck: ignore vim
 return {
   {
     "goolord/alpha-nvim",
     cmd = "Alpha",
-    event = { "VimEnter", "BufNewFile" },
+    event = { "VimEnter" },
     lazy = true,
     opts = function()
-      local icons = require "NeutronVim.core.icons"
-      local dashboard = require("alpha.themes.dashboard")
+      local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+      if not icons_ok then
+        print("Unable to import icons!")
+      end
+      local dashboard_status_ok, dashboard = pcall(require, "alpha.themes.dashboard")
+      if not dashboard_status_ok then
+        print("alpha.dashboard not found!")
+      end
       local logo = [[
        ███╗   ██╗███████╗██╗   ██╗████████╗██████╗  ██████╗ ███╗   ██╗
        ████╗  ██║██╔════╝██║   ██║╚══██╔══╝██╔══██╗██╔═══██╗████╗  ██║
@@ -42,7 +49,14 @@ return {
       return dashboard
     end,
     config = function(_, dashboard)
-      local icons = require "NeutronVim.core.icons"
+      local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+      if not icons_ok then
+        print("Unable to import icons!")
+      end
+      local alpha_status_ok, alpha = pcall(require, "alpha")
+      if not alpha_status_ok then
+        print("Alpha not found!")
+      end
       if vim.o.filetype == "lazy" then
         vim.cmd.close()
         vim.api.nvim_create_autocmd("User", {
@@ -53,13 +67,20 @@ return {
         })
       end
 
-      require("alpha").setup(dashboard.opts)
+      alpha.setup(dashboard.opts)
 
       vim.api.nvim_create_autocmd("User", {
         callback = function()
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          dashboard.section.footer.val = "NeutronVim ha" .. icons.ui.Sleep .. " loaded " .. stats.count .. " plugins in " .. icons.ui.Electric .. ms .. "ms"
+          dashboard.section.footer.val = "NeutronVim ha"
+            .. icons.ui.Sleep
+            .. " loaded "
+            .. stats.count
+            .. " plugins in "
+            .. icons.ui.Electric
+            .. ms
+            .. "ms"
           pcall(vim.cmd.AlphaRedraw)
         end,
       })

@@ -15,8 +15,12 @@ return {
       region_check_events = "CursorMoved",
     },
     config = function(_, opts)
+      local luasnip_status_ok, luasnip = pcall(require, "luasnip")
+      if not luasnip_status_ok then
+        print("Luasnip not found!")
+      end
       if opts then
-        require("luasnip").config.setup(opts)
+        luasnip.config.setup(opts)
       end
       vim.tbl_map(function(type)
         require("luasnip.loaders.from_" .. type).lazy_load()
@@ -41,15 +45,27 @@ return {
     },
     event = "InsertEnter",
     config = function()
-      local cmp = require("cmp")
+      local cmp_status_ok, cmp = pcall(require, "cmp")
+      if not cmp_status_ok then
+        print("CMP not found!")
+      end
       local snip_status_ok, luasnip = pcall(require, "luasnip")
-      local icons = require("NeutronVim.core.icons")
+      if not snip_status_ok then
+        print("Luasnip not found!")
+      end
+      local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+      if not icons_ok then
+        print("Unable to import icons!")
+      end
+      local mini_pairs_status_ok, pairs = pcall(require, "mini.pairs")
+      if not mini_pairs_status_ok then
+        print("mini.pairs not found!")
+      end
       local kind_icons = icons.kind
       local set = vim.keymap.set
       local feedkey = function(key, mode)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
       end
-
       local check_back_space = function()
         local col = vim.fn.col(".") - 1
         if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
@@ -58,10 +74,7 @@ return {
           return false
         end
       end
-      require("mini.pairs").setup()
-      if not snip_status_ok then
-        return
-      end
+      pairs.setup()
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE", italic = true })

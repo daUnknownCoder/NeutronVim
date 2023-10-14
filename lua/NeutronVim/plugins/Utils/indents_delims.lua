@@ -2,12 +2,16 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
+    event = "BufReadPost",
     lazy = true,
     dependencies = {
       { "HiPhish/rainbow-delimiters.nvim", event = "InsertEnter", lazy = true },
     },
     config = function()
+      local indent_blankline_status_ok, indent_blankline = pcall(require, "ibl")
+      if not indent_blankline_status_ok then
+        print("indent_blankline not found!")
+      end
       local highlight = {
         "RainbowRed",
         "RainbowYellow",
@@ -28,7 +32,7 @@ return {
 
       vim.g.rainbow_delimiters = { highlight = highlight }
 
-      require("ibl").setup({
+      indent_blankline.setup({
         indent = {
           highlight = highlight,
           char = "│",
@@ -42,7 +46,7 @@ return {
   {
     "echasnovski/mini.indentscope",
     version = false,
-    event = "BufReadPre",
+    event = "BufReadPost",
     opts = {
       symbol = "│",
       options = { try_as_border = true },

@@ -4,8 +4,12 @@ return {
   keys = {
     { "<leader>\\", "<cmd>ToggleTerm<CR>" },
   },
+  cmd = "ToggleTerm",
   config = function()
-    local toggleterm = require("toggleterm")
+    local toggleterm_status_ok, toggleterm = pcall(require, "toggleterm")
+    if not toggleterm_status_ok then
+      print("toggleterm not found!")
+    end
     toggleterm.setup({
       size = 13,
       shade_filetypes = {},

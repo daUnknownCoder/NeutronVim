@@ -4,7 +4,11 @@ return {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPost",
     config = function()
-      require("colorizer").setup({
+      local colorizer_status_ok, colorizer = pcall(require, "colorizer")
+      if not colorizer_status_ok then
+        print("colorizer not found!")
+      end
+      colorizer.setup({
         user_default_options = {
           css = true,
         },
@@ -51,7 +55,10 @@ return {
     "derektata/lorem.nvim",
     lazy = true,
     config = function()
-      local lorem = require("lorem")
+      local lorem_status_ok, lorem = pcall(require, "lorem")
+      if not lorem_status_ok then
+        print("lorem not found!")
+      end
       lorem.setup({
         sentenceLength = "mixedShort",
         comma = 1,
@@ -70,9 +77,11 @@ return {
       select = { backend = { "telescope", "builtin" } },
     },
     config = function(_, opts)
-      require("dressing").setup(opts)
-      -- luacheck: ignore 113
-      vim.cmd([[autocmd FileType NvimTree let g:dressing_disable = v:true]])
+      local status_ok, dressing = pcall(require, "dressing")
+      if not status_ok then
+        print("dressing not found!")
+      end
+      dressing.setup(opts)
     end,
   },
   -- Maximize or Minimize an open buffer while working in splits
@@ -102,13 +111,11 @@ return {
       large_file_cutoff = 5000,
     },
     config = function(_, opts)
-      require("illuminate").configure(opts)
-      -- luacheck: ignore 113
-      vim.cmd([[ augroup vim_illuminate_augroup
-              autocmd!
-              autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
-              augroup END
-              ]])
+      local status_ok, illuminate = pcall(require, "illuminate")
+      if not status_ok then
+        print("illuminate not found!")
+      end
+      illuminate.configure(opts)
     end,
   },
   -- Surrounding brackets in nvim
@@ -118,7 +125,11 @@ return {
     lazy = true,
     version = "*",
     config = function()
-      require("mini.surround").setup({
+      local status_ok, surround = pcall(require, "mini.surround")
+      if not status_ok then
+        print("mini.surround not found!")
+      end
+      surround.setup({
         mappings = {
           add = "aa",
           delete = "ad",
@@ -139,13 +150,16 @@ return {
       for _, scroll in ipairs({ "Up", "Down" }) do
         local key = "<ScrollWheel" .. scroll .. ">"
         -- luacheck: ignore 113
-        vim.keymap.set({ "", "i" }, key, function()
+        vim.keymap.set({ "n", "i" }, key, function()
           mouse_scrolled = true
           return key
         end, { expr = true })
       end
 
-      local animate = require("mini.animate")
+      local animate_status_ok, animate = pcall(require, "mini.animate")
+      if not animate_status_ok then
+        print("mini.animate not found!")
+      end
       return {
         resize = {
           timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),

@@ -1,12 +1,14 @@
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = {
-    { "arkav/lualine-lsp-progress", lazy = true, event = "LspAttach" },
+    { "arkav/lualine-lsp-progress", lazy = true, event = "VeryLazy" },
   },
-  lazy = false,
   event = "VimEnter",
   opts = function()
-    local icons = require("NeutronVim.core.icons")
+    local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
+    if not icons_ok then
+      print("Unable to import icons!")
+    end
     return {
       options = {
         theme = "auto",

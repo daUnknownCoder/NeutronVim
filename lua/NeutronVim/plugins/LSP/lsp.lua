@@ -12,11 +12,6 @@ return {
         "dgagn/diagflow.nvim",
         lazy = true,
         event = "LspAttach",
-        opts = {
-          format = function(diagnostic)
-            return "[LSP] " .. diagnostic.message
-          end,
-        },
       },
       {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -27,7 +22,7 @@ return {
         "weilbith/nvim-code-action-menu",
         cmd = "CodeActionMenu",
         keys = {
-          { "ca", "<cmd>CodeActionMenu<CR>", desc = "CodeActionMenu" },
+          { "<leader>ga", "<cmd>CodeActionMenu<CR>", desc = "CodeActionMenu" },
         },
         lazy = true,
       },
@@ -35,7 +30,7 @@ return {
         "filipdutescu/renamer.nvim",
         branch = "master",
         keys = {
-          { "gr", "<cmd>lua require('renamer').rename()<cr>", desc = "Renamer" },
+          { "<leader>gr", "<cmd>lua require('renamer').rename()<cr>", desc = "Renamer" },
         },
         lazy = true,
       },
@@ -43,13 +38,14 @@ return {
         "lewis6991/hover.nvim",
         lazy = true,
         keys = {
-          { "K", "<cmd>lua require('hover').hover()<CR>", desc = "Hover" },
-          { " K", "<cmd>lua require('hover').hover_select()<CR>", desc = "Hover Select" },
+          { "<leader>gK", "<cmd>lua require('hover').hover()<CR>", desc = "Hover" },
+          { "<leader>gk", "<cmd>lua require('hover').hover_select()<CR>", desc = "Hover Select" },
         },
       },
       {
         "ray-x/lsp_signature.nvim",
         lazy = true,
+        event = "LspAttach",
       },
       {
         "nvimdev/lspsaga.nvim",
@@ -82,6 +78,14 @@ return {
       if not renamer_status_ok then
         print("renamer not found!")
       end
+      local lsplines_status_ok, lsplines = pcall(require, "lsp_lines")
+      if not lsplines_status_ok then
+        print("lsp_lines not found!")
+      end
+      local diagflow_status_ok, diagflow = pcall(require, "diagflow")
+      if not diagflow_status_ok then
+        print("diagflow not found!")
+      end
       saga.setup({
         border = "rounded",
         outline = {
@@ -90,8 +94,10 @@ return {
         lightbulb = {
           enable = false,
         },
+        symbol_in_winbar = {
+          enable = false,
+        },
       })
-      require("lspsaga.symbol.winbar").get_bar()
       hover.setup({
         init = function()
           require("hover.providers.lsp")
@@ -115,14 +121,31 @@ return {
       local keymap = vim.keymap.set
       -- luacheck: ignore 212
       local on_attach = function(client, bufnr)
-        local keyopts = { noremap = true, silent = true }
         print("LSP Attached to buffer.")
-        keymap("n", "go", "<cmd>Lspsaga outline<CR>", keyopts)
-        keymap("n", "gf", "<cmd>Lspsaga finder ref+def+imp+tyd<CR>", keyopts)
-        keymap("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", keyopts)
-        keymap("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", keyopts)
-        keymap({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, keyopts)
-        keymap("n", "td", "<cmd>Telescope diagnostics<CR>", keyopts)
+        keymap(
+          "n",
+          "<leader>gf",
+          "<cmd>Lspsaga finder ref+def+imp+tyd<CR>",
+          { noremap = true, silent = true, desc = "LSP Finder [Ref, Def, Imp, Tyd] " }
+        )
+        keymap(
+          "n",
+          "[d",
+          "<cmd>Lspsaga diagnostic_jump_prev<CR>",
+          { noremap = true, silent = true, desc = "Diagnostic Jump Prev" }
+        )
+        keymap(
+          "n",
+          "]d",
+          "<cmd>Lspsaga diagnostic_jump_next<CR>",
+          { noremap = true, silent = true, desc = "Diagnostic Jump Next" }
+        )
+        keymap(
+          "n",
+          "<leader>fd",
+          "<cmd>Telescope diagnostics<CR>",
+          { noremap = true, silent = true, desc = "Workspace Diagnostics [Telescope] " }
+        )
         require("lsp_signature").on_attach({
           bind = true,
           debug = true,
@@ -144,7 +167,26 @@ return {
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
-      require("lsp_lines").setup()
+      lsplines.setup({})
+      diagflow.setup({
+        enable = function()
+          return vim.bo.filetype ~= "lazy"
+        end,
+        format = function(diagnostic)
+          return "[Diagnostics] "
+            .. diagnostic.message
+            .. " By: "
+            .. diagnostic.source
+            .. " Type: "
+            .. diagnostic.code
+            .. "."
+        end,
+        scope = "line",
+        show_sign = true,
+        padding_right = 0,
+        gap = 3,
+        toggle_event = { "InsertEnter" },
+      })
       vim.diagnostic.config({
         virtual_text = false,
         virtual_lines = true,

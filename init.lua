@@ -27,4 +27,3 @@ vim.cmd([[highlight Function gui=italic guifg=orange]])
 vim.cmd([[highlight NvimTreeIndentMarker guifg=#61afef]])
 vim.cmd([[filetype plugin indent on
   syntax on]])
-vim.cmd([[autocmd BufRead,BufNewFile ~/.config/hypr/* TSBufEnable highlight]])

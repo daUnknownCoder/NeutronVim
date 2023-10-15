@@ -23,6 +23,14 @@ return {
 
       nvimtree.setup({
         filters = { custom = { "*.tmp", "*.git" } },
+        disable_netrw = true,
+        hijack_netrw = true,
+        respect_buf_cwd = true,
+        update_focused_file = {
+          enable = true,
+          update_cwd = true,
+        },
+        hijack_cursor = true,
         update_cwd = true,
         view = {
           relativenumber = true,

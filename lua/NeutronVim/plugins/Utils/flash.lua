@@ -3,7 +3,7 @@ return {
   lazy = true,
   keys = {
     {
-      "s",
+      "<leader>ss",
       mode = { "n", "o", "x" },
       function()
         require("flash").jump()
@@ -11,7 +11,7 @@ return {
       desc = "Flash",
     },
     {
-      "S",
+      "<leader>sS",
       mode = { "n", "o", "x" },
       function()
         require("flash").treesitter()
@@ -19,7 +19,7 @@ return {
       desc = "Flash Treesitter",
     },
     {
-      "r",
+      "<leader>sr",
       mode = "o",
       function()
         require("flash").remote()
@@ -27,20 +27,12 @@ return {
       desc = "Remote Flash",
     },
     {
-      "R",
+      "<leader>sR",
       mode = { "o", "x" },
       function()
         require("flash").treesitter_search()
       end,
       desc = "Treesitter Search",
-    },
-    {
-      "<c-s>",
-      mode = { "c" },
-      function()
-        require("flash").toggle()
-      end,
-      desc = "Toggle Flash Search",
     },
   },
 }

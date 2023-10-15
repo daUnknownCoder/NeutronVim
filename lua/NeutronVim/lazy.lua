@@ -68,4 +68,14 @@ lazy.setup({
     border = "rounded",
     title = " " .. icons.ui.Electric .. "La" .. icons.ui.Sleep .. "y " .. icons.ui.Electric,
   },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "zipPlugin",
+      },
+    },
+  },
 })

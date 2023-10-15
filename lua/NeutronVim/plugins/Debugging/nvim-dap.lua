@@ -8,7 +8,16 @@ return {
     "rcarriga/nvim-dap-ui",
   },
   lazy = true,
-  event = { "BufReadPost", "BufNewFile" },
+  keys = {
+    { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle breakpoint [DAP] " },
+    {
+      "<leader>dp",
+      function()
+        require("dap-python").test_method()
+      end,
+      desc = "Run test method [DAP] ",
+    },
+  },
   config = function()
     local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
     local dap_py_status_ok, dap_py = pcall(require, "dap-python")
@@ -35,11 +44,5 @@ return {
     dap.listeners.before.event_exited["dapui_config"] = function()
       dapui.close()
     end
-    -- luacheck: ignore vim
-    local keymap = vim.keymap.set
-    keymap("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>")
-    keymap("n", "<leader>dpr", function()
-      dap_py.test_method()
-    end)
   end,
 }

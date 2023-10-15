@@ -2,6 +2,11 @@ return {
   "kevinhwang91/nvim-ufo",
   event = { "BufReadPost", "BufNewFile" },
   lazy = true,
+  keys = {
+    { "<leader>uU", "<cmd>lua require('ufo').openAllFolds()<CR>", desc = "Open all folds" },
+    { "<leader>uu", "<cmd>lua require('ufo').closeAllFolds()<CR>", desc = "Close all folds" },
+    { "<leader>up", "<cmd>lua require('ufo').peekFoldedLinesUnderCursor()<CR>", desc = "Peek fold under cursor" },
+  },
   dependencies = "kevinhwang91/promise-async",
   config = function()
     local ufo_status_ok, ufo = pcall(require, "ufo")
@@ -14,9 +19,6 @@ return {
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
     vim.o.fillchars = [[eob: ,fold: ,foldopen:▼,foldsep: ,foldclose:►]]
-    vim.keymap.set("n", "<leader>qa", ufo.openAllFolds)
-    vim.keymap.set("n", "<leader>q", ufo.closeAllFolds)
-    vim.keymap.set("n", " k", ufo.peekFoldedLinesUnderCursor)
     ufo.setup({
       provider_selector = function()
         return { "treesitter", "indent" }

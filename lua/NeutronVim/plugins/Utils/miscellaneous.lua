@@ -25,7 +25,7 @@ return {
     "eandrju/cellular-automaton.nvim",
     lazy = true,
     keys = {
-      { "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>" },
+      { "<leader>mc", "<cmd>CellularAutomaton make_it_rain<CR>", desc = "Make It Rain" },
     },
   },
   -- TMUX type navigation
@@ -33,10 +33,10 @@ return {
     "christoomey/vim-tmux-navigator",
     lazy = true,
     keys = {
-      { "<C-h>", "<cmd>TmuxNavigateLeft<CR>" },
-      { "<C-j>", "<cmd>TmuxNavigateDown<CR>" },
-      { "<C-k>", "<cmd>TmuxNavigateUp<CR>" },
-      { "<C-l>", "<cmd>TmuxNavigateRight<CR>" },
+      { "<C-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "TmuxNavigateLeft" },
+      { "<C-j>", "<cmd>TmuxNavigateDown<CR>", desc = "TmuxNavigateDown" },
+      { "<C-k>", "<cmd>TmuxNavigateUp<CR>", desc = "TmuxNavigateUp" },
+      { "<C-l>", "<cmd>TmuxNavigateRight<CR>", desc = "TmuxNavigateRight" },
     },
   },
   -- UI Component Library
@@ -46,8 +46,8 @@ return {
     "lambdalisue/suda.vim",
     lazy = true,
     keys = {
-      { "<leader>wr", "<cmd>SudaWrite<CR>" },
-      { "<leader>re", "<cmd>SudaRead<CR>" },
+      { "<leader>mw", "<cmd>SudaWrite<CR>", desc = "SudaWrite" },
+      { "<leader>mr", "<cmd>SudaRead<CR>", desc = "SudaRead" },
     },
   },
   -- Generate dummy text
@@ -65,23 +65,22 @@ return {
       })
     end,
     keys = {
-      { "<leader>ld", "<cmd>LoremIpsum<CR>" },
+      { "<leader>ml", "<cmd>LoremIpsum<CR>", desc = "Lorem Ipsum" },
     },
   },
   -- Replace vim.ui.[input/attach]
   {
     "stevearc/dressing.nvim",
-    event = "BufReadPost",
     lazy = true,
-    opts = {
-      select = { backend = { "telescope", "builtin" } },
-    },
-    config = function(_, opts)
-      local status_ok, dressing = pcall(require, "dressing")
-      if not status_ok then
-        print("dressing not found!")
+    init = function()
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
       end
-      dressing.setup(opts)
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
     end,
   },
   -- Maximize or Minimize an open buffer while working in splits
@@ -89,17 +88,14 @@ return {
     "szw/vim-maximizer",
     lazy = true,
     keys = {
-      { "<leader>sm", "<cmd>MaximizerToggle<CR>" },
+      { "<leader>mt", "<cmd>MaximizerToggle<CR>", desc = "MaximizerToggle" },
     },
   },
   -- Quick [un/c]ommenting using 'gcc'
   {
     "numToStr/Comment.nvim",
-    lazy = true,
     config = true,
-    keys = {
-      { "gcc", "<cmd>CommentToggle<CR>" },
-    },
+    event = { "BufRead", "BufNewFile" },
   },
   -- Illuminating equivalent words in current buffer under the cursor
   {
@@ -121,7 +117,7 @@ return {
   -- Surrounding brackets in nvim
   {
     "echasnovski/mini.surround",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     lazy = true,
     version = "*",
     config = function()
@@ -131,11 +127,16 @@ return {
       end
       surround.setup({
         mappings = {
-          add = "aa",
-          delete = "ad",
-          highlight = "ah",
-          replace = "ar",
-          update_n_lines = "an",
+          add = "sa", -- Add surrounding in Normal and Visual modes
+          delete = "sd", -- Delete surrounding
+          find = "sf", -- Find surrounding (to the right)
+          find_left = "sF", -- Find surrounding (to the left)
+          highlight = "sh", -- Highlight surrounding
+          replace = "sr", -- Replace surrounding
+          update_n_lines = "sn", -- Update `n_lines`
+
+          suffix_last = "l", -- Suffix to search with "prev" method
+          suffix_next = "n", -- Suffix to search with "next" method
         },
       })
     end,
@@ -153,7 +154,7 @@ return {
         vim.keymap.set({ "n", "i" }, key, function()
           mouse_scrolled = true
           return key
-        end, { expr = true })
+        end, { expr = true, desc = "Scroll " .. scroll })
       end
 
       local animate_status_ok, animate = pcall(require, "mini.animate")
@@ -184,12 +185,22 @@ return {
   -- Markdown files editing preview
   {
     "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && npm install",
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
     init = function()
-      -- luacheck: ignore 112
       vim.g.mkdp_filetypes = { "markdown" }
     end,
+    lazy = true,
+    keys = {
+      { "<leader>mp", "<cmd>MarkdownPreview<CR>", desc = "MarkdownPreview" },
+    },
     ft = { "markdown" },
+    config = function()
+      local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
+      local node_modules = install_path .. "/node_modules"
+      if vim.fn.empty(vim.fn.glob(node_modules)) > 0 then
+        vim.cmd("!cd " .. install_path .. " && npm install")
+      end
+      vim.g.mkdp_auto_close = 0
+    end,
   },
 }

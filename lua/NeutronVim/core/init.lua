@@ -1,8 +1,13 @@
--- luacheck: ignore vim
-
 local function augroup(name)
   return vim.api.nvim_create_augroup("NeutronVim" .. name, { clear = true })
 end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
+  end,
+  group = augroup("newline-comment"),
+})
 
 -- Jump to last known position
 vim.api.nvim_create_autocmd("BufRead", {
@@ -22,15 +27,6 @@ vim.api.nvim_create_autocmd("BufRead", {
         end
       end,
     })
-  end,
-})
-
--- Strip trailing spaces before write
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = augroup("strip_space"),
-  pattern = { "*" },
-  callback = function()
-    vim.cmd([[ %s/\s\+$//e ]])
   end,
 })
 

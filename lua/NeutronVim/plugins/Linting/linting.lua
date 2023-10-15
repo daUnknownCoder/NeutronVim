@@ -1,7 +1,16 @@
 return {
   "mfussenegger/nvim-lint",
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufWinEnter", "BufWritePost", "BufNewFile", "TextChanged" },
   lazy = true,
+  keys = {
+    {
+      "<leader>L",
+      function()
+        require("lint").try_lint()
+      end,
+      desc = "Lint current file",
+    },
+  },
   config = function()
     local lint_status_ok, lint = pcall(require, "lint")
     if not lint_status_ok then
@@ -19,8 +28,5 @@ return {
         lint.try_lint()
       end,
     })
-    vim.keymap.set("n", "<leader>l", function()
-      lint.try_lint()
-    end, { desc = "Lint current file" })
   end,
 }

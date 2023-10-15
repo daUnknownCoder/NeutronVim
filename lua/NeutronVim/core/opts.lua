@@ -16,7 +16,7 @@ local options = {
   ignorecase = true,
   smartcase = true,
   spell = true,
-  spelllang = { 'en_us' },
+  spelllang = { "en_us" },
 
   splitbelow = true,
   splitright = true,
@@ -44,6 +44,13 @@ local options = {
   clipboard = "unnamedplus",
   shell = "/bin/bash",
   lazyredraw = false,
+}
+
+-- Make cursor blink
+vim.opt.guicursor = {
+  "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50",
+  "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor",
+  "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
 
 vim.g.loaded_netrwPlugin = false

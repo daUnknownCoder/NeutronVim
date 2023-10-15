@@ -83,17 +83,13 @@ return {
       vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "pink", bg = "NONE" })
       local border_opts = {
         border = "rounded",
-        -- luacheck: ignore 631
         winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
       }
-      set("i", "<C-a>", function()
+      set("i", "<C-w>", function()
         return vim.fn["codeium#Accept"]()
       end, { expr = true })
-      set("i", "<c-,>", function()
+      set("i", "<c-q>", function()
         return vim.fn["codeium#CycleCompletions"](1)
-      end, { expr = true })
-      set("i", "<c-;>", function()
-        return vim.fn["codeium#CycleCompletions"](-1)
       end, { expr = true })
       set("i", "<c-x>", function()
         return vim.fn["codeium#Clear"]()

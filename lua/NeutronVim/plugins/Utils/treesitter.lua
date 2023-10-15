@@ -3,7 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = true,
-    event = { "VeryLazy" },
+    event = { "BufReadPost", "BufNewFile" },
     version = false,
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     config = function()
@@ -48,34 +48,17 @@ return {
             node_decremental = "<bs>",
           },
         },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ["a="] = { query = "@assignment.outer", desc = "Select outer part of an assignment" },
-              ["i="] = { query = "@assignment.inner", desc = "Select inner part of an assignment" },
-              ["l="] = { query = "@assignment.lhs", desc = "Select left hand side of an assignment" },
-              ["r="] = { query = "@assignment.rhs", desc = "Select right hand side of an assignment" },
-              ["ao"] = { query = "@parameter.outer", desc = "Select outer part of a parameter" },
-              ["ia"] = { query = "@parameter.inner", desc = "Select inner part of a parameter" },
-              ["ai"] = { query = "@conditional.outer", desc = "Select outer part of a conditional" },
-              ["ii"] = { query = "@conditional.inner", desc = "Select inner part of a conditional" },
-              ["al"] = { query = "@loop.outer", desc = "Select outer part of a loop" },
-              ["il"] = { query = "@loop.inner", desc = "Select inner part of a loop" },
-            },
-          },
-        },
       })
     end,
   },
   {
     "nvim-treesitter/playground",
     keys = {
-      { "<leader>pl", "<cmd>TSPlaygroundToggle<CR>" },
+      { "<leader>ml", "<cmd>TSPlaygroundToggle<CR>" },
     },
     cmd = "TSPlaygroundToggle",
     lazy = true,
+    desc = "Toggle Playground",
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",

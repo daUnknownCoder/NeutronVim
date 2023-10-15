@@ -4,11 +4,11 @@ return {
     cmd = "Telescope",
     lazy = true,
     keys = {
-      { "ff", "<cmd>Telescope find_files<CR>", desc = "Find Files Fuzzily" },
-      { "fg", "<cmd>Telescope live_grep<CR>", desc = "Find Text" },
-      { "fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
-      { "co", "<cmd>Telescope colorscheme<CR>", desc = "Choose Colorschemes" },
-      { "fe", "<cmd>Telescope emoji<CR>", desc = "Emoji search - copy - paste" },
+      { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find Files Fuzzily" },
+      { "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Find Text" },
+      { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
+      { "<leader>fo", "<cmd>Telescope colorscheme<CR>", desc = "Choose Colorschemes" },
+      { "<leader>fe", "<cmd>Telescope emoji<CR>", desc = "Emoji search - copy - paste" },
     },
     dependencies = {
       { "xiyaowong/telescope-emoji.nvim", lazy = true, cmd = "Telescope emoji" },
@@ -22,7 +22,6 @@ return {
       if not icons_ok then
         print("Unable to import icons!")
       end
-
       telescope.setup({
         defaults = {
           entry_prefix = icons.ui.ArrowDownandRight,

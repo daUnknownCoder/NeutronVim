@@ -3,6 +3,7 @@ return {
   dependencies = {
     { "arkav/lualine-lsp-progress", lazy = true, event = "VeryLazy" },
   },
+  lazy = false,
   event = "VimEnter",
   opts = function()
     local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
@@ -14,18 +15,19 @@ return {
         theme = "auto",
         globalstatus = true,
         disabled_filetypes = { "dashboard", "alpha", "NvimTree", "TelescopePrompt" },
+        section_separators = { left = "", right = "" },
+        component_separators = { left = " ", right = " " },
       },
       sections = {
-        lualine_a = { "mode" },
-        lualine_b = {
+        lualine_a = {
           {
-            "branch",
-            icon = icons.git.Branch,
-            fmt = function(str)
-              return str:sub(1, 16)
-            end,
+            "mode",
+            icon = icons.ui.Vim,
+            separator = { left = "" },
+            padding = { left = 0, right = 1 },
           },
         },
+        lualine_b = { { "branch", icon = icons.git.Branch, padding = { left = 2, right = 1 } } },
         lualine_c = {
           {
             "diagnostics",
@@ -57,6 +59,31 @@ return {
             timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
             spinner_symbols = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
           },
+          {
+            function()
+              return "%="
+            end,
+          },
+          {
+            function()
+              local msg = "No Active Lsp"
+              local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+              local clients = vim.lsp.get_active_clients()
+              if next(clients) == nil then
+                return msg
+              end
+              for _, client in ipairs(clients) do
+                local filetypes = client.config.filetypes
+                if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+                  return client.name
+                end
+              end
+              return msg
+            end,
+            icon = icons.ui.TripleGear .. "LSP:",
+            color = { fg = "#ffffff" },
+            separator = { left = "" },
+          },
         },
         lualine_x = {
           {
@@ -71,12 +98,15 @@ return {
         },
         lualine_y = {
           { "progress", separator = " ", padding = { left = 1, right = 0 } },
-          { "location", padding = { left = 0, right = 1 } },
+          { "location", padding = { left = 0, right = 2 } },
         },
         lualine_z = {
-          function()
-            return " " .. os.date("%R")
-          end,
+          {
+            function()
+              return " " .. os.date("%X")
+            end,
+            separator = { right = "" },
+          },
         },
       },
       extensions = { "lazy" },

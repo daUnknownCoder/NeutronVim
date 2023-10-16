@@ -54,11 +54,10 @@ return {
   {
     "nvim-treesitter/playground",
     keys = {
-      { "<leader>ml", "<cmd>TSPlaygroundToggle<CR>" },
+      { "<leader>ml", "<cmd>TSPlaygroundToggle<CR>", desc = "Toggle Playground" },
     },
     cmd = "TSPlaygroundToggle",
     lazy = true,
-    desc = "Toggle Playground",
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",

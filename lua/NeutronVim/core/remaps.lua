@@ -61,7 +61,7 @@ map({ "n", "v" }, "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Le
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 
 -- windows
-map("n", "`", "<C-W><C-W>", { desc = "Next Part of window" })
+map("n", "<leader>w*", "<C-W><C-W>", { desc = "Next Part of window" })
 map("n", "<leader>w/", "<C-W>c", { desc = "Delete window", remap = true })
 map("n", "<leader>w-", "<C-W>s", { desc = "Split window below", remap = true })
 map("n", "<leader>w+", "<C-W>v", { desc = "Split window right", remap = true })

@@ -10,14 +10,14 @@ return {
       print("which-key not found!")
     end
     wk.register({
-      ["<leader>f"] = {
+      ["f"] = {
         name = "+Telescope",
       },
       ["<leader>y"] = {
         name = "+Yank",
         mode = { "n", "v" },
       },
-      ["<leader>g"] = {
+      ["\\"] = {
         name = "+LSP",
       },
       ["<leader>m"] = {
@@ -40,7 +40,7 @@ return {
       ["gb"] = {
         name = "+Comment blockwise",
       },
-      ["<leader>l"] = {
+      [";l"] = {
         name = "+Git",
       },
       ["s"] = {

@@ -5,11 +5,11 @@ return {
     { "kdheepak/lazygit.nvim", cmd = "LazyGit", lazy = true },
   },
   keys = {
-    { "<leader>lg", "<cmd>LazyGit<CR>", desc = "LazyGit" },
-    { "<leader>lj", "<cmd>lua require('gitsigns').next_hunk()<CR>", desc = "Next Hunk" },
-    { "<leader>lk", "<cmd>lua require('gitsigns').prev_hunk()<CR>", desc = "Prev Hunk" },
-    { "<leader>lp", "<cmd>lua require('gitsigns').preview_hunk()<CR>", desc = "Preview Hunk" },
-    { "<leader>lb", "<cmd>lua require('gitsigns').blame_line()<CR>", desc = "Blame Line" },
+    { ";g", "<cmd>LazyGit<CR>", desc = "LazyGit" },
+    { ";j", "<cmd>lua require('gitsigns').next_hunk()<CR>", desc = "Next Hunk" },
+    { ";k", "<cmd>lua require('gitsigns').prev_hunk()<CR>", desc = "Prev Hunk" },
+    { ";p", "<cmd>lua require('gitsigns').preview_hunk()<CR>", desc = "Preview Hunk" },
+    { ";b", "<cmd>lua require('gitsigns').blame_line()<CR>", desc = "Blame Line" },
   },
   ft = { "gitcommit", "diff" },
   init = function()

@@ -7,6 +7,6 @@ return {
   lazy = false,
   cmd = "Oil",
   keys = {
-    { "<leader>mo", "<cmd>Oil<CR>", desc = "Oil" },
+    { "<leader>o", "<cmd>Oil<CR>", desc = "Oil" },
   },
 }

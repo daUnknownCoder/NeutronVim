@@ -22,7 +22,7 @@ return {
         "weilbith/nvim-code-action-menu",
         cmd = "CodeActionMenu",
         keys = {
-          { "<leader>ga", "<cmd>CodeActionMenu<CR>", desc = "CodeActionMenu" },
+          { "\\a", "<cmd>CodeActionMenu<CR>", desc = "CodeActionMenu" },
         },
         lazy = true,
       },
@@ -30,7 +30,7 @@ return {
         "filipdutescu/renamer.nvim",
         branch = "master",
         keys = {
-          { "<leader>gr", "<cmd>lua require('renamer').rename()<cr>", desc = "Renamer" },
+          { "\\r", "<cmd>lua require('renamer').rename()<cr>", desc = "Renamer" },
         },
         lazy = true,
       },
@@ -38,8 +38,8 @@ return {
         "lewis6991/hover.nvim",
         lazy = true,
         keys = {
-          { "<leader>gK", "<cmd>lua require('hover').hover()<CR>", desc = "Hover" },
-          { "<leader>gk", "<cmd>lua require('hover').hover_select()<CR>", desc = "Hover Select" },
+          { "\\K", "<cmd>lua require('hover').hover()<CR>", desc = "Hover" },
+          { "\\k", "<cmd>lua require('hover').hover_select()<CR>", desc = "Hover Select" },
         },
       },
       {
@@ -124,7 +124,7 @@ return {
         print("LSP Attached to buffer.")
         keymap(
           "n",
-          "<leader>gf",
+          "\\f",
           "<cmd>Lspsaga finder ref+def+imp+tyd<CR>",
           { noremap = true, silent = true, desc = "LSP Finder [Ref, Def, Imp, Tyd] " }
         )
@@ -142,7 +142,7 @@ return {
         )
         keymap(
           "n",
-          "<leader>fd",
+          "fd",
           "<cmd>Telescope diagnostics<CR>",
           { noremap = true, silent = true, desc = "Workspace Diagnostics [Telescope] " }
         )

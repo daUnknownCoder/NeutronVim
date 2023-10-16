@@ -22,7 +22,7 @@ return {
       local WIDTH_RATIO = 0.8
 
       nvimtree.setup({
-        filters = { custom = { "*.tmp", "*.git" } },
+        filters = { custom = { "*.tmp", "*.git", "*.github" } },
         disable_netrw = true,
         hijack_netrw = true,
         respect_buf_cwd = true,

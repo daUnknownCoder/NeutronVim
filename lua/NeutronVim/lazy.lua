@@ -18,12 +18,8 @@ local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
 if not icons_ok then
   print("Unable to import icons!")
 end
-local lazy_ok, lazy = pcall(require, "lazy")
-if not lazy_ok then
-  print("lazy not found!")
-end
 
-lazy.setup({
+require("lazy").setup({
   -- UI Enhancement
   { import = "NeutronVim.plugins.UI" },
 
@@ -72,8 +68,12 @@ lazy.setup({
     rtp = {
       disabled_plugins = {
         "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
+        "tutor",
         "zipPlugin",
       },
     },

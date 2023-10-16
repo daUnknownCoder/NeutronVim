@@ -12,10 +12,10 @@ map("n", "<C-Left>", ":vertical resize -2<cr>", { desc = "Decrease window width"
 map("n", "<C-Right>", ":vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move text up and down [in all modes] with `J` and `K`
-map("n", "J", ":m .+1<cr>==", { desc = "Move down" })
 map("n", "K", ":m .-2<cr>==", { desc = "Move up" })
+map("n", "J", ":m .+1<cr>==", { desc = "Move down" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
-map("i", "<A-K>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move up" })
 
@@ -37,8 +37,16 @@ map("n", "<esc>", ":noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 map("v", "<leader>yy", [["+y]], { desc = "Yank to clipboard" })
 map("n", "<leader>yY", [["+Y]], { desc = "Yank to clipboard" })
 
+-- Add undo break-points
+map("i", ",", ",<c-g>u")
+map("i", ".", ".<c-g>u")
+map("i", ";", ";<c-g>u")
+
+-- save file
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file like notepad" })
+
 -- Lazy
-map("n", "<leader>ml", ":Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>p", ":Lazy<cr>", { desc = "Lazy" })
 
 -- Delete's God-mode
 map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete in the God-mode" })
@@ -47,13 +55,13 @@ map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete in the God-mode" })
 map("i", "<C-c>", "<Esc>")
 
 -- Replace
-map({ "n", "v" }, "<leader>mR", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Better Replace" })
+map({ "n", "v" }, "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Better Replace" })
 
 -- change permissions
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 
 -- windows
-map("n", "`", "<C-W><C-W>", { desc = "Next Part of window", remap = true })
+map("n", "`", "<C-W><C-W>", { desc = "Next Part of window" })
 map("n", "<leader>w/", "<C-W>c", { desc = "Delete window", remap = true })
 map("n", "<leader>w-", "<C-W>s", { desc = "Split window below", remap = true })
 map("n", "<leader>w+", "<C-W>v", { desc = "Split window right", remap = true })

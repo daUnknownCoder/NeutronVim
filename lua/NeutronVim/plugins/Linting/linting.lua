@@ -1,6 +1,6 @@
 return {
   "mfussenegger/nvim-lint",
-  event = { "BufWinEnter", "BufWritePost", "BufNewFile", "TextChanged" },
+  event = { "BufRead", "BufWritePost", "InsertLeave" },
   lazy = true,
   keys = {
     {

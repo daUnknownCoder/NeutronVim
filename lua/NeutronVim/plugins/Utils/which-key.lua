@@ -34,8 +34,11 @@ return {
       ["<leader>w"] = {
         name = "+Window Management",
       },
-      ["g"] = {
-        name = "+Comment",
+      ["gc"] = {
+        name = "+Comment linewise",
+      },
+      ["gb"] = {
+        name = "+Comment blockwise",
       },
       ["<leader>l"] = {
         name = "+Git",

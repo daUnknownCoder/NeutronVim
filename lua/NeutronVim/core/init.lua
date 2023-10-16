@@ -1,8 +1,9 @@
 local function augroup(name)
   return vim.api.nvim_create_augroup("NeutronVim" .. name, { clear = true })
 end
+local autocmd = vim.api.nvim_create_autocmd
 
-vim.api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove({ "c", "r", "o" })
   end,
@@ -10,9 +11,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- Jump to last known position
-vim.api.nvim_create_autocmd("BufRead", {
+autocmd("BufRead", {
   callback = function(opts)
-    vim.api.nvim_create_autocmd("BufWinEnter", {
+    autocmd("BufWinEnter", {
       once = true,
       buffer = opts.buf,
       callback = function()
@@ -31,13 +32,13 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),
   command = "checktime",
 })
 
 -- resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),
   callback = function()
     vim.cmd("tabdo wincmd =")
@@ -45,7 +46,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 -- go to last loc when opening a buffer
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
   group = augroup("last_loc"),
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -57,7 +58,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 local disabled_built_ins = {
-  "netrw",
   "netrwPlugin",
   "netrwSettings",
   "netrwFileHandlers",
@@ -82,7 +82,7 @@ for _, plugin in pairs(disabled_built_ins) do
 end
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
     "PlenaryTestPopup",
@@ -105,7 +105,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
-vim.api.nvim_create_autocmd("TextYankPost", {
+autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -114,7 +114,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- wrap and check for spell in text filetypes
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   group = augroup("wrap_spell"),
   pattern = { "gitcommit", "markdown" },
   callback = function()
@@ -124,7 +124,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+autocmd({ "BufWritePre" }, {
   group = augroup("auto_create_dir"),
   callback = function(event)
     local file = vim.loop.fs_realpath(event.match) or event.match

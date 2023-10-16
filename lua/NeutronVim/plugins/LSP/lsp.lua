@@ -172,20 +172,19 @@ return {
         enable = function()
           return vim.bo.filetype ~= "lazy"
         end,
-        format = function(diagnostic)
+        format = function(diagnostics)
           return "[Diagnostics] "
-            .. diagnostic.message
+            .. diagnostics.message
             .. " By: "
-            .. diagnostic.source
+            .. diagnostics.source
             .. " Type: "
-            .. diagnostic.code
+            .. diagnostics.code
             .. "."
         end,
         scope = "line",
         show_sign = true,
         padding_right = 0,
-        gap = 3,
-        toggle_event = { "InsertEnter" },
+        update_event = { "DiagnosticChanged", "BufReadPost", "InsertEnter" },
       })
       vim.diagnostic.config({
         virtual_text = false,

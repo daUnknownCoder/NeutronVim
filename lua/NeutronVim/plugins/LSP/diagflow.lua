@@ -12,13 +12,7 @@ return {
         return vim.bo.filetype ~= "lazy"
       end,
       format = function(diagnostics)
-        return "[Diagnostics] "
-          .. diagnostics.message
-          .. " By: "
-          .. diagnostics.source
-          .. " Type: "
-          .. diagnostics.code
-          .. "."
+        return "[Diagnostics] " .. diagnostics.message .. " By: " .. diagnostics.source
       end,
       scope = "line",
       show_sign = true,

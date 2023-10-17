@@ -69,15 +69,3 @@ jobs:
           git push origin :stable || true
           git tag -a stable -m "Last Stable Release"
           git push origin stable
-
-  automerge:
-    needs:
-      - release
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: automerge PRs from GitHub Actions
-        uses: "pascalgn/automerge-action@v0.14.2"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: ""

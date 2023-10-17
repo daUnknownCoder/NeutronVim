@@ -46,6 +46,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 Give a ⭐️ if this project helped you!
 
 ## Current File Tree [For Better Debugging]
+
 .
 ├── CHANGELOG.md
 ├── doc
@@ -55,55 +56,53 @@ Give a ⭐️ if this project helped you!
 ├── LICENCE
 ├── lua
 │   └── NeutronVim
-│       ├── core
-│       │   ├── autocmd.lua
-│       │   ├── icons.lua
-│       │   ├── opts.lua
-│       │   └── remaps.lua
-│       ├── lazy.lua
-│       └── plugins
-│           ├── Autocompletion
-│           │   └── cmp.lua
-│           ├── Debugging
-│           │   └── nvim-dap.lua
-│           ├── File-Management
-│           │   ├── harpoon.lua
-│           │   ├── nvim-tree.lua
-│           │   ├── oil.lua
-│           │   └── telescope.lua
-│           ├── Formatting
-│           │   └── formatting.lua
-│           ├── Git-Integration
-│           │   └── git.lua
-│           ├── Linting
-│           │   └── linting.lua
-│           ├── LSP
-│           │   ├── codeaction.lua
-│           │   ├── diagflow.lua
-│           │   ├── fidget.lua
-│           │   ├── hover.lua
-│           │   ├── lspconfig.lua
-│           │   ├── lsp_lines.lua
-│           │   ├── lspsaga.lua
-│           │   ├── mason.lua
-│           │   └── renamer.lua
-│           ├── UI
-│           │   ├── alpha.lua
-│           │   ├── barbecue.lua
-│           │   ├── colorscheme.lua
-│           │   ├── foldings.lua
-│           │   ├── lualine.lua
-│           │   ├── noice.lua
-│           │   └── notify.lua
-│           └── Utils
-│               ├── flash.lua
-│               ├── indents_delims.lua
-│               ├── miscellaneous.lua
-│               ├── toggleterm.lua
-│               ├── treesitter.lua
-│               └── which-key.lua
+│   ├── core
+│   │   ├── autocmd.lua
+│   │   ├── icons.lua
+│   │   ├── opts.lua
+│   │   └── remaps.lua
+│   ├── lazy.lua
+│   └── plugins
+│   ├── Autocompletion
+│   │   └── cmp.lua
+│   ├── Debugging
+│   │   └── nvim-dap.lua
+│   ├── File-Management
+│   │   ├── harpoon.lua
+│   │   ├── nvim-tree.lua
+│   │   ├── oil.lua
+│   │   └── telescope.lua
+│   ├── Formatting
+│   │   └── formatting.lua
+│   ├── Git-Integration
+│   │   └── git.lua
+│   ├── Linting
+│   │   └── linting.lua
+│   ├── LSP
+│   │   ├── codeaction.lua
+│   │   ├── diagflow.lua
+│   │   ├── fidget.lua
+│   │   ├── hover.lua
+│   │   ├── lspconfig.lua
+│   │   ├── lsp_lines.lua
+│   │   ├── lspsaga.lua
+│   │   ├── mason.lua
+│   │   └── renamer.lua
+│   ├── UI
+│   │   ├── alpha.lua
+│   │   ├── barbecue.lua
+│   │   ├── colorscheme.lua
+│   │   ├── foldings.lua
+│   │   ├── lualine.lua
+│   │   ├── noice.lua
+│   │   └── notify.lua
+│   └── Utils
+│   ├── flash.lua
+│   ├── indents_delims.lua
+│   ├── miscellaneous.lua
+│   ├── toggleterm.lua
+│   ├── treesitter.lua
+│   └── which-key.lua
 └── README.md
-
-15 directories, 42 files
 
 ---

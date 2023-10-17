@@ -9,6 +9,11 @@ return {
       { "fb", "<cmd>Telescope buffers<CR>", desc = "Find Buffers" },
       { "fo", "<cmd>Telescope colorscheme<CR>", desc = "Choose Colorschemes" },
       { "fe", "<cmd>Telescope emoji<CR>", desc = "Emoji search - copy - paste" },
+      {
+        "fd",
+        "<cmd>Telescope diagnostics<CR>",
+        { noremap = true, silent = true, desc = "Workspace Diagnostics [Telescope] " },
+      },
     },
     dependencies = {
       { "xiyaowong/telescope-emoji.nvim", lazy = true, cmd = "Telescope emoji" },

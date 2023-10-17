@@ -8,7 +8,8 @@ return {
   opts = {
     ensure_installed = {
       "black",
-      "mypy",
+      "isort",
+      "flake8",
       "ruff",
       "eslint_d",
       "luacheck",

@@ -194,6 +194,9 @@ return {
     keys = {
       { "<leader>mp", "<cmd>MarkdownPreview<CR>", desc = "MarkdownPreview" },
     },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
     config = function()
       local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
       local file_path = install_path .. "/yarn.lock"
@@ -205,12 +208,6 @@ return {
         -- Delete the file
         os.remove(file_path)
       end
-      local node_modules = install_path .. "/node_modules"
-      if vim.fn.empty(vim.fn.glob(node_modules)) > 0 then
-        vim.cmd("!cd " .. install_path .. " && npm install && git restore .")
-      end
-
-      -- Options
       vim.g.mkdp_auto_close = 0
     end,
   },

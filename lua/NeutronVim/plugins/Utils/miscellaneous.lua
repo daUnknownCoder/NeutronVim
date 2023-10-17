@@ -88,7 +88,7 @@ return {
     "szw/vim-maximizer",
     lazy = true,
     keys = {
-      { "<leader>mt", "<cmd>MaximizerToggle<CR>", desc = "MaximizerToggle" },
+      { "<leader>mm", "<cmd>MaximizerToggle<CR>", desc = "MaximizerToggle" },
     },
   },
   -- Quick [un/c]ommenting using 'gcc'

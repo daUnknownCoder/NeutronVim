@@ -58,9 +58,6 @@ jobs:
         id: release
         with:
           release-type: simple
-          package-name: NeutronVim
-          extra-files: |
-            lua/NeutronVim/lazy.lua
       - uses: actions/checkout@v3
       - name: tag stable versions
         if: ${{ steps.release.outputs.release_created }}
@@ -83,4 +80,4 @@ jobs:
         uses: "pascalgn/automerge-action@v0.14.2"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: "autorelease: pending,autorelease: tagged"
+          MERGE_LABELS: ""

@@ -185,21 +185,32 @@ return {
   -- Markdown files editing preview
   {
     "iamcco/markdown-preview.nvim",
+    version = "0.0.10",
     cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
-    lazy = true,
+    ft = { "markdown" },
     keys = {
       { "<leader>mp", "<cmd>MarkdownPreview<CR>", desc = "MarkdownPreview" },
     },
-    ft = { "markdown" },
     config = function()
       local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
+      local file_path = install_path .. "/yarn.lock"
+
+      -- Check if the file exists
+      local f = io.open(file_path, "r")
+      if f ~= nil then
+        io.close(f)
+        -- Delete the file
+        os.remove(file_path)
+      end
       local node_modules = install_path .. "/node_modules"
       if vim.fn.empty(vim.fn.glob(node_modules)) > 0 then
-        vim.cmd("!cd " .. install_path .. " && npm install")
+        vim.cmd("!cd " .. install_path .. " && npm install && git restore .")
       end
+
+      -- Options
       vim.g.mkdp_auto_close = 0
     end,
   },

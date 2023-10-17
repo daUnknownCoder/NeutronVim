@@ -47,6 +47,7 @@ Give a ⭐️ if this project helped you!
 
 ## Current File Tree [For Better Debugging]
 
+```sh
 .
 ├── CHANGELOG.md
 ├── doc
@@ -104,5 +105,6 @@ Give a ⭐️ if this project helped you!
 │   ├── treesitter.lua
 │   └── which-key.lua
 └── README.md
+```
 
 ---

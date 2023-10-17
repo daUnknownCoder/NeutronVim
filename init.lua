@@ -2,7 +2,7 @@ for _, source in ipairs({
   "NeutronVim.lazy",
   "NeutronVim.core.remaps",
   "NeutronVim.core.opts",
-  "NeutronVim.core.init",
+  "NeutronVim.core.autocmd",
   "NeutronVim.core.icons",
 }) do
   local status_ok, fault = pcall(require, source)

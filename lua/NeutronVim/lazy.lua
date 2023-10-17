@@ -41,9 +41,6 @@ require("lazy").setup({
   -- Utilities for NeutronVim
   { import = "NeutronVim.plugins.Utils" },
 
-  -- Terminal
-  { import = "NeutronVim.plugins.Terminal" },
-
   -- Git
   { import = "NeutronVim.plugins.Git-Integration" },
 

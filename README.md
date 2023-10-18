@@ -45,7 +45,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 Give a ⭐️ if this project helped you!
 
-</p>
+</div>
 
 ## Current File Tree [For Better Debugging]
 

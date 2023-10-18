@@ -21,12 +21,13 @@
     <a href="https://github.com/daUnknownCoder/NeutronVim">
       <img alt="Repo Size" src="https://img.shields.io/github/repo-size/daUnknownCoder/NeutronVim?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
     </a>
+</div>
 
 ### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)
 
 ## Install
 
-```sh
+```bash
 git clone https://github.com/daUnknownCoder/Neutronvim ~/.config/nvim
 ```
 
@@ -40,7 +41,6 @@ git clone https://github.com/daUnknownCoder/Neutronvim ~/.config/nvim
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/daUnknownCoder/NeutronVim/issues).
-</div>
 
 ## Show your support
 

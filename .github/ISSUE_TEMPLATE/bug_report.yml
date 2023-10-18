@@ -3,7 +3,6 @@ description: "Report a bug/issue here."
 title: "bug: "
 labels: [bug]
 assignees: [daUnknownCoder]
-
 body:
   - type: markdown
     attributes:
@@ -27,17 +26,17 @@ body:
   - type: input
     attributes:
       label: "Operating system/version"
-    placeholder: "e.g. macOS 11.5"
+      placeholder: "e.g. macOS 11.5"
     validations:
       required: true
   - type: textarea
     attributes:
       label: "Steps to reproduce"
       description: "Steps to reproduce the bug."
-    placeholder: |
-      1.
-      2.
-      3.
+      placeholder: |
+        1.
+        2.
+        3.
     validations:
       required: true
   - type: textarea

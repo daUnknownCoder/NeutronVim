@@ -1,12 +1,33 @@
 name: CI
-
 on:
   push:
   pull_request:
 
 jobs:
+  tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Neovim
+        shell: bash
+        run: |
+          mkdir -p /tmp/nvim
+          wget -q https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -O /tmp/nvim/nvim.appimage
+          cd /tmp/nvim
+          chmod a+x ./nvim.appimage
+          ./nvim.appimage --appimage-extract
+          echo "/tmp/nvim/squashfs-root/usr/bin/" >> $GITHUB_PATH
+      - name: Run Tests
+        run: |
+          nvim --version
+          [ ! -d tests ] && exit 0
+          nvim --headless -u tests/init.lua -c "PlenaryBustedDirectory tests/ {minimal_init = 'tests/init.lua', sequential = true}"
   docs:
     runs-on: ubuntu-latest
+    needs: tests
     if: ${{ github.ref == 'refs/heads/nvim' }}
     steps:
       - uses: actions/checkout@v3
@@ -14,7 +35,7 @@ jobs:
         uses: kdheepak/panvimdoc@main
         with:
           vimdoc: NeutronVim
-          version: "Neovim >= 0.8.0"
+          version: "Neovim >= 0.9.0"
           demojify: true
           treesitter: true
       - name: Push changes
@@ -29,12 +50,16 @@ jobs:
     if: ${{ github.ref == 'refs/heads/nvim' }}
     needs:
       - docs
+      - tests
     runs-on: ubuntu-latest
     steps:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
           release-type: simple
+          package-name: NeutronVim
+          extra-files: |
+            lua/lazyvim/config/init.lua
       - uses: actions/checkout@v3
       - name: tag stable versions
         if: ${{ steps.release.outputs.release_created }}

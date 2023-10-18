@@ -44,68 +44,64 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
+<a href="https://www.buymeacoffee.com/daUnknownCoder"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=daUnknownCoder&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
 
 </div>
 
 ## Current File Tree [For Better Debugging]
 
-- 📂 **nvim**
-  - 📄 [CHANGELOG.md](CHANGELOG.md)
-  - 📄 [LICENCE](LICENCE)
-  - 📄 [README.md](README.md)
-  - 📂 **doc**
-    - 📄 [NeutronVim.txt](doc/NeutronVim.txt)
-  - 📄 [init.lua](init.lua)
-  - 📄 [lazy\-lock.json](lazy-lock.json)
-  - 📄 [list.md](list.md)
-  - 📂 **lua**
-    - 📂 **NeutronVim**
-      - 📂 **core**
-        - 📄 [autocmd.lua](lua/NeutronVim/core/autocmd.lua)
-        - 📄 [icons.lua](lua/NeutronVim/core/icons.lua)
-        - 📄 [opts.lua](lua/NeutronVim/core/opts.lua)
-        - 📄 [remaps.lua](lua/NeutronVim/core/remaps.lua)
-      - 📄 [lazy.lua](lua/NeutronVim/lazy.lua)
-      - 📂 **plugins**
-        - 📂 **Autocompletion**
-          - 📄 [cmp.lua](lua/NeutronVim/plugins/Autocompletion/cmp.lua)
-        - 📂 **Debugging**
-          - 📄 [nvim\-dap.lua](lua/NeutronVim/plugins/Debugging/nvim-dap.lua)
-        - 📂 **File\-Management**
-          - 📄 [harpoon.lua](lua/NeutronVim/plugins/File-Management/harpoon.lua)
-          - 📄 [nvim\-tree.lua](lua/NeutronVim/plugins/File-Management/nvim-tree.lua)
-          - 📄 [oil.lua](lua/NeutronVim/plugins/File-Management/oil.lua)
-          - 📄 [telescope.lua](lua/NeutronVim/plugins/File-Management/telescope.lua)
-        - 📂 **Formatting**
-          - 📄 [formatting.lua](lua/NeutronVim/plugins/Formatting/formatting.lua)
-        - 📂 **Git\-Integration**
-          - 📄 [git.lua](lua/NeutronVim/plugins/Git-Integration/git.lua)
-        - 📂 **LSP**
-          - 📄 [codeaction.lua](lua/NeutronVim/plugins/LSP/codeaction.lua)
-          - 📄 [diagflow.lua](lua/NeutronVim/plugins/LSP/diagflow.lua)
-          - 📄 [fidget.lua](lua/NeutronVim/plugins/LSP/fidget.lua)
-          - 📄 [hover.lua](lua/NeutronVim/plugins/LSP/hover.lua)
-          - 📄 [lsp_lines.lua](lua/NeutronVim/plugins/LSP/lsp_lines.lua)
-          - 📄 [lspconfig.lua](lua/NeutronVim/plugins/LSP/lspconfig.lua)
-          - 📄 [lspsaga.lua](lua/NeutronVim/plugins/LSP/lspsaga.lua)
-          - 📄 [mason.lua](lua/NeutronVim/plugins/LSP/mason.lua)
-          - 📄 [renamer.lua](lua/NeutronVim/plugins/LSP/renamer.lua)
-        - 📂 **Linting**
-          - 📄 [linting.lua](lua/NeutronVim/plugins/Linting/linting.lua)
-        - 📂 **UI**
-          - 📄 [alpha.lua](lua/NeutronVim/plugins/UI/alpha.lua)
-          - 📄 [barbecue.lua](lua/NeutronVim/plugins/UI/barbecue.lua)
-          - 📄 [colorscheme.lua](lua/NeutronVim/plugins/UI/colorscheme.lua)
-          - 📄 [foldings.lua](lua/NeutronVim/plugins/UI/foldings.lua)
-          - 📄 [lualine.lua](lua/NeutronVim/plugins/UI/lualine.lua)
-          - 📄 [noice.lua](lua/NeutronVim/plugins/UI/noice.lua)
-          - 📄 [notify.lua](lua/NeutronVim/plugins/UI/notify.lua)
-        - 📂 **Utils**
-          - 📄 [flash.lua](lua/NeutronVim/plugins/Utils/flash.lua)
-          - 📄 [indents_delims.lua](lua/NeutronVim/plugins/Utils/indents_delims.lua)
-          - 📄 [miscellaneous.lua](lua/NeutronVim/plugins/Utils/miscellaneous.lua)
-          - 📄 [toggleterm.lua](lua/NeutronVim/plugins/Utils/toggleterm.lua)
-          - 📄 [treesitter.lua](lua/NeutronVim/plugins/Utils/treesitter.lua)
-          - 📄 [which\-key.lua](lua/NeutronVim/plugins/Utils/which-key.lua)
+<pre>
+~/.config/nvim
+├── lua
+│   └── NeutronVim
+│       ├── core
+│       │   ├── autocmd.lua
+│       │   ├── icons.lua
+│       │   ├── opts.lua
+│       │   └── remaps.lua
+│       ├── lazy.lua
+│       └── plugins
+│           ├── Autocompletion
+│           │   └── cmp.lua
+│           ├── Debugging
+│           │   └── nvim-dap.lua
+│           ├── File-Management
+│           │   ├── harpoon.lua
+│           │   ├── nvim-tree.lua
+│           │   ├── oil.lua
+│           │   └── telescope.lua
+│           ├── Formatting
+│           │   └── formatting.lua
+│           ├── Git-Integration
+│           │   └── git.lua
+│           ├── Linting
+│           │   └── linting.lua
+│           ├── LSP
+│           │   ├── codeaction.lua
+│           │   ├── diagflow.lua
+│           │   ├── fidget.lua
+│           │   ├── hover.lua
+│           │   ├── lspconfig.lua
+│           │   ├── lsp_lines.lua
+│           │   ├── lspsaga.lua
+│           │   ├── mason.lua
+│           │   └── renamer.lua
+│           ├── UI
+│           │   ├── alpha.lua
+│           │   ├── barbecue.lua
+│           │   ├── colorscheme.lua
+│           │   ├── foldings.lua
+│           │   ├── lualine.lua
+│           │   ├── noice.lua
+│           │   └── notify.lua
+│           └── Utils
+│               ├── flash.lua
+│               ├── indents_delims.lua
+│               ├── miscellaneous.lua
+│               ├── toggleterm.lua
+│               ├── treesitter.lua
+│               └── which-key.lua
+├── init.lua
+</pre>
 
 ---

@@ -16,7 +16,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          release-type: latest
+          release-type: semver
           package-name: NeutronVim
       - uses: actions/checkout@v3
       - name: tag stable versions

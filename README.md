@@ -40,14 +40,13 @@ git clone https://github.com/daUnknownCoder/Neutronvim ~/.config/nvim
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/daUnknownCoder/NeutronVim/issues).
+</div>
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
 <a href="https://www.buymeacoffee.com/daUnknownCoder"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=daUnknownCoder&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
-
-</div>
 
 ## Current File Tree [For Better Debugging]
 

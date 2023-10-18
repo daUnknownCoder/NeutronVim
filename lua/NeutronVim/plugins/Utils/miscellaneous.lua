@@ -185,29 +185,38 @@ return {
   -- Markdown files editing preview
   {
     "iamcco/markdown-preview.nvim",
-    version = "0.0.10",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
     cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
-    keys = {
-      { "<leader>mp", "<cmd>MarkdownPreview<CR>", desc = "MarkdownPreview" },
-    },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
     config = function()
+      local job = require("plenary.job")
       local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
-      local file_path = install_path .. "/yarn.lock"
+      local cmd = "bash"
 
-      -- Check if the file exists
-      local f = io.open(file_path, "r")
-      if f ~= nil then
-        io.close(f)
-        -- Delete the file
-        os.remove(file_path)
+      if vim.fn.has("win64") == 1 then
+        cmd = "pwsh"
       end
+
+      job
+        :new({
+          command = cmd,
+          args = { "-c", "npm install && git restore ." },
+          cwd = install_path,
+          on_exit = function()
+            print("Finished installing markdown-preview.nvim")
+          end,
+          on_stderr = function(_, data)
+            print(data)
+          end,
+        })
+        :start()
+
+      -- Options
       vim.g.mkdp_auto_close = 0
     end,
   },

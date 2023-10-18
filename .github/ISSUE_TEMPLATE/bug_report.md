@@ -1,38 +1,42 @@
----
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+description: 'Report a bug/issue here.'
+title: 'bug: '
+labels: [bug]
+body:
 
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+- type: markdown
+  attributes:
+  - value: |
+    **Before reporting any bug/issue, please make sure to search among [existing issues](https://github.com/daUnknownCoder/NeutronVim/issues).**
+- type: checkboxes
+  attributes:
+  label: Did you browse among the existing issues?
+  description: Make sure to check all among the below options before reporting a bug/issue.
+  options: - label: I have searched the existing issues of NeutronVim.
+  required: true - label: I have searched the existing issues of plugins related to this issue.
+  required: true
+- type: input
+  attributes:
+  label: "Neovim version"
+  placeholder: "e.g. 0.8.0 commit db1b0ee3b30f"
+  validations:
+  required: true
+- type: input
+  attributes:
+  label: "Operating system/version"
+  placeholder: "e.g. macOS 11.5"
+  validations:
+  required: true
+- type: textarea
+  attributes:
+  label: "Steps to reproduce"
+  description: "Steps to reproduce the bug."
+  placeholder: | 1. 2. 3.
+  validations:
+  required: true
+- type: textarea
+  attributes:
+  label: "Expected behavior"
+  description: "Describe the expected behavior."
+  validations:
+  required: true

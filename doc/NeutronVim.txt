@@ -40,8 +40,6 @@ SHOW YOUR SUPPORT                               *NeutronVim-show-your-support*
 Give a if this project helped you!
 
 
-
-
 CURRENT FILE TREE [FOR BETTER DEBUGGING]*NeutronVim-current-file-tree-[for-better-debugging]*
 
 - **nvim**

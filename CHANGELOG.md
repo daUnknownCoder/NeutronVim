@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/daUnknownCoder/NeutronVim/compare/v0.1.2...v0.1.3) (2023-10-18)
+
+
+### Bug Fixes
+
+* **markdown-preview:** temporary fix for markdown-preview status failed bug ([21b026e](https://github.com/daUnknownCoder/NeutronVim/commit/21b026e99f5d7020db9c07099ad278c942d84f81))
+
 ## [0.1.2](https://github.com/daUnknownCoder/NeutronVim/compare/v0.1.1...v0.1.2) (2023-10-17)
 
 

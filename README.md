@@ -21,12 +21,10 @@
     <a href="https://github.com/daUnknownCoder/NeutronVim">
       <img alt="Repo Size" src="https://img.shields.io/github/repo-size/daUnknownCoder/NeutronVim?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-    
+    <a href="https://github.com/Everduin94/better-commits">
+      <img alt="Better Commits" src="https://img.shields.io/badge/better--commits-enabled?style=for-the-badge&logo=git&color=a6e3a1&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
 </div>
-
-<h3 align="center">
-[![better commits is enabled](https://img.shields.io/badge/better--commits-enabled?style=for-the-badge&logo=git&color=a6e3a1&logoColor=D9E0EE&labelColor=302D41)](https://github.com/Everduin94/better-commits)
-</h3>
 
 ### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)
 

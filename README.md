@@ -10,7 +10,7 @@
         <img alt="Number of commits since latest release" src="https://img.shields.io/github/commits-since/daUnknownCoder/NeutronVim/latest?style=for-the-badge&logo=git&logoColor=D9E0EE&labelColor=aa4f21&color=C9CBFF"/>
     </a>
     <a href="https://github.com/daUnknownCoder/NeutronVim/releases">
-        <img alt="Latest Release Date" src="[https://img.shields.io/github/commits-since/daUnknownCoder/NeutronVim/latest?style=for-the-badge&logo=git&logoColor=D9E0EE&labelColor=aa4f21&color=C9CBFF"/>
+        <img alt="Latest Release Date" src="https://img.shields.io/github/commits-since/daUnknownCoder/NeutronVim/latest?style=for-the-badge&logo=git&logoColor=D9E0EE&labelColor=aa4f21&color=C9CBFF"/>
     </a>
     <a href="https://github.com/daUnknownCoder/NeutronVim/pulse">
       <img alt="Last commit" src="https://img.shields.io/github/last-commit/daUnknownCoder/NeutronVim?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>

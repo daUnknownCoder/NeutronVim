@@ -3,6 +3,6 @@ return {
   cmd = "LazyGit",
   lazy = true,
   keys = {
-    { ";l", "<cmd>LazyGit<CR>", desc = "LazyGit" },
+    { ";k", "<cmd>LazyGit<CR>", desc = "LazyGit" },
   },
 }

@@ -1,11 +1,7 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = "BufRead",
-  dependencies = {
-    { "kdheepak/lazygit.nvim", cmd = "LazyGit", lazy = true },
-  },
   keys = {
-    { ";g", "<cmd>LazyGit<CR>", desc = "LazyGit" },
     { ";j", "<cmd>lua require('gitsigns').next_hunk()<CR>", desc = "Next Hunk" },
     { ";k", "<cmd>lua require('gitsigns').prev_hunk()<CR>", desc = "Prev Hunk" },
     { ";p", "<cmd>lua require('gitsigns').preview_hunk()<CR>", desc = "Preview Hunk" },

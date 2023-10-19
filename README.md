@@ -49,6 +49,8 @@ Give a ⭐️ if this project helped you!
 
 <a href="https://www.buymeacoffee.com/daUnknownCoder"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=daUnknownCoder&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
 
+[![better commits is enabled](https://img.shields.io/badge/better--commits-enabled?style=for-the-badge&logo=git&color=a6e3a1&logoColor=D9E0EE&labelColor=302D41)](https://github.com/Everduin94/better-commits)
+
 ## Current File Tree [For Better Debugging]
 
 <pre>

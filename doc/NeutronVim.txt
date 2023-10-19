@@ -33,6 +33,7 @@ CONTRIBUTING                                         *NeutronVim-contributing*
 
 Contributions, issues and feature requests are welcome!Feel free to check
 issues page <https://github.com/daUnknownCoder/NeutronVim/issues>.
+<https://github.com/Everduin94/better-commits>
 
 
 SHOW YOUR SUPPORT                               *NeutronVim-show-your-support*
@@ -40,8 +41,6 @@ SHOW YOUR SUPPORT                               *NeutronVim-show-your-support*
 Give a if this project helped you!
 
 
-
-<https://github.com/Everduin94/better-commits>
 
 
 CURRENT FILE TREE [FOR BETTER DEBUGGING]*NeutronVim-current-file-tree-[for-better-debugging]*

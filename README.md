@@ -26,8 +26,6 @@
     </a>
 </div>
 
-### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)
-
 ## Install
 
 ```bash

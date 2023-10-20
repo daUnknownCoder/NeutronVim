@@ -12,8 +12,8 @@ map("n", "<C-Left>", ":vertical resize -2<cr>", { desc = "Decrease window width"
 map("n", "<C-Right>", ":vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Move text up and down [in all modes] with `J` and `K`
-map("n", "K", ":m .-2<cr>==", { desc = "Move up" })
-map("n", "J", ":m .+1<cr>==", { desc = "Move down" })
+map("n", "<A-k>", ":m .-2<cr>==", { desc = "Move up" })
+map("n", "<A-j>", ":m .+1<cr>==", { desc = "Move down" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move down" })

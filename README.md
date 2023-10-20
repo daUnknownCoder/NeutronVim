@@ -3,7 +3,7 @@
 ![Snake](https://github.com/daUnknownCoder/NeutronVim/blob/output/github-contribution-grid-snake-dark.svg)
 
 <div align="center"><p>
-    <a href="https://github.com/daUnknownCoder/NeutronVim/releases/tag/release">
+  <a href="https://github.com/daUnknownCoder/NeutronVim/releases/tag/release">
       <img alt="Latest release" src="https://img.shields.io/github/v/release/daUnknownCoder/NeutronVim?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41" />
     </a>
     <a href="https://github.com/daUnknownCoder/NeutronVim/pulse">
@@ -28,6 +28,8 @@
 
 ### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)
 
+NeutronVim is very lightweight, currently has only ~2500 loc...
+
 ## Install
 
 ```bash
@@ -50,61 +52,5 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 Give a ⭐️ if this project helped you!
 
 <a href="https://www.buymeacoffee.com/daUnknownCoder"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=daUnknownCoder&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
-
-## Current File Tree [For Better Debugging]
-
-<pre>
-~/.config/nvim
-├── lua
-│   └── NeutronVim
-│       ├── core
-│       │   ├── autocmd.lua
-│       │   ├── icons.lua
-│       │   ├── opts.lua
-│       │   └── remaps.lua
-│       ├── lazy.lua
-│       └── plugins
-│           ├── Autocompletion
-│           │   └── cmp.lua
-│           ├── Debugging
-│           │   └── nvim-dap.lua
-│           ├── File-Management
-│           │   ├── harpoon.lua
-│           │   ├── nvim-tree.lua
-│           │   ├── oil.lua
-│           │   └── telescope.lua
-│           ├── Formatting
-│           │   └── formatting.lua
-│           ├── Git-Integration
-│           │   └── git.lua
-│           ├── Linting
-│           │   └── linting.lua
-│           ├── LSP
-│           │   ├── codeaction.lua
-│           │   ├── diagflow.lua
-│           │   ├── fidget.lua
-│           │   ├── hover.lua
-│           │   ├── lspconfig.lua
-│           │   ├── lsp_lines.lua
-│           │   ├── lspsaga.lua
-│           │   ├── mason.lua
-│           │   └── renamer.lua
-│           ├── UI
-│           │   ├── alpha.lua
-│           │   ├── barbecue.lua
-│           │   ├── colorscheme.lua
-│           │   ├── foldings.lua
-│           │   ├── lualine.lua
-│           │   ├── noice.lua
-│           │   └── notify.lua
-│           └── Utils
-│               ├── flash.lua
-│               ├── indents_delims.lua
-│               ├── miscellaneous.lua
-│               ├── toggleterm.lua
-│               ├── treesitter.lua
-│               └── which-key.lua
-├── init.lua
-</pre>
 
 ---

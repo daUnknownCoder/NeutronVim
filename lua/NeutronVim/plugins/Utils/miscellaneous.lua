@@ -50,39 +50,6 @@ return {
       { "<leader>mr", "<cmd>SudaRead<CR>", desc = "SudaRead" },
     },
   },
-  -- Generate dummy text
-  {
-    "derektata/lorem.nvim",
-    lazy = true,
-    config = function()
-      local lorem_status_ok, lorem = pcall(require, "lorem")
-      if not lorem_status_ok then
-        print("lorem not found!")
-      end
-      lorem.setup({
-        sentenceLength = "mixedShort",
-        comma = 1,
-      })
-    end,
-    keys = {
-      { "<leader>ml", "<cmd>LoremIpsum<CR>", desc = "Lorem Ipsum" },
-    },
-  },
-  -- Replace vim.ui.[input/attach]
-  {
-    "stevearc/dressing.nvim",
-    lazy = true,
-    init = function()
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
-  },
   -- Maximize or Minimize an open buffer while working in splits
   {
     "szw/vim-maximizer",
@@ -90,12 +57,6 @@ return {
     keys = {
       { "<leader>mm", "<cmd>MaximizerToggle<CR>", desc = "MaximizerToggle" },
     },
-  },
-  -- Quick [un/c]ommenting using 'gcc'
-  {
-    "numToStr/Comment.nvim",
-    config = true,
-    event = { "BufRead", "BufNewFile" },
   },
   -- Illuminating equivalent words in current buffer under the cursor
   {
@@ -114,37 +75,10 @@ return {
       illuminate.configure(opts)
     end,
   },
-  -- Surrounding brackets in nvim
-  {
-    "echasnovski/mini.surround",
-    event = { "BufReadPost", "BufNewFile" },
-    lazy = true,
-    version = "*",
-    config = function()
-      local status_ok, surround = pcall(require, "mini.surround")
-      if not status_ok then
-        print("mini.surround not found!")
-      end
-      surround.setup({
-        mappings = {
-          add = "sa", -- Add surrounding in Normal and Visual modes
-          delete = "sd", -- Delete surrounding
-          find = "sf", -- Find surrounding (to the right)
-          find_left = "sF", -- Find surrounding (to the left)
-          highlight = "sh", -- Highlight surrounding
-          replace = "sr", -- Replace surrounding
-          update_n_lines = "sn", -- Update `n_lines`
-
-          suffix_last = "l", -- Suffix to search with "prev" method
-          suffix_next = "n", -- Suffix to search with "next" method
-        },
-      })
-    end,
-  },
   -- Useless but looks good :D
   {
     "echasnovski/mini.animate",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BufNewFile" },
     lazy = true,
     opts = function()
       local mouse_scrolled = false
@@ -182,42 +116,14 @@ return {
   },
   -- nvim-web-devicons
   { "nvim-tree/nvim-web-devicons", lazy = true },
-  -- Markdown files editing preview
+  -- search/replace in multiple files
   {
-    "iamcco/markdown-preview.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
+    "nvim-pack/nvim-spectre",
+    cmd = "Spectre",
+    opts = { open_cmd = "noswapfile vnew" },
+    -- stylua: ignore
+    keys = {
+      { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
     },
-    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-    config = function()
-      local job = require("plenary.job")
-      local install_path = vim.fn.stdpath("data") .. "/lazy/markdown-preview.nvim/app"
-      local cmd = "bash"
-
-      if vim.fn.has("win64") == 1 then
-        cmd = "pwsh"
-      end
-
-      job
-        :new({
-          command = cmd,
-          args = { "-c", "npm install && git restore ." },
-          cwd = install_path,
-          on_exit = function()
-            print("Finished installing markdown-preview.nvim")
-          end,
-          on_stderr = function(_, data)
-            print(data)
-          end,
-        })
-        :start()
-
-      -- Options
-      vim.g.mkdp_auto_close = 0
-    end,
   },
 }

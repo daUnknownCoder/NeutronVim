@@ -7,6 +7,12 @@
       <img alt="Latest release" src="https://img.shields.io/github/v/release/daUnknownCoder/NeutronVim?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41" />
     </a>
     <a href="https://github.com/daUnknownCoder/NeutronVim/pulse">
+        <img alt="Number of commits since latest release" src="https://img.shields.io/github/commits-since/daUnknownCoder/NeutronVim/latest?style=for-the-badge&logo=git&logoColor=D9E0EE&labelColor=aa4f21&color=C9CBFF"/>
+    </a>
+    <a href="https://github.com/daUnknownCoder/NeutronVim/releases">
+        <img alt="Latest Release Date" src="https://img.shields.io/github/release-date/daUnknownCoder/NeutronVim?style=for-the-badge&logo=starship"/>
+    </a>
+    <a href="https://github.com/daUnknownCoder/NeutronVim/pulse">
       <img alt="Last commit" src="https://img.shields.io/github/last-commit/daUnknownCoder/NeutronVim?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
     </a>
     <a href="https://github.com/daUnknownCoder/NeutronVim/blob/nvim/LICENSE">
@@ -26,10 +32,13 @@
     </a>
 </div>
 
+<<<<<<< HEAD
 ### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)
 
 NeutronVim is very lightweight, currently has only ~2500 loc...
 
+=======
+>>>>>>> 9951da5f2a04b4c4a9ced398d960e5af9f1a45ff
 ## Install
 
 ```bash

@@ -29,7 +29,10 @@ Welcome to NeutronVim
 
 
 
-HOMEPAGE ~
+
+
+
+
 
 
 INSTALL                                                   *NeutronVim-install*

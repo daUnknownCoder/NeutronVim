@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/daUnknownCoder/NeutronVim/compare/v1.0.0...v1.1.0) (2023-10-20)
+
+
+### Features
+
+* added logging for all OS ([4097ead](https://github.com/daUnknownCoder/NeutronVim/commit/4097ead4c064bcc33027465527c122355ab035a8))
+* updated opts for lsp_signature ([2dc470b](https://github.com/daUnknownCoder/NeutronVim/commit/2dc470b4340682d6ed5af0207995b1e942533399))
+
 ## [1.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v0.2.0...v1.0.0) (2023-10-20)
 
 

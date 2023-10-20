@@ -1,4 +1,4 @@
-*NeutronVim.txt*        For Neovim >= 0.9.0       Last change: 2023 October 19
+*NeutronVim.txt*        For Neovim >= 0.9.0       Last change: 2023 October 20
 
 ==============================================================================
 Table of Contents                               *NeutronVim-table-of-contents*
@@ -7,7 +7,6 @@ Table of Contents                               *NeutronVim-table-of-contents*
   - Author                                                 |NeutronVim-author|
   - Contributing                                     |NeutronVim-contributing|
   - Show your support                           |NeutronVim-show-your-support|
-  - Current File Tree [For Better Debugging]|NeutronVim-current-file-tree-[for-better-debugging]|
 Welcome to NeutronVim 
 
 
@@ -33,6 +32,11 @@ Welcome to NeutronVim
 
 
 
+
+
+HOMEPAGE ~
+
+NeutronVim is very lightweight, currently has only ~2500 loc…
 
 
 INSTALL                                                   *NeutronVim-install*
@@ -61,9 +65,6 @@ SHOW YOUR SUPPORT                               *NeutronVim-show-your-support*
 Give a if this project helped you!
 
 
-
-
-CURRENT FILE TREE [FOR BETTER DEBUGGING]*NeutronVim-current-file-tree-[for-better-debugging]*
 
 ------------------------------------------------------------------------------
 ==============================================================================

@@ -1,5 +1,34 @@
 # Changelog
 
+## [1.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v0.2.0...v1.0.0) (2023-10-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* Added akinsho/bufferline.nvim
+
+### Features
+
+* add nvim-spectre, removed moved plugins ([85b3b9f](https://github.com/daUnknownCoder/NeutronVim/commit/85b3b9ffdea2f5c2f230fdeb4795ba315e733231))
+* Added Bufferline to NeutronVim ([d7355ca](https://github.com/daUnknownCoder/NeutronVim/commit/d7355ca0edccc7430421a7218a572cb7d135ee5a))
+* added formatter and slow formatter functions ([f0aef06](https://github.com/daUnknownCoder/NeutronVim/commit/f0aef06f2724b8bdbd1d2a6aaf67e7ae8b46d099))
+* added health.lua ([396a152](https://github.com/daUnknownCoder/NeutronVim/commit/396a15275b28f5f8d9377fb9a62d5164e5326691))
+* added marksman lsp ([f55ae1b](https://github.com/daUnknownCoder/NeutronVim/commit/f55ae1b8b1ed19de02af8cbd42fa13b2fb100021))
+* added marksman lsp for markdown editing ([9928cef](https://github.com/daUnknownCoder/NeutronVim/commit/9928cefc51322074ba9612d666a1272e4e954e50))
+* Added snippets for [global, git, lua, md] ([8c20755](https://github.com/daUnknownCoder/NeutronVim/commit/8c20755ba927021def822a6eb028003da11c8ef8))
+
+
+### Bug Fixes
+
+* added stylua ignore ([ee8d4a9](https://github.com/daUnknownCoder/NeutronVim/commit/ee8d4a9d04a5263d49f8337d252a8554aa6d4611))
+* changed keymap for moving lines up and down in insert mode ([00f98c1](https://github.com/daUnknownCoder/NeutronVim/commit/00f98c1ba16e45ac82b0f899103e60b3099ee610))
+* **tools:** Removed diagflow.nvim ([8ae6313](https://github.com/daUnknownCoder/NeutronVim/commit/8ae63138183e601637ddc1c513efdfb39dc3bb03))
+
+
+### Performance Improvements
+
+* disabled ([865f021](https://github.com/daUnknownCoder/NeutronVim/commit/865f0215adff4ad6e66323f63bd79dacad2f7bab))
+
 ## [0.2.0](https://github.com/daUnknownCoder/NeutronVim/compare/v0.1.1...v0.2.0) (2023-10-19)
 
 

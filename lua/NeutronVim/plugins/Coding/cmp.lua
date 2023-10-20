@@ -24,6 +24,9 @@ return {
       vim.tbl_map(function(type)
         require("luasnip.loaders.from_" .. type).lazy_load()
       end, { "vscode", "snipmate", "lua" })
+      require("luasnip.loaders.from_lua").load({
+        paths = { "/NeutronVim/snippets/" },
+      })
     end,
     lazy = true,
     event = "InsertEnter",
@@ -40,7 +43,6 @@ return {
       { "ray-x/cmp-treesitter", lazy = true },
       { "hrsh7th/cmp-nvim-lsp-signature-help", lazy = true },
       { "Exafunction/codeium.vim", lazy = true },
-      { "echasnovski/mini.pairs", version = "*", lazy = true },
       lazy = true,
     },
     event = "InsertEnter",
@@ -57,10 +59,6 @@ return {
       if not icons_ok then
         print("Unable to import icons!")
       end
-      local mini_pairs_status_ok, pairs = pcall(require, "mini.pairs")
-      if not mini_pairs_status_ok then
-        print("mini.pairs not found!")
-      end
       local kind_icons = icons.kind
       local set = vim.keymap.set
       local feedkey = function(key, mode)
@@ -74,7 +72,6 @@ return {
           return false
         end
       end
-      pairs.setup()
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE", italic = true })

@@ -32,13 +32,10 @@
     </a>
 </div>
 
-<<<<<<< HEAD
 ### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)
 
 NeutronVim is very lightweight, currently has only ~2500 loc...
 
-=======
->>>>>>> 9951da5f2a04b4c4a9ced398d960e5af9f1a45ff
 ## Install
 
 ```bash

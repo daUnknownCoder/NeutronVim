@@ -8,5 +8,8 @@ return {
   },
   lazy = true,
   event = "LspAttach",
-  opts = {},
+  opts = {
+    create_autocmd = false,
+    show_modified = true,
+  },
 }

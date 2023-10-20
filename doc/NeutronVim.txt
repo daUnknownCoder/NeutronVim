@@ -3,6 +3,7 @@
 ==============================================================================
 Table of Contents                               *NeutronVim-table-of-contents*
 
+  - Install                                               |NeutronVim-install|
   - Author                                                 |NeutronVim-author|
   - Contributing                                     |NeutronVim-contributing|
   - Show your support                           |NeutronVim-show-your-support|
@@ -32,11 +33,13 @@ Welcome to NeutronVim
 
 
 
-<<<<<<<HEAD ### Homepage <https://github.com/daUnknownCoder/NeutronVim>
+
+HOMEPAGE ~
 
 NeutronVim is very lightweight, currently has only ~2500 loc…
 
-======= >>>>>>> 9951da5f2a04b4c4a9ced398d960e5af9f1a45ff ## Install
+
+INSTALL                                                   *NeutronVim-install*
 
 >bash
     git clone https://github.com/daUnknownCoder/Neutronvim ~/.config/nvim

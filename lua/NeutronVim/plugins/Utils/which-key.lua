@@ -24,7 +24,7 @@ return {
         name = "+Miscellaneous",
         mode = { "n", "v" },
       },
-      ["<leader>s"] = {
+      ["s"] = {
         name = "+Search [Flash] ",
         mode = { "n", "v" },
       },
@@ -40,11 +40,11 @@ return {
       ["gb"] = {
         name = "+Comment blockwise",
       },
+      ["gs"] = {
+        name = "+Surround",
+      },
       [";l"] = {
         name = "+Git",
-      },
-      ["s"] = {
-        name = "+Surround",
       },
     })
   end,

@@ -11,6 +11,8 @@ for _, source in ipairs({
   end
 end
 
+vim.cmd([[colorscheme tokyonight]])
+
 vim.opt.background = "dark"
 
 vim.cmd([[highlight Keyword gui=italic guifg=#F08753]])

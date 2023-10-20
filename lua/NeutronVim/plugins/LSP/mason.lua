@@ -47,6 +47,7 @@ return {
         "cssls",
         "lua_ls",
         "pyright",
+        "marksman",
       },
       automatic_installation = true,
     })

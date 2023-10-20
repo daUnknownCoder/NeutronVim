@@ -52,7 +52,12 @@ return {
         require("lsp_signature").on_attach({
           bind = true,
           debug = true,
+          floating_window = true,
+          floating_window_above_cur_line = true,
           hint_enable = true,
+          fix_pos = false,
+          -- floating_window_above_first = true,
+          log_path = vim.fn.expand("$HOME") .. "/tmp/sig.log",
           padding = " ",
           handler_opts = {
             border = "rounded",

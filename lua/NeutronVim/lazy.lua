@@ -29,11 +29,11 @@ require("lazy").setup({
   -- Linting
   { import = "NeutronVim.plugins.Linting" },
 
-  -- File Managers
-  { import = "NeutronVim.plugins.File-Management" },
+  -- Editing Related
+  { import = "NeutronVim.plugins.Editor" },
 
-  -- Autocompletion
-  { import = "NeutronVim.plugins.Autocompletion" },
+  -- Coding Related
+  { import = "NeutronVim.plugins.Coding" },
 
   -- LSP
   { import = "NeutronVim.plugins.LSP" },

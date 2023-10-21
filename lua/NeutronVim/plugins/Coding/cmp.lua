@@ -25,7 +25,7 @@ return {
         require("luasnip.loaders.from_" .. type).lazy_load()
       end, { "vscode", "snipmate", "lua" })
       require("luasnip.loaders.from_lua").load({
-        paths = { "/NeutronVim/snippets/" },
+        paths = { "lua/NeutronVim/snippets/" },
       })
     end,
     lazy = true,

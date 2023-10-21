@@ -17,6 +17,7 @@ return {
     },
     dependencies = {
       { "xiyaowong/telescope-emoji.nvim", lazy = true, cmd = "Telescope emoji" },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     config = function()
       local telescope_status_ok, telescope = pcall(require, "telescope")

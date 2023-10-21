@@ -1,11 +1,14 @@
 for _, source in ipairs({
-  "NeutronVim.lazy",
-  "NeutronVim.core.remaps",
-  "NeutronVim.core.opts",
-  "NeutronVim.core.autocmd",
-  "NeutronVim.core.icons",
+  "remaps",
+  "opts",
+  "autocmd",
+  "icons",
+  "bootstrap",
+  "global",
+  "health",
+  "log",
 }) do
-  local status_ok, fault = pcall(require, source)
+  local status_ok, fault = pcall(require, "NeutronVim.core." .. source)
   if not status_ok then
     vim.api.nvim_err_writeln("Error loading " .. source .. "\n\n" .. fault)
   end

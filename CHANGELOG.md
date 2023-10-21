@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.2.0](https://github.com/daUnknownCoder/NeutronVim/compare/v1.1.0...v1.2.0) (2023-10-21)
+
+
+### Features
+
+* added telescope-fzf-native ([2e86021](https://github.com/daUnknownCoder/NeutronVim/commit/2e86021c72ea655dcb2069e13b71e00516a9fe4d))
+
+
+### Bug Fixes
+
+* dont need  anymore ([a291e26](https://github.com/daUnknownCoder/NeutronVim/commit/a291e268a8736fc5d9a5af3d972566325d86bb30))
+* fixed extra snips not loading in some scenarios ([e00ce5a](https://github.com/daUnknownCoder/NeutronVim/commit/e00ce5a3730b845d558dc80eea4331079c23060a))
+
+
+### Performance Improvements
+
+* better lazy-loading and whichkey loads after ui loading completes ([cd2a140](https://github.com/daUnknownCoder/NeutronVim/commit/cd2a1402cf09af942c8a4b190a0c828abf0c45dd))
+* switched from  to ([06f7f0c](https://github.com/daUnknownCoder/NeutronVim/commit/06f7f0cf16dc2d41c34644461249c5e863f2e203))
+* UI tweaks, disabled some rtp plugins for better perf ([1022ac5](https://github.com/daUnknownCoder/NeutronVim/commit/1022ac5ef1a81988b1e61ebc24ec0c1753a65a17))
+
 ## [1.1.0](https://github.com/daUnknownCoder/NeutronVim/compare/v1.0.0...v1.1.0) (2023-10-20)
 
 

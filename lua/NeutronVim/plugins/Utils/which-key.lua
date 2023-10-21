@@ -1,6 +1,7 @@
 return {
   "folke/which-key.nvim",
-  event = { "BufRead", "BufNewFile" },
+  keys = { "<leader>", "<c-w>", ";", "\\", "v", "g" },
+  cmd = "WhichKey",
   lazy = true,
   config = function()
     vim.o.timeout = true

@@ -2,10 +2,10 @@ name: Build Docs
 on:
   pull_request:
     branches:
-    - master
+    - nvim
   push:
     branches:
-    - master
+    - nvim
 jobs:
   build:
     name: Build docs

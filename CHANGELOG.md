@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v1.3.1...v2.0.0) (2023-10-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* Startuptime performance optimized
+
+### Features
+
+* added new snip loading ([0d8f540](https://github.com/daUnknownCoder/NeutronVim/commit/0d8f540f8d3850dd482c8745eb69ae4f5bf872dd))
+* more snippets for luasnip [vscode] style ([02d2a02](https://github.com/daUnknownCoder/NeutronVim/commit/02d2a02fba9461a76c2a09e00e7a28b95e4053e7))
+
+
+### Bug Fixes
+
+* fixed conflicting ;k map ([7bdc419](https://github.com/daUnknownCoder/NeutronVim/commit/7bdc4198e006b63e03b7ba19d4c5f3646fb2d8ac))
+* load colorscheme b4 evrything else [forgot that earlier] ([febd47b](https://github.com/daUnknownCoder/NeutronVim/commit/febd47bc3cc219c11b276b6372256114f679eedd))
+* switched to mypy again ([1668016](https://github.com/daUnknownCoder/NeutronVim/commit/1668016634deba3fc048f6ce3d0818afe5422a1d))
+
+
+### Performance Improvements
+
+* Startuptime optimization ([6389464](https://github.com/daUnknownCoder/NeutronVim/commit/6389464db60f0304dcf86490a9db4a240c352cae))
+
 ## [1.3.1](https://github.com/daUnknownCoder/NeutronVim/compare/v1.3.0...v1.3.1) (2023-10-22)
 
 

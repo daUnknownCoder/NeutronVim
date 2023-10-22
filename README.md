@@ -32,6 +32,7 @@
     </a>
 </div>
 
+[![built with Codeium](https://codeium.com/badges/main)](https://codeium.com)
 ### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)
 
 NeutronVim is very lightweight, currently has only 2996 loc of lua code...

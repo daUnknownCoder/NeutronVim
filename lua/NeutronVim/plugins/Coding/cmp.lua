@@ -112,6 +112,7 @@ return {
                   async_path = "｢Path｣",
                   nvim_lsp_signature_help = "｢Signature｣",
                   cmdline = "｢Cmd｣",
+                  Codeium = "｢AI｣",
                 })[entry.source.name] or "🚀 "
               )
             return item
@@ -205,6 +206,7 @@ return {
           { name = "nvim_lsp_signature_help", priority = 500 },
           { name = "buffer", priority = 500 },
           { name = "nvim_lua", priority = 500 },
+          { name = "codeium", priority = 500 },
           { name = "async_path", priority = 250 },
           { name = "emoji", priority = 200 },
         }),
@@ -230,6 +232,13 @@ return {
           { name = "async_path" },
           { name = "cmdline" },
         }),
+        enabled = function()
+          local disabled = {
+            IncRename = true,
+          }
+          local cmd = vim.fn.getcmdline():match("%S+")
+          return not disabled[cmd] or cmp.close()
+        end,
       })
     end,
   },

@@ -30,9 +30,7 @@
     <a href="https://github.com/Everduin94/better-commits">
       <img alt="Better Commits" src="https://img.shields.io/badge/better--commits-enabled?style=for-the-badge&logo=git&color=a6e3a1&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-    <a href="https://codeium.com">
-      <img alt="Built with Codeium" src="https://github.com/badges/main"/>
-    </a>
+[![built with Codeium](https://codeium.com/badges/main)](https://codeium.com)
 </div>
 
 ### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)

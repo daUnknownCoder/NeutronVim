@@ -74,7 +74,7 @@ return {
       end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "gold", bg = "NONE", italic = true })
+      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "white", bg = "NONE", italic = true })
       vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "lime", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ff3e00", bg = "NONE" })
@@ -83,11 +83,14 @@ return {
         border = "rounded",
         winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
       }
-      set("i", "<C-w>", function()
+      set("i", "<C-a>", function()
         return vim.fn["codeium#Accept"]()
       end, { expr = true })
-      set("i", "<c-q>", function()
+      set("i", "<c-b>", function()
         return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true })
+      set("i", "<c-f>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
       end, { expr = true })
       set("i", "<c-x>", function()
         return vim.fn["codeium#Clear"]()
@@ -99,7 +102,7 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, item)
-            item.kind = string.format("%s %s", kind_icons[item.kind], item.kind .. " ")
+            item.kind = string.format("%s %s", kind_icons[item.kind], item.kind .. " " or "🚀 ")
             item.menu = "➥ "
               .. (
                 ({
@@ -112,7 +115,6 @@ return {
                   async_path = "｢Path｣",
                   nvim_lsp_signature_help = "｢Signature｣",
                   cmdline = "｢Cmd｣",
-                  Codeium = "｢AI｣",
                 })[entry.source.name] or "🚀 "
               )
             return item

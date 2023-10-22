@@ -18,7 +18,7 @@ return {
     end
     lint.linters_by_ft = {
       javascript = { "eslint_d" },
-      python = { "flake8" },
+      python = { "mypy" },
       lua = { "luacheck" },
     }
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

@@ -58,6 +58,7 @@ autocmd("BufReadPost", {
 })
 
 local disabled_built_ins = {
+  "netrw",
   "netrwPlugin",
   "netrwSettings",
   "netrwFileHandlers",
@@ -75,6 +76,7 @@ local disabled_built_ins = {
   "rrhelper",
   "spellfile_plugin",
   "matchit",
+  "matchparen",
 }
 
 for _, plugin in pairs(disabled_built_ins) do

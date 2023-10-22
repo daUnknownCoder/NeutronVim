@@ -24,7 +24,10 @@ return {
       vim.tbl_map(function(type)
         require("luasnip.loaders.from_" .. type).lazy_load()
       end, { "vscode", "snipmate", "lua" })
-      require("luasnip.loaders.from_lua").load({
+      require("luasnip.loaders.from_vscode").lazy_load({
+        paths = { "lua/NeutronVim/snippets/" },
+      })
+      require("luasnip.loaders.from_lua").lazy_load({
         paths = { "lua/NeutronVim/snippets/" },
       })
     end,

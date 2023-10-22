@@ -37,7 +37,7 @@
 
 ### 🏠 [Homepage](https://github.com/daUnknownCoder/NeutronVim)
 
-NeutronVim is very lightweight, currently has only 2996 loc of lua code...
+NeutronVim is very lightweight, currently has only 3010 loc of lua code...
 
 ## Install
 

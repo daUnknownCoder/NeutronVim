@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0](https://github.com/daUnknownCoder/NeutronVim/compare/v1.2.0...v1.3.0) (2023-10-22)
+
+
+### Features
+
+* add and modified few icons ([bd5e39b](https://github.com/daUnknownCoder/NeutronVim/commit/bd5e39bc944cf96198ce42686ff1551d6c0c3bd5))
+* **tools:** Add minimap.vim ([bb05bbb](https://github.com/daUnknownCoder/NeutronVim/commit/bb05bbbe367e7d8e372a1dab1f74b1a2b30732d6))
+* **tools:** Add scrollbar ([5840572](https://github.com/daUnknownCoder/NeutronVim/commit/5840572d29cc88e5d6a9f923ac55bf0db81c7192))
+* **tools:** add support for codeium ([a6bde55](https://github.com/daUnknownCoder/NeutronVim/commit/a6bde55c74e4958db1497cdb39c34d9fe253e4ca))
+
+
+### Bug Fixes
+
+* **tools:** removed bufferline ([92117f9](https://github.com/daUnknownCoder/NeutronVim/commit/92117f9d05fb091741daa43931c42988ef9e612e))
+
 ## [1.2.0](https://github.com/daUnknownCoder/NeutronVim/compare/v1.1.0...v1.2.0) (2023-10-21)
 
 

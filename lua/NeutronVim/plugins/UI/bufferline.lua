@@ -12,7 +12,7 @@ return {
   },
   opts = {
     options = {
-      separator_style = "slope",
+      separator_style = "slant",
       hover = {
         enabled = true,
         delay = 200,

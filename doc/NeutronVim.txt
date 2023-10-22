@@ -33,8 +33,9 @@ Welcome to NeutronVim
 
 
 
+<https://codeium.com>
 
- <https://codeium.com>
+
 HOMEPAGE ~
 
 NeutronVim is very lightweight, currently has only 2996 loc of lua code…

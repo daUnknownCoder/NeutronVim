@@ -31,6 +31,7 @@
       <img alt="Better Commits" src="https://img.shields.io/badge/better--commits-enabled?style=for-the-badge&logo=git&color=a6e3a1&logoColor=D9E0EE&labelColor=302D41" />
     </a>
 </div>
+
 [![built with Codeium](https://codeium.com/badges/main)](https://codeium.com)
 
 

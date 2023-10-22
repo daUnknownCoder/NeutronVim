@@ -5,8 +5,13 @@ local options = {
   softtabstop = 2,
   shiftwidth = 2,
   expandtab = true,
-  showtabline = 0,
+  showtabline = 1,
   showmatch = true,
+  ruler = false,
+  cul = true,
+  cmdheight = 1,
+  scrolloff = 3,
+  mouse = "a",
 
   number = true,
   relativenumber = true,
@@ -39,8 +44,6 @@ local options = {
 
   updatetime = 50,
 
-  title = true,
-  titlestring = "Neovim - %t",
   clipboard = "unnamedplus",
   shell = "/bin/bash",
   lazyredraw = false,
@@ -53,9 +56,11 @@ vim.opt.guicursor = {
   "sm:block-blinkwait175-blinkoff150-blinkon175",
 }
 
-vim.g.loaded_netrwPlugin = false
 vim.opt.iskeyword:append("-")
 vim.opt.shortmess:append({ W = true, I = true, c = true })
+vim.opt.shortmess:append("asI")
+vim.opt.shadafile = "NONE"
+vim.o.termguicolors = true
 vim.g.markdown_recommended_style = 0
 
 for option, value in pairs(options) do

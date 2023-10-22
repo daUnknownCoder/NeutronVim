@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/daUnknownCoder/NeutronVim/compare/v1.3.0...v1.3.1) (2023-10-22)
+
+
+### Bug Fixes
+
+* added codeium cmp keymap ([8d5a9e6](https://github.com/daUnknownCoder/NeutronVim/commit/8d5a9e6aa8395d46ece5f6a26822c3c12debdaff))
+
 ## [1.3.0](https://github.com/daUnknownCoder/NeutronVim/compare/v1.2.0...v1.3.0) (2023-10-22)
 
 

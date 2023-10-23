@@ -12,7 +12,7 @@ return {
     end
     return {
       options = {
-        theme = "auto",
+        theme = "tokyonight",
         globalstatus = true,
         disabled_filetypes = { "dashboard", "alpha", "NvimTree", "TelescopePrompt" },
         section_separators = { left = "", right = "" },
@@ -92,6 +92,11 @@ return {
               added = icons.git.Add .. " ",
               modified = icons.git.Mod .. " ",
               removed = icons.git.Remove .. " ",
+            },
+            diff_color = {
+              added = { fg = "#50fa7b" },
+              modified = { fg = "#f1fa8c" },
+              removed = { fg = "#ff5555" },
             },
           },
           { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = { fg = "#ff9e64" } },

@@ -16,10 +16,8 @@ end, 0)
 require("NeutronVim.core.bootstrap")
 require("NeutronVim.core.opts")
 
-vim.cmd([[autocmd VimEnter * colorscheme tokyonight]])
-
 vim.opt.background = "dark"
-
+vim.cmd([[autocmd VimEnter * colorscheme tokyonight]])
 vim.cmd([[autocmd VimEnter * highlight Keyword gui=italic guifg=#F08753]])
 vim.cmd([[autocmd VimEnter * highlight Visual gui=nocombine guifg=#EA3535]])
 vim.cmd([[autocmd VimEnter * highlight Comment gui=italic,underline guifg=#a1afaf]])

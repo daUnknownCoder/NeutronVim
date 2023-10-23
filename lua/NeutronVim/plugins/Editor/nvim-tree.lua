@@ -2,7 +2,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = "NvimTreeFindFileToggle",
-    lazy = true,
+    lazy = false,
     keys = {
       { "<C-n>", "<cmd>NvimTreeFindFileToggle<cr>", desc = "NvimTree" },
     },

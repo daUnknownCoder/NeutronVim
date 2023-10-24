@@ -3,7 +3,7 @@
 ![Snake](https://github.com/daUnknownCoder/NeutronVim/blob/output/github-contribution-grid-snake-dark.svg)
 
 <div align="center"><p>
-  <a href="https://github.com/daUnknownCoder/NeutronVim/releases/tag/release">
+  <a href="https://github.com/daUnknownCoder/NeutronVim/releases/">
       <img alt="Latest release" src="https://img.shields.io/github/v/release/daUnknownCoder/NeutronVim?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41" />
     </a>
     <a href="https://github.com/daUnknownCoder/NeutronVim/pulse">

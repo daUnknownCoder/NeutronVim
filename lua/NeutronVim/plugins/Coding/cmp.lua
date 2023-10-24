@@ -77,7 +77,7 @@ return {
       end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "white", bg = "NONE", italic = true })
+      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "cyan", bg = "NONE", italic = true })
       vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "lime", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ff3e00", bg = "NONE" })

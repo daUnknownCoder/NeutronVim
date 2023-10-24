@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/daUnknownCoder/NeutronVim/compare/v3.0.0...v3.0.1) (2023-10-24)
+
+
+### Performance Improvements
+
+* **disabled-built-ins:** more startup optimizations ([136891a](https://github.com/daUnknownCoder/NeutronVim/commit/136891a95d12c95f96b9fc4e51dec65080368b08))
+* **rtp:** disable some rtp plugins for better perf ([9811780](https://github.com/daUnknownCoder/NeutronVim/commit/98117802625fbfc3a166c6e01fc29de5bf6e5287))
+
 ## [3.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v2.0.0...v3.0.0) (2023-10-24)
 
 

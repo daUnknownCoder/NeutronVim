@@ -1,5 +1,30 @@
 # Changelog
 
+## [3.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v2.0.0...v3.0.0) (2023-10-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* Startuptime performance optimized
+
+### Features
+
+* **lsp-timeout:** added lsp-timeout ([d1cb100](https://github.com/daUnknownCoder/NeutronVim/commit/d1cb100fe89e702f7872e97acdd8c7f5bf63830c))
+* **nerdy:** add nerdy.nvim ([4b190aa](https://github.com/daUnknownCoder/NeutronVim/commit/4b190aaadcb9ce6a65784825e7a19a4e7655d58e))
+
+
+### Bug Fixes
+
+* load colorscheme b4 evrything else [forgot that earlier] ([4a0837c](https://github.com/daUnknownCoder/NeutronVim/commit/4a0837ca81d5581727f6493d60bb6321fd469d3f))
+* **reconfigured:** made edits according to new lazy-loading of colors ([3db78b9](https://github.com/daUnknownCoder/NeutronVim/commit/3db78b994570a2b36eb7f470e8a7fbb4bb959cf1))
+
+
+### Performance Improvements
+
+* removed oil.nvim [too slow sometimes] ([6785629](https://github.com/daUnknownCoder/NeutronVim/commit/67856296bb75cb6ca144040de37271e7a33be4bf))
+* Startuptime optimization ([8d411da](https://github.com/daUnknownCoder/NeutronVim/commit/8d411da4f917015dd2ef99a417f4b6e5437f0133))
+* **UI:** lazy-loading of colorscheme and custom highlights ([8a49b79](https://github.com/daUnknownCoder/NeutronVim/commit/8a49b7994914a14a76d9bee650382974d18c6ff0))
+
 ## [2.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v1.3.1...v2.0.0) (2023-10-22)
 
 

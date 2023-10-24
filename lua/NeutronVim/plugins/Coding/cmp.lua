@@ -5,7 +5,7 @@ return {
       {
         "rafamadriz/friendly-snippets",
         lazy = true,
-        event = "InsertEnter",
+        event = "InsertCharPre",
       },
     },
     opts = {

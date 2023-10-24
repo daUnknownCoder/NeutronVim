@@ -1,6 +1,6 @@
 return {
   "folke/which-key.nvim",
-  keys = { "<leader>", "<c-w>", ";", "\\", "v", "g" },
+  keys = { "<leader>", "<c-w>", ";", "\\", "v", "g", "f" },
   cmd = "WhichKey",
   lazy = true,
   config = function()

@@ -13,6 +13,7 @@ vim.defer_fn(function()
     end
   end
 end, 0)
+
 require("NeutronVim.core.bootstrap")
 require("NeutronVim.core.opts")
 

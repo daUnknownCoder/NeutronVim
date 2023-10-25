@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/daUnknownCoder/NeutronVim/compare/v3.0.1...v3.1.0) (2023-10-25)
+
+
+### Features
+
+* **lsp-lens:** Added LSP Lens ([ce468da](https://github.com/daUnknownCoder/NeutronVim/commit/ce468da8dff0ecfb0c548469e6046a52850af428))
+
 ## [3.0.1](https://github.com/daUnknownCoder/NeutronVim/compare/v3.0.0...v3.0.1) (2023-10-24)
 
 

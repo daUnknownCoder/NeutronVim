@@ -16,10 +16,18 @@ return {
     end,
     lazy = true,
   },
+  -- UndoTree
+  {
+    'mbbill/undotree',
+    lazy = true,
+    keys = {
+      { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "UndotreeToggle" },
+    },
+  },
   -- Neovim UI component library
   { "MunifTanjim/nui.nvim", lazy = true },
   -- Popup menu
-  { "nvim-lua/popup.nvim", lazy = true },
+  { "nvim-lua/popup.nvim",  lazy = true },
   -- Very useless but a good stress buster
   {
     "eandrju/cellular-automaton.nvim",
@@ -33,21 +41,21 @@ return {
     "christoomey/vim-tmux-navigator",
     lazy = true,
     keys = {
-      { "<C-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "TmuxNavigateLeft" },
-      { "<C-j>", "<cmd>TmuxNavigateDown<CR>", desc = "TmuxNavigateDown" },
-      { "<C-k>", "<cmd>TmuxNavigateUp<CR>", desc = "TmuxNavigateUp" },
+      { "<C-h>", "<cmd>TmuxNavigateLeft<CR>",  desc = "TmuxNavigateLeft" },
+      { "<C-j>", "<cmd>TmuxNavigateDown<CR>",  desc = "TmuxNavigateDown" },
+      { "<C-k>", "<cmd>TmuxNavigateUp<CR>",    desc = "TmuxNavigateUp" },
       { "<C-l>", "<cmd>TmuxNavigateRight<CR>", desc = "TmuxNavigateRight" },
     },
   },
   -- UI Component Library
-  { "nvim-lua/plenary.nvim", lazy = true },
+  { "nvim-lua/plenary.nvim",       lazy = true },
   -- Read/Write to files with root access
   {
     "lambdalisue/suda.vim",
     lazy = true,
     keys = {
       { "<leader>mw", "<cmd>SudaWrite<CR>", desc = "SudaWrite" },
-      { "<leader>mr", "<cmd>SudaRead<CR>", desc = "SudaRead" },
+      { "<leader>mr", "<cmd>SudaRead<CR>",  desc = "SudaRead" },
     },
   },
   -- Maximize or Minimize an open buffer while working in splits

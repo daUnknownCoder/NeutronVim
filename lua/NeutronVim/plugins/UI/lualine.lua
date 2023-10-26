@@ -4,7 +4,6 @@ return {
     { "arkav/lualine-lsp-progress", lazy = true, event = "VeryLazy" },
   },
   lazy = false,
-  event = "VimEnter",
   opts = function()
     local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
     if not icons_ok then
@@ -102,7 +101,7 @@ return {
           { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = { fg = "#ff9e64" } },
         },
         lualine_y = {
-          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 2 } },
         },
         lualine_z = {

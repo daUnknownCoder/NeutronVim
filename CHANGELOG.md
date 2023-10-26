@@ -1,5 +1,24 @@
 # Changelog
 
+## [4.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v3.0.1...v4.0.0) (2023-10-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tools:** utils/ folder will now contain all utilities required for NeutronVim
+
+### Features
+
+* Better First startup screen showing lazy installations ([6396317](https://github.com/daUnknownCoder/NeutronVim/commit/639631790ccba78a9818fe79f1bbf79bf617800b))
+* **healthchecks:** Better and more dependency checks ([d58447e](https://github.com/daUnknownCoder/NeutronVim/commit/d58447e44083d525fa57722941b314c67d6b75d4))
+* **lsp-lens:** Added LSP Lens ([ce468da](https://github.com/daUnknownCoder/NeutronVim/commit/ce468da8dff0ecfb0c548469e6046a52850af428))
+* **tools:** Added Utils/ folder for utils ([f859785](https://github.com/daUnknownCoder/NeutronVim/commit/f859785dfb8ad3f772295d1328169def662b31bf))
+
+
+### Performance Improvements
+
+* **vim.loader:** better loading of modules ([07b9fbb](https://github.com/daUnknownCoder/NeutronVim/commit/07b9fbbfdeea897abe8be27fd50c2e2962ef9eb9))
+
 ## [3.0.1](https://github.com/daUnknownCoder/NeutronVim/compare/v3.0.0...v3.0.1) (2023-10-24)
 
 

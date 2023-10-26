@@ -37,15 +37,15 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      { "saadparwaiz1/cmp_luasnip", lazy = true },
-      { "hrsh7th/cmp-buffer", lazy = true },
-      { "FelipeLema/cmp-async-path", lazy = true },
-      { "hrsh7th/cmp-cmdline", lazy = true },
-      { "petertriho/cmp-git", lazy = true },
-      { "hrsh7th/cmp-emoji", lazy = true },
-      { "ray-x/cmp-treesitter", lazy = true },
+      { "saadparwaiz1/cmp_luasnip",            lazy = true },
+      { "hrsh7th/cmp-buffer",                  lazy = true },
+      { "FelipeLema/cmp-async-path",           lazy = true },
+      { "hrsh7th/cmp-cmdline",                 lazy = true },
+      { "petertriho/cmp-git",                  lazy = true },
+      { "hrsh7th/cmp-emoji",                   lazy = true },
+      { "ray-x/cmp-treesitter",                lazy = true },
       { "hrsh7th/cmp-nvim-lsp-signature-help", lazy = true },
-      { "Exafunction/codeium.vim", lazy = true },
+      { "Exafunction/codeium.vim",             lazy = true },
       lazy = true,
     },
     event = "InsertEnter",
@@ -77,14 +77,16 @@ return {
       end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "cyan", bg = "NONE", italic = true })
+      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "aqua", bg = "NONE", italic = true })
       vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "lime", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ff3e00", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "pink", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "goldenrod", bg = "NONE" })
       local border_opts = {
         border = "rounded",
-        winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
+        winhighlight =
+        "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
       }
       set("i", "<C-a>", function()
         return vim.fn["codeium#Accept"]()
@@ -107,19 +109,19 @@ return {
           format = function(entry, item)
             item.kind = string.format("%s %s", kind_icons[item.kind], item.kind .. " " or "🚀 ")
             item.menu = "➥ "
-              .. (
-                ({
-                  nvim_lsp = "｢LSP｣",
-                  buffer = "｢Buffer｣",
-                  luasnip = "｢Snip｣",
-                  treesitter = "｢Treesitter｣",
-                  calc = "｢Calc｣",
-                  emoji = "｢Emoji｣",
-                  async_path = "｢Path｣",
-                  nvim_lsp_signature_help = "｢Signature｣",
-                  cmdline = "｢Cmd｣",
-                })[entry.source.name] or "🚀 "
-              )
+                .. (
+                  ({
+                    nvim_lsp = "｢LSP｣",
+                    buffer = "｢Buffer｣",
+                    luasnip = "｢Snip｣",
+                    treesitter = "｢Treesitter｣",
+                    calc = "｢Calc｣",
+                    emoji = "｢Emoji｣",
+                    async_path = "｢Path｣",
+                    nvim_lsp_signature_help = "｢Signature｣",
+                    cmdline = "｢Cmd｣",
+                  })[entry.source.name] or "🚀 "
+                )
             return item
           end,
         },
@@ -206,14 +208,14 @@ return {
             end,
             priority = 1000,
           },
-          { name = "luasnip", priority = 750 },
-          { name = "treesitter", priority = 750 },
+          { name = "luasnip",                 priority = 750 },
+          { name = "treesitter",              priority = 750 },
           { name = "nvim_lsp_signature_help", priority = 500 },
-          { name = "buffer", priority = 500 },
-          { name = "nvim_lua", priority = 500 },
-          { name = "codeium", priority = 500 },
-          { name = "async_path", priority = 250 },
-          { name = "emoji", priority = 200 },
+          { name = "buffer",                  priority = 500 },
+          { name = "nvim_lua",                priority = 500 },
+          { name = "codeium",                 priority = 500 },
+          { name = "async_path",              priority = 250 },
+          { name = "emoji",                   priority = 200 },
         }),
       })
       ---@diagnostic disable-next-line: missing-fields, undefined-field

@@ -83,6 +83,7 @@ return {
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ff3e00", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "pink", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "goldenrod", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "lightgreen", bg = "NONE" })
       local border_opts = {
         border = "rounded",
         winhighlight =

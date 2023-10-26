@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.1.0](https://github.com/daUnknownCoder/NeutronVim/compare/v4.0.0...v4.1.0) (2023-10-26)
+
+
+### Features
+
+* **tools:** added mbbill/UndoTree ([60e804d](https://github.com/daUnknownCoder/NeutronVim/commit/60e804da3ece8875806f7b56292cd4001d8cdaaf))
+
+
+### Bug Fixes
+
+* removed ambiguous usage of event for lualine ([4fc676e](https://github.com/daUnknownCoder/NeutronVim/commit/4fc676ed06a75c868b95a283159ad3f646ef9903))
+
 ## [4.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v3.0.1...v4.0.0) (2023-10-26)
 
 

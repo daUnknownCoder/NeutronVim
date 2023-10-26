@@ -8,7 +8,6 @@ local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 ---@diagnostic disable-next-line: undefined-field
 if not vim.loop.fs_stat(lazypath) then
-  vim.print("Installing " .. icons.ui.Sleep .. "lazy.nvim & " .. icons.ui.Code .. "plugins")
   vim.fn.system({
     "git",
     "clone",
@@ -16,6 +15,21 @@ if not vim.loop.fs_stat(lazypath) then
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
     lazypath,
+  })
+  if vim.api.nvim_get_vvar "shell_error" ~= 0 then
+    vim.api.nvim_err_writeln("Error cloning lazy.nvim repository...\n\n")
+  end
+  vim.opt.cmdheight = 1
+  vim.notify "Please wait while plugins are installed..."
+  vim.api.nvim_create_autocmd("User", {
+    desc = "Load Mason and Treesitter after Lazy installs plugins",
+    once = true,
+    pattern = "LazyInstall",
+    callback = function()
+      vim.cmd.bw()
+      vim.tbl_map(function(module) pcall(require, module) end, { "nvim-treesitter", "mason" })
+      vim.notify "Mason is installing packages if configured, check status with `:Mason`"
+    end,
   })
 end
 vim.opt.rtp:prepend(lazypath)

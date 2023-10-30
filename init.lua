@@ -1,4 +1,6 @@
-if vim.loader and vim.fn.has "nvim-0.9.1" == 1 then vim.loader.enable() end
+if vim.loader and vim.fn.has("nvim-0.9.1") == 1 then
+  vim.loader.enable()
+end
 
 vim.defer_fn(function()
   for _, source in ipairs({
@@ -30,6 +32,8 @@ vim.cmd([[autocmd VimEnter * highlight @field gui=italic guifg=#2ac3de]])
 vim.cmd([[autocmd VimEnter * highlight @property gui=italic guifg=lightgreen]])
 vim.cmd([[autocmd VimEnter * highlight Special gui=italic guifg=gold]])
 vim.cmd([[autocmd VimEnter * highlight Function gui=italic guifg=orange]])
+vim.cmd([[autocmd VimEnter * highlight StatusLine gui=italic guibg=NONE]])
+vim.cmd([[autocmd VimEnter * highlight StatusLineNC gui=italic guibg=NONE]])
 vim.cmd([[autocmd VimEnter * highlight NvimTreeIndentMarker guifg=#61afef]])
 vim.cmd([[autocmd VimEnter * filetype plugin indent on]])
 vim.cmd([[autocmd VimEnter * syntax on]])

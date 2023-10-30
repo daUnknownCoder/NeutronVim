@@ -10,8 +10,4 @@ return {
       floats = "transparent",
     },
   },
-  config = function(_, opts)
-    require("tokyonight").setup(opts)
-    vim.cmd([[autocmd VimEnter * colorscheme tokyonight]])
-  end,
 }

@@ -14,7 +14,8 @@ return {
       print("ufo not found!")
     end
 
-    vim.o.foldcolumn = "5"
+    vim.opt.signcolumn = "yes"
+    vim.o.foldcolumn = "1"
     vim.o.foldlevel = 99
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true

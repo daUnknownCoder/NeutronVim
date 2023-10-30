@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/daUnknownCoder/NeutronVim/compare/v4.1.0...v4.1.1) (2023-10-30)
+
+
+### Bug Fixes
+
+* **lsp-lens:** removed pinning to commit as it is not required ([5aca1a7](https://github.com/daUnknownCoder/NeutronVim/commit/5aca1a70bafef34285fe2d93ec64c31225e27ecf))
+
 ## [4.1.0](https://github.com/daUnknownCoder/NeutronVim/compare/v4.0.0...v4.1.0) (2023-10-26)
 
 

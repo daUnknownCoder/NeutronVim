@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.2.0](https://github.com/daUnknownCoder/NeutronVim/compare/v4.1.1...v4.2.0) (2023-10-31)
+
+
+### Features
+
+* **parinfer:** Added parinfer for editing lisp code ([fe6f437](https://github.com/daUnknownCoder/NeutronVim/commit/fe6f437843cd477145b6847ed1034ebd42489a15))
+* **yuck:** Add yuck.vim for ft -&gt; yuck ([f50ca4d](https://github.com/daUnknownCoder/NeutronVim/commit/f50ca4d47c59232e44605b982ed322c878013b4e))
+
 ## [4.1.1](https://github.com/daUnknownCoder/NeutronVim/compare/v4.1.0...v4.1.1) (2023-10-30)
 
 

@@ -38,12 +38,6 @@ require("lazy").setup({
   -- UI Enhancement
   { import = "NeutronVim.plugins.UI" },
 
-  -- Formatting
-  { import = "NeutronVim.plugins.Formatting" },
-
-  -- Linting
-  { import = "NeutronVim.plugins.Linting" },
-
   -- Editing Related
   { import = "NeutronVim.plugins.Editor" },
 

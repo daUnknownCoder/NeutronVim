@@ -136,6 +136,8 @@ return {
   },
   {
     "elkowar/yuck.vim",
+    dependencies = { "gpanders/nvim-parinfer" },
+    lazy = true,
     filetype = "yuck",
   },
 }

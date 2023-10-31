@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v4.3.0...v5.0.0) (2023-10-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **none-ls:** Switched to none-ls [Linting & Formatting]
+
+### Features
+
+* **none-ls:** Switched to none-ls [Linting & Formatting] ([495c1aa](https://github.com/daUnknownCoder/NeutronVim/commit/495c1aa84d51db654811c527020757be0e58bb82))
+
 ## [4.3.0](https://github.com/daUnknownCoder/NeutronVim/compare/v4.2.0...v4.3.0) (2023-10-31)
 
 

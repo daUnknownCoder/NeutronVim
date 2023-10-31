@@ -1,8 +1,5 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = {
-    { "arkav/lualine-lsp-progress", lazy = true, event = "VeryLazy" },
-  },
   lazy = false,
   opts = function()
     local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
@@ -42,21 +39,6 @@ return {
             "filename",
             symbols = { modified = " " .. icons.ui.Pencil, readonly = " " .. icons.ui.Lock, unnamed = " [None] " },
             path = 0,
-          },
-          {
-            "lsp_progress",
-            separators = {
-              component = " ",
-              progress = " | ",
-              percentage = { pre = "", post = "%% " },
-              title = { pre = "", post = ": " },
-              lsp_client_name = { pre = "[", post = "]" },
-              spinner = { pre = "", post = "" },
-              message = { commenced = "In Progress", completed = "Completed" },
-            },
-            display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
-            timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = 1000 },
-            spinner_symbols = { "⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷" },
           },
           {
             function()
@@ -101,7 +83,7 @@ return {
           { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = { fg = "#ff9e64" } },
         },
         lualine_y = {
-          { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
+          { "progress", separator = " ", padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 2 } },
         },
         lualine_z = {

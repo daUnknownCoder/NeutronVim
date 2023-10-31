@@ -30,6 +30,10 @@ return {
     if not mason_lspconfig_status_ok then
       print("mason-lspconfig not found!")
     end
+    local mason_null_ls_status_ok, mason_null_ls = pcall(require, "mason-null-ls")
+    if not mason_null_ls_status_ok then
+      print("mason-null-ls not found!")
+    end
 
     mason.setup({
       ui = {
@@ -50,6 +54,18 @@ return {
         "marksman",
       },
       automatic_installation = true,
+    })
+    mason_null_ls.setup({
+      ensure_installed = {
+        "prettier",
+        "stylua",
+        "black",
+        "isort",
+        "ruff",
+        "eslint_d",
+        "luacheck",
+        "prettierd",
+      },
     })
   end,
 }

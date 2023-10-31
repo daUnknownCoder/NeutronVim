@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.3.0](https://github.com/daUnknownCoder/NeutronVim/compare/v4.2.0...v4.3.0) (2023-10-31)
+
+
+### Features
+
+* **none-ls:** Switched to none-ls [Linting & Formatting] ([6dc2f01](https://github.com/daUnknownCoder/NeutronVim/commit/6dc2f01428bae2e780e9df273ec510f3029bd63a))
+
+
+### Bug Fixes
+
+* **lazy:** removed redundant lazy specs ([9cc522d](https://github.com/daUnknownCoder/NeutronVim/commit/9cc522dccf3de18ba37c743e21a977ea05033a7f))
+* **lsp-progress:** removed lsp-progress in lualine ([8ad286d](https://github.com/daUnknownCoder/NeutronVim/commit/8ad286ddbf4390e7c93343f93f13d631416b5dc4))
+
 ## [4.2.0](https://github.com/daUnknownCoder/NeutronVim/compare/v4.1.1...v4.2.0) (2023-10-31)
 
 

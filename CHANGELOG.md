@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.0...v5.0.1) (2023-11-03)
+
+
+### Performance Improvements
+
+* **colorscheme:** set to  to decrease startuptime ([64a3006](https://github.com/daUnknownCoder/NeutronVim/commit/64a30062f4fcdccdcc61e51fbd2fc85132a7fd97))
+
 ## [5.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v4.3.0...v5.0.0) (2023-10-31)
 
 

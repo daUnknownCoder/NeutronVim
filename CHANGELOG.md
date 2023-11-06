@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.1...v5.0.2) (2023-11-06)
+
+
+### Bug Fixes
+
+* **cmp:** tab in free space writes tabout ([2a5893a](https://github.com/daUnknownCoder/NeutronVim/commit/2a5893aa57dc90a5a8395953352a8f045e5cfd48))
+
 ## [5.0.1](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.0...v5.0.1) (2023-11-03)
 
 

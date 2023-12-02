@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.3](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.2...v5.0.3) (2023-12-02)
+
+
+### Bug Fixes
+
+* **none-ls:** python lsp ([dcca607](https://github.com/daUnknownCoder/NeutronVim/commit/dcca60763f34d581e1f32648f58052820b8d0013))
+
 ## [5.0.2](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.1...v5.0.2) (2023-11-06)
 
 

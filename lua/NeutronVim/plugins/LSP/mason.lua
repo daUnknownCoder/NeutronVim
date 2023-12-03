@@ -13,7 +13,7 @@ return {
       "ruff",
       "eslint_d",
       "luacheck",
-      "prettier",
+      "prettierd",
       "stylua",
     },
   },
@@ -57,14 +57,13 @@ return {
     })
     mason_null_ls.setup({
       ensure_installed = {
-        "prettier",
+        "prettierd",
         "stylua",
         "black",
         "isort",
         "ruff",
         "eslint_d",
         "luacheck",
-        "prettierd",
       },
     })
   end,

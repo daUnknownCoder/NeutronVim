@@ -17,9 +17,8 @@ return {
       sources = {
         formatting.black,
         formatting.isort,
-        formatting.prettier,
-        formatting.stylua,
         formatting.prettierd,
+        formatting.stylua,
         diagnostics.eslint_d,
         diagnostics.ruff,
         diagnostics.luacheck,
@@ -34,7 +33,7 @@ return {
             callback = function()
               vim.lsp.buf.format({
                 filter = function(client)
-                  return client.name == "null-ls"
+                  return client.name == "none-LS"
                 end,
                 bufnr = bufnr,
               })

@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.4](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.3...v5.0.4) (2023-12-03)
+
+
+### Bug Fixes
+
+* **prettier:** changed prettier to prettierd for fastness ([27c9d98](https://github.com/daUnknownCoder/NeutronVim/commit/27c9d98bf3ffc444e907510f5221dea6b91f8f0a))
+
 ## [5.0.3](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.2...v5.0.3) (2023-12-02)
 
 

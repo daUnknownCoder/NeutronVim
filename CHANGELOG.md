@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.5](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.4...v5.0.5) (2024-01-13)
+
+
+### Bug Fixes
+
+* **lsp_lines:** lsp_lines update in insert not showing updates solved ([25a7e28](https://github.com/daUnknownCoder/NeutronVim/commit/25a7e289009893f6128fea830cf000223d4d520e))
+
 ## [5.0.4](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.3...v5.0.4) (2023-12-03)
 
 

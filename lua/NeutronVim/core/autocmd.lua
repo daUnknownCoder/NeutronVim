@@ -37,6 +37,19 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   command = "checktime",
 })
 
+vim.api.nvim_create_autocmd("InsertEnter", {
+  callback = function()
+    vim.diagnostic.hide()
+  end,
+})
+
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern = "i:*",
+  callback = function()
+    vim.diagnostic.show()
+  end,
+})
+
 -- resize splits if window got resized
 autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),

@@ -88,7 +88,7 @@ return {
           border = "rounded",
           focusable = false,
         },
-        update_in_insert = true,
+        update_in_insert = false,
         signs = true,
         underline = true,
         severity_sort = false,

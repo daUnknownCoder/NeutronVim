@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.1.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.6...v5.1.0) (2024-01-24)
+
+
+### Features
+
+* **tab:** tab not working in between words (fixed) ([b05fccb](https://github.com/daUnknownCoder/NeutronVim/commit/b05fccb1c37fdfd3475ba9c8dda7ad92b894e23b))
+
+
+### Bug Fixes
+
+* **autocmd:** added a few autoclose on q windows ([c77ef73](https://github.com/daUnknownCoder/NeutronVim/commit/c77ef7378ec02c8dacc03636b747ced1aafcf5c3))
+
 ## [5.0.6](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.5...v5.0.6) (2024-01-24)
 
 

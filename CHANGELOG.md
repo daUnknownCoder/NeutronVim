@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.6](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.5...v5.0.6) (2024-01-24)
+
+
+### Bug Fixes
+
+* **alpha:** alpha changes coz some elements went out of screen ([1ac1726](https://github.com/daUnknownCoder/NeutronVim/commit/1ac17268fbb857b055ef015a7e72ccbe0d6e525f))
+
 ## [5.0.5](https://github.com/daUnknownCoder/NeutronVim/compare/v5.0.4...v5.0.5) (2024-01-13)
 
 

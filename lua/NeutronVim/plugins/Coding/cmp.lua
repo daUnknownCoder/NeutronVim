@@ -45,7 +45,7 @@ return {
       { "hrsh7th/cmp-emoji", lazy = true },
       { "ray-x/cmp-treesitter", lazy = true },
       { "hrsh7th/cmp-nvim-lsp-signature-help", lazy = true },
-      { "Exafunction/codeium.vim", lazy = true },
+      { "Exafunction/codeium.vim", lazy = true, commit = "a1c3d6b369a18514d656dac149de807becacbdf7" },
       lazy = true,
     },
     event = "InsertEnter",

@@ -75,10 +75,6 @@ return {
           return false
         end
       end
-      local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "aqua", bg = "NONE", italic = true })
@@ -170,11 +166,9 @@ return {
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             elseif check_back_space() then
-              feedkey("<Tab>", "i")
-            elseif has_words_before() then
-              cmp.complete()
+              feedkey("  ", "i")
             else
-              vim.fn["codeium#Accept"]()
+              feedkey("  ", "i")
             end
           end, { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(function(_)
@@ -183,9 +177,9 @@ return {
             elseif luasnip.jumpable(-1) then
               luasnip.jump(-1)
             elseif check_back_space() then
-              feedkey("<C-d>", "i")
+              feedkey("  ", "i")
             else
-              vim.fn["codeium#Accept"]()
+              feedkey("  ", "i")
             end
           end, { "i", "s" }),
         },

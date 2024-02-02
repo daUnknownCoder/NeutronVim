@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.2](https://github.com/daUnknownCoder/NeutronVim/compare/v5.1.1...v5.1.2) (2024-02-02)
+
+
+### Bug Fixes
+
+* **<Tab>:** pressing &lt;Tab&gt; key doesn't freeze the terminal window ([302d824](https://github.com/daUnknownCoder/NeutronVim/commit/302d824b32169e680740193806a37691bb4078c7))
+
 ## [5.1.1](https://github.com/daUnknownCoder/NeutronVim/compare/v5.1.0...v5.1.1) (2024-01-26)
 
 

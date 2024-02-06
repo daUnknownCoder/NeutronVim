@@ -1,13 +1,26 @@
 return {
   {
-    "weilbith/nvim-code-action-menu",
-    cmd = "CodeActionMenu",
+    "aznhe21/actions-preview.nvim",
     keys = {
-      { "\\a", "<cmd>CodeActionMenu<CR>", desc = "CodeActionMenu" },
+      { "\\a", "<cmd>lua require('actions-preview').code_actions()<CR>", desc = "CodeActionMenu" },
     },
     lazy = true,
     config = function()
-      vim.cmd([[let g:code_action_menu_window_border = 'rounded']])
+      require("actions-preview").setup({
+        telescope = {
+          sorting_strategy = "ascending",
+          layout_strategy = "vertical",
+          layout_config = {
+            width = 0.8,
+            height = 0.9,
+            prompt_position = "top",
+            preview_cutoff = 20,
+            preview_height = function(_, _, max_lines)
+              return max_lines - 15
+            end,
+          },
+        },
+      })
     end,
   },
 }

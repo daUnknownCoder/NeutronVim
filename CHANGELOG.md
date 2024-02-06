@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.1.2...v5.2.0) (2024-02-06)
+
+
+### Features
+
+* **actions-preview.nvim:** switched from archived project to new one ([b85df2e](https://github.com/daUnknownCoder/NeutronVim/commit/b85df2ea0a489edf0510b2daac86cb519a7e35f4))
+
 ## [5.1.2](https://github.com/daUnknownCoder/NeutronVim/compare/v5.1.1...v5.1.2) (2024-02-02)
 
 

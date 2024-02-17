@@ -5,6 +5,7 @@ return {
       { "\\a", "<cmd>lua require('actions-preview').code_actions()<CR>", desc = "CodeActionMenu" },
     },
     lazy = true,
+    event = "LspAttach",
     config = function()
       require("actions-preview").setup({
         telescope = {

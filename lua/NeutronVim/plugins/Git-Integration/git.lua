@@ -1,6 +1,6 @@
 return {
   "lewis6991/gitsigns.nvim",
-  event = "BufRead",
+  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   keys = {
     { ";j", "<cmd>lua require('gitsigns').next_hunk()<CR>", desc = "Next Hunk" },
     { ";k", "<cmd>lua require('gitsigns').prev_hunk()<CR>", desc = "Prev Hunk" },

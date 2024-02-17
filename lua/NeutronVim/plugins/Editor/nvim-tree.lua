@@ -6,6 +6,7 @@ return {
     keys = {
       { "<C-n>", "<cmd>NvimTreeFindFileToggle<cr>", desc = "NvimTree" },
     },
+    event = "VimEnter",
     config = function()
       local nvimtree_status_ok, nvimtree = pcall(require, "nvim-tree")
       if not nvimtree_status_ok then

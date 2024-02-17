@@ -3,7 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = true,
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufEnter" },
     version = false,
     cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
     config = function()
@@ -14,21 +14,31 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       treesitter.setup({
         ensure_installed = {
-          "vimdoc",
-          "javascript",
+          "bash",
           "c",
+          "css",
+          "diff",
+          "html",
+          "hyprlang",
+          "javascript",
+          "jsdoc",
+          "json",
+          "jsonc",
           "lua",
+          "luadoc",
+          "luap",
+          "markdown",
+          "markdown_inline",
           "python",
           "query",
-          "json",
-          "vim",
           "regex",
-          "markdown_inline",
-          "bash",
           "toml",
-          "html",
           "rust",
-          "css",
+          "tsx",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "yaml",
         },
         sync_install = false,
         auto_install = true,
@@ -49,12 +59,15 @@ return {
           },
         },
       })
+      vim.filetype.add({
+        pattern = { [".*/hyprland%.conf"] = "hyprlang" },
+      })
     end,
   },
   {
     "nvim-treesitter/playground",
     keys = {
-      { "<leader>ml", "<cmd>TSPlaygroundToggle<CR>", desc = "Toggle Playground" },
+      { "<leader>mp", "<cmd>TSPlaygroundToggle<CR>", desc = "Toggle Playground" },
     },
     cmd = "TSPlaygroundToggle",
     lazy = true,
@@ -124,20 +137,6 @@ return {
           },
         },
       })
-    end,
-  },
-  {
-    "luckasRanarison/tree-sitter-hypr",
-    event = "BufRead */hypr/*.conf",
-    config = function()
-      require("nvim-treesitter.parsers").get_parser_configs().hypr = {
-        install_info = {
-          url = "https://github.com/luckasRanarison/tree-sitter-hypr",
-          files = { "src/parser.c" },
-          branch = "master",
-        },
-        filetype = "hypr",
-      }
     end,
   },
 }

@@ -2,7 +2,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    lazy = true,
+    event = "BufEnter",
     keys = {
       { "ff", "<cmd>Telescope find_files<CR>", desc = "Find Files Fuzzily" },
       { "fg", "<cmd>Telescope live_grep<CR>", desc = "Find Text" },

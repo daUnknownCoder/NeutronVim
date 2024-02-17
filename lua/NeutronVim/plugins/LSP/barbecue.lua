@@ -37,5 +37,5 @@ return {
         require("barbecue.ui").update()
       end,
     })
-  end
+  end,
 }

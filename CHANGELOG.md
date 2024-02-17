@@ -1,5 +1,24 @@
 # Changelog
 
+## [5.3.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.2.1...v5.3.0) (2024-02-17)
+
+
+### Features
+
+* **lsp_attach:** Increase performance + lsp_attach check ([8e78a17](https://github.com/daUnknownCoder/NeutronVim/commit/8e78a17c76bc545928594d6cd1f9641390f46a2f))
+* **tags completion:** &lt; and &gt; autocomplete ([928d358](https://github.com/daUnknownCoder/NeutronVim/commit/928d358d6830b7d68f761fea224af10ab559abbd))
+* **tools:** better look, add few params ([436c042](https://github.com/daUnknownCoder/NeutronVim/commit/436c0423d572fe4bb2c360337fecfe40f49db15b))
+
+
+### Bug Fixes
+
+* **tab key:** updated rude behaviour of tab key while between words ([f2104e6](https://github.com/daUnknownCoder/NeutronVim/commit/f2104e6838539009290cfec5178234f4a585ce73))
+
+
+### Performance Improvements
+
+* **virtual_text:** virtual lines displayed on current line only ([b50125c](https://github.com/daUnknownCoder/NeutronVim/commit/b50125cddb56a1669020b218ee0099462cab68af))
+
 ## [5.2.1](https://github.com/daUnknownCoder/NeutronVim/compare/v5.2.0...v5.2.1) (2024-02-17)
 
 

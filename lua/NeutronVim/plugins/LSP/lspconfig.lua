@@ -1,11 +1,12 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "BufReadPre",
+    event = { "BufEnter", "BufNewFile" },
     lazy = true,
     dependencies = {
       {
         "hrsh7th/cmp-nvim-lsp",
+        event = { "BufReadPost", "BufNewFile" },
         lazy = true,
       },
       {
@@ -30,39 +31,40 @@ return {
       local keymap = vim.keymap.set
       -- luacheck: ignore 212
       local on_attach = function(client, bufnr)
-        print("LSP Attached to buffer.")
-        keymap(
-          "n",
-          "\\f",
-          "<cmd>Lspsaga finder ref+def+imp+tyd<CR>",
-          { noremap = true, silent = true, desc = "LSP Finder [Ref, Def, Imp, Tyd] " }
-        )
-        keymap(
-          "n",
-          "[d",
-          "<cmd>Lspsaga diagnostic_jump_prev<CR>",
-          { noremap = true, silent = true, desc = "Diagnostic Jump Prev" }
-        )
-        keymap(
-          "n",
-          "]d",
-          "<cmd>Lspsaga diagnostic_jump_next<CR>",
-          { noremap = true, silent = true, desc = "Diagnostic Jump Next" }
-        )
-        require("lsp_signature").on_attach({
-          bind = true,
-          debug = true,
-          floating_window = true,
-          floating_window_above_cur_line = true,
-          hint_enable = true,
-          fix_pos = false,
-          -- floating_window_above_first = true,
-          log_path = vim.fn.expand("$HOME") .. "/tmp/sig.log",
-          padding = " ",
-          handler_opts = {
-            border = "rounded",
-          },
-        }, bufnr)
+        if client then
+          keymap(
+            "n",
+            "\\f",
+            "<cmd>Lspsaga finder ref+def+imp+tyd<CR>",
+            { noremap = true, silent = true, desc = "LSP Finder [Ref, Def, Imp, Tyd] " }
+          )
+          keymap(
+            "n",
+            "[d",
+            "<cmd>Lspsaga diagnostic_jump_prev<CR>",
+            { noremap = true, silent = true, desc = "Diagnostic Jump Prev" }
+          )
+          keymap(
+            "n",
+            "]d",
+            "<cmd>Lspsaga diagnostic_jump_next<CR>",
+            { noremap = true, silent = true, desc = "Diagnostic Jump Next" }
+          )
+          require("lsp_signature").on_attach({
+            bind = true,
+            debug = true,
+            floating_window = true,
+            floating_window_above_cur_line = true,
+            hint_enable = true,
+            fix_pos = false,
+            -- floating_window_above_first = true,
+            log_path = vim.fn.expand("$HOME") .. "/tmp/sig.log",
+            padding = " ",
+            handler_opts = {
+              border = "rounded",
+            },
+          }, bufnr)
+        end
       end
       local capabilities = cmp_nvim_lsp.default_capabilities()
       local signs = {

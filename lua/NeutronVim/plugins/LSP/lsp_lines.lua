@@ -8,5 +8,6 @@ return {
       print("lsp_lines not found!")
     end
     lsplines.setup({})
+    vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
   end,
 }

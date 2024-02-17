@@ -67,6 +67,10 @@ return {
       local feedkey = function(key, mode)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
       end
+      local function has_words_before()
+        local line, col = (unpack or table.unpack)(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
       local check_back_space = function()
         local col = vim.fn.col(".") - 1
         if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
@@ -167,6 +171,8 @@ return {
               luasnip.expand_or_jump()
             elseif check_back_space() then
               feedkey("  ", "i")
+            elseif has_words_before() then
+              cmp.complete()
             else
               feedkey("  ", "i")
             end

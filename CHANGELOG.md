@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.1](https://github.com/daUnknownCoder/NeutronVim/compare/v5.2.0...v5.2.1) (2024-02-17)
+
+
+### Performance Improvements
+
+* **optimizations of events:** faster loading time, updated events ([9525944](https://github.com/daUnknownCoder/NeutronVim/commit/9525944ab2f7d8b68a2dc1fda2ce90f2a63ae7dd))
+
 ## [5.2.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.1.2...v5.2.0) (2024-02-06)
 
 

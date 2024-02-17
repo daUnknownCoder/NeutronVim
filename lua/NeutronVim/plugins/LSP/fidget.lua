@@ -28,7 +28,7 @@ return {
         completed = icons.ui.CircleSmall,
       },
       timer = {
-        spinner_rate = 100,
+        spinner_rate = 200,
         fidget_decay = 3000,
         task_decay = 3000,
       },

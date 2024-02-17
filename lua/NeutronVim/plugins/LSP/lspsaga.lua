@@ -13,7 +13,7 @@ return {
         layout = "float",
       },
       lightbulb = {
-        enable = false,
+        enable = true,
       },
       symbol_in_winbar = {
         enable = false,

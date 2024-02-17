@@ -9,18 +9,18 @@ local health = {
 }
 
 function M.check()
-  health.start "NeutronVim"
+  health.start("NeutronVim")
 
-  health.info("Neovim Version: v" .. vim.fn.matchstr(vim.fn.execute "version", "NVIM v\\zs[^\n]*"))
+  health.info("Neovim Version: v" .. vim.fn.matchstr(vim.fn.execute("version"), "NVIM v\\zs[^\n]*"))
 
   if vim.version().prerelease then
-    health.warn "Neovim nightly is not currently supported coz it may have breaking changes..."
-  elseif vim.fn.has "nvim-0.8" == 1 then
-    health.ok "Using stable Neovim >= 0.8.0"
-  elseif vim.fn.has "nvim-0.9" == 1 then
-    health.ok "Using Neovim >= 0.9.0 version"
+    health.warn("Neovim nightly is not currently supported because it may have breaking changes...")
+  elseif vim.fn.has("nvim-0.8") == 1 then
+    health.ok("Using stable Neovim >= 0.8.0")
+  elseif vim.fn.has("nvim-0.9") == 1 then
+    health.ok("Using Neovim >= 0.9.0 version")
   else
-    health.error "Neovim >= 0.8.0 is required"
+    health.error("Neovim >= 0.8.0 is required")
   end
 
   local programs = {
@@ -42,7 +42,7 @@ function M.check()
       end,
     },
     { cmd = { "lazygit" }, type = "warn", msg = "Used for mappings to pull up git TUI (Optional)" },
-    { cmd = { "gdu" },     type = "warn", msg = "Used for mappings to pull up disk usage analyzer (Optional)" },
+    { cmd = { "gdu" }, type = "warn", msg = "Used for mappings to pull up disk usage analyzer (Optional)" },
   }
 
   for _, program in ipairs(programs) do
@@ -51,7 +51,9 @@ function M.check()
     for _, cmd in ipairs(program.cmd) do
       if vim.fn.executable(cmd) == 1 then
         name = cmd
-        if not program.extra_check or program.extra_check(program) then found = true end
+        if not program.extra_check or program.extra_check(program) then
+          found = true
+        end
         break
       end
     end

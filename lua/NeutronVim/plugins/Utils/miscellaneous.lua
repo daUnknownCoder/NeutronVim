@@ -141,4 +141,18 @@ return {
     lazy = true,
     filetype = "yuck",
   },
+  -- Beautiful CodeSnippet Viewing
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    lazy = true,
+    cmd = "CodeSnapPreviewOn",
+    config = function()
+      require("codesnap").setup({
+        mac_window_bar = true,
+        opacity = true,
+        watermark = (vim.fn.getcwd():gsub(os.getenv("HOME"), "~")),
+      })
+    end,
+  },
 }

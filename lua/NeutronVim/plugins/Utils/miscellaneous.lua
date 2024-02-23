@@ -68,19 +68,19 @@ return {
   },
   -- Illuminating equivalent words in current buffer under the cursor
   {
-    "RRethy/vim-illuminate",
+    "echasnovski/mini.cursorword",
+    version = "*",
     event = { "BufReadPre", "BufNewFile" },
     lazy = true,
     opts = {
       delay = 500,
-      large_file_cutoff = 5000,
     },
     config = function(_, opts)
-      local status_ok, illuminate = pcall(require, "illuminate")
+      local status_ok, curword = pcall(require, "mini.cursorword")
       if not status_ok then
-        print("illuminate not found!")
+        print("cursorword not found!")
       end
-      illuminate.configure(opts)
+      curword.setup(opts)
     end,
   },
   -- Useless but looks good :D

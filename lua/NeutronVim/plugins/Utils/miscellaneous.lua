@@ -134,6 +134,7 @@ return {
       { "<leader>sr", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
     },
   },
+  -- Yuck File Syntaxing
   {
     "elkowar/yuck.vim",
     dependencies = { "gpanders/nvim-parinfer" },

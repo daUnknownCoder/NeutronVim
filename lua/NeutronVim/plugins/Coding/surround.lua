@@ -17,6 +17,7 @@ return {
         highlight = "gsh", -- Highlight surrounding
         replace = "gsr", -- Replace surrounding
       },
+      search_method = "cover_or_next",
     })
   end,
 }

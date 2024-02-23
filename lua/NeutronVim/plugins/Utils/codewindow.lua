@@ -1,5 +1,7 @@
 return {
   "gorbit99/codewindow.nvim",
+  lazy = true,
+  event = { "BufReadPost", "BufNewFile" },
   config = function()
     local codewindow_status_ok, codewindow = pcall(require, "codewindow")
     if not codewindow_status_ok then

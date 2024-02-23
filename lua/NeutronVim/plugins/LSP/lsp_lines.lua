@@ -9,5 +9,6 @@ return {
     end
     lsplines.setup({})
     vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+    vim.diagnostic.config({ virtual_lines = false }, require("lazy.core.config").ns)
   end,
 }

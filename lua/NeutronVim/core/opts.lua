@@ -66,5 +66,3 @@ vim.g.markdown_recommended_style = 0
 for option, value in pairs(options) do
   vim.opt[option] = value
 end
-
-vim.cmd([[autocmd VimEnter * colorscheme tokyonight]])

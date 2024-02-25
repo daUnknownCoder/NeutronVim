@@ -7,7 +7,23 @@ return {
     { "<leader>uu", "<cmd>lua require('ufo').closeAllFolds()<CR>", desc = "Close all folds" },
     { "<leader>up", "<cmd>lua require('ufo').peekFoldedLinesUnderCursor()<CR>", desc = "Peek fold under cursor" },
   },
-  dependencies = "kevinhwang91/promise-async",
+  dependencies = {
+    { "kevinhwang91/promise-async" },
+    {
+      "luukvbaal/statuscol.nvim",
+      config = function()
+        local builtin = require("statuscol.builtin")
+        require("statuscol").setup({
+          relculright = true,
+          segments = {
+            { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+            { text = { "%s" }, click = "v:lua.ScSa" },
+            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+          },
+        })
+      end,
+    },
+  },
   config = function()
     local ufo_status_ok, ufo = pcall(require, "ufo")
     if not ufo_status_ok then

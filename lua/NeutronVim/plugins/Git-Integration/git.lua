@@ -5,7 +5,21 @@ return {
     { ";j", "<cmd>lua require('gitsigns').next_hunk()<CR>", desc = "Next Hunk" },
     { ";k", "<cmd>lua require('gitsigns').prev_hunk()<CR>", desc = "Prev Hunk" },
     { ";p", "<cmd>lua require('gitsigns').preview_hunk()<CR>", desc = "Preview Hunk" },
-    { ";b", "<cmd>lua require('gitsigns').blame_line()<CR>", desc = "Blame Line" },
+    { ";s", "<cmd>lua require('gitsigns').stage_hunk()<CR>", desc = "Stage Hunk" },
+    {
+      ";s",
+      "<cmd>lua require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')})<CR>",
+      desc = "Stage Hunk",
+      mode = "v",
+    },
+    { ";u", "<cmd>lua require('gitsigns').undo_stage_hunk()<CR>", desc = "Undo Stage Hunk" },
+    { ";r", "<cmd>lua require('gitsigns').reset_hunk()<CR>", desc = "Reset Hunk" },
+    {
+      ";r",
+      "<cmd>lua require('gitsigns').reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })<CR>",
+      mode = "v",
+      desc = "Reset Hunk",
+    },
   },
   ft = { "gitcommit", "diff" },
   init = function()
@@ -33,12 +47,12 @@ return {
     end
     gitsigns.setup({
       signs = {
-        add = { text = icons.ui.Electric },
-        change = { text = icons.ui.Edge },
+        add = { text = icons.kind.Event },
+        change = { text = icons.ui.Pencil },
         delete = { text = icons.ui.Trash },
         topdelete = { text = icons.ui.Top },
         changedelete = { text = icons.ui.Close },
-        untracked = { text = icons.ui.Pencil },
+        untracked = { text = icons.ui.NewFile },
       },
       signcolumn = true,
       numhl = true,
@@ -66,9 +80,6 @@ return {
         relative = "cursor",
         row = 0,
         col = 1,
-      },
-      yadm = {
-        enable = false,
       },
     })
   end,

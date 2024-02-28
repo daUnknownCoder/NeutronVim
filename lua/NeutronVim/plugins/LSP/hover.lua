@@ -6,7 +6,6 @@ return {
     { "\\H", "<cmd>lua require('hover').hover_select()<CR>", desc = "Hover Select" },
     { "\\kj", "<cmd>lua require('hover').hover_switch('previous')<CR>", desc = "Hover (Previous Source)" },
     { "\\kk", "<cmd>lua require('hover').hover_switch('next')<CR>", desc = "Hover (Next Source)" },
-    { "<MouseMove>", "<cmd>lua require('hover').hover_mouse()<CR>", desc = "Hover (Mouse)" },
   },
   config = function()
     vim.o.mousemoveevent = true

@@ -17,7 +17,7 @@ return {
       end
       ---@diagnostic disable-next-line: missing-fields
       renamer.setup({
-        title = icons.ui.Electric .. "Rename [LSP]" .. icons.ui.Electric,
+        title = icons.ui.Electric .. "Rename [LSP] " .. icons.ui.Electric,
       })
     end,
   },

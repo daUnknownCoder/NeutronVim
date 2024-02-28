@@ -1,5 +1,24 @@
 # Changelog
 
+## [5.4.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.3.0...v5.4.0) (2024-02-25)
+
+
+### Features
+
+* **Codesnap:** Add plugin to beautify snippets while sharing them. ([d83a50c](https://github.com/daUnknownCoder/NeutronVim/commit/d83a50c693268d27ddb4b852ac844666241ccc3f))
+
+
+### Bug Fixes
+
+* **hooks:** use hooks to set highlights when changing colorschemes ([0402846](https://github.com/daUnknownCoder/NeutronVim/commit/04028466068322c62fe925696e1ddaf4fa58d16e))
+* **lazy.nvim:** Unnecessary double line virtual text ([c3b4cc6](https://github.com/daUnknownCoder/NeutronVim/commit/c3b4cc673f8ffeee2d7a9a6277ad91650db66e7f))
+* **mini.animate:** black UI when new window are opened or closed ([2dbe712](https://github.com/daUnknownCoder/NeutronVim/commit/2dbe712a1797498bbf9149f472871b8857218f71))
+
+
+### Performance Improvements
+
+* **illuminate:** switch from `vim-illuminate` to `mini.cursorword` ([26dc99d](https://github.com/daUnknownCoder/NeutronVim/commit/26dc99d5864dc28351ddac149a584dd997759ab4))
+
 ## [5.3.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.2.1...v5.3.0) (2024-02-17)
 
 

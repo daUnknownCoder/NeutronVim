@@ -8,6 +8,7 @@ return {
     "rcarriga/nvim-dap-ui",
     "theHamsta/nvim-dap-virtual-text",
     "jbyuki/one-small-step-for-vimkind",
+    "mxsdev/nvim-dap-vscode-js",
   },
   lazy = true,
   keys = {
@@ -55,7 +56,63 @@ return {
     end
 
     dap_py.setup(path)
-    dapui.setup()
+    dapui.setup({
+      icons = { expanded = "", collapsed = "" },
+      layouts = {
+        {
+          elements = {
+            { id = "scopes", size = 0.5 },
+            "breakpoints",
+            "stacks",
+            "watches",
+          },
+          size = 60,
+          position = "left",
+        },
+        {
+          elements = {
+            "repl",
+            "console",
+          },
+          size = 0.25,
+          position = "bottom",
+        },
+      },
+      floating = {
+        border = vim.g.floating_window_border,
+      },
+    })
+    vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "Function", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Comment", linehl = "", numhl = "" })
+    vim.fn.sign_define("DapStopped", { text = "🠶", texthl = "String", linehl = "DiffAdd", numhl = "" })
+
+    require("dap-vscode-js").setup({
+      adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+    })
+    dap.configurations.lua = {
+      {
+        type = "nlua",
+        request = "attach",
+        name = "Attach to running Neovim instance",
+        host = "127.0.0.1",
+        port = function()
+          local co = coroutine.running()
+          vim.ui.input({
+            prompt = "Port: ",
+            relative = "win",
+          }, function(input)
+            coroutine.resume(co, tonumber(input))
+          end)
+
+          return coroutine.yield()
+        end,
+      },
+    }
+
+    dap.adapters.nlua = function(callback, config)
+      callback({ type = "server", host = config.host, port = config.port })
+    end
     dap.listeners.after.event_initialized["dapui_config"] = function()
       dapui.open()
     end

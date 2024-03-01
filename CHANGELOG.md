@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.5.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.4.0...v5.5.0) (2024-03-01)
+
+
+### Features
+
+* **cmp:** add new plugins ([60eb4ce](https://github.com/daUnknownCoder/NeutronVim/commit/60eb4ce8c9188f623566fbf54884cda158189233))
+* **codeium:** add codeium results status in lualine ([4e0e666](https://github.com/daUnknownCoder/NeutronVim/commit/4e0e6662cceeef58491ace847f3d32858688f10a))
+
 ## [5.4.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.3.0...v5.4.0) (2024-02-25)
 
 

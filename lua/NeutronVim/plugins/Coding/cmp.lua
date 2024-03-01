@@ -10,6 +10,8 @@ return {
     },
     opts = {
       history = true,
+      enable_autosnippets = true,
+      updateevents = "TextChanged,TextChangedI",
       delete_check_events = "TextChanged",
       region_check_events = "CursorMoved",
     },
@@ -32,7 +34,7 @@ return {
       })
     end,
     lazy = true,
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
   },
   {
     "hrsh7th/nvim-cmp",
@@ -48,7 +50,7 @@ return {
       { "Exafunction/codeium.vim", lazy = true, commit = "a1c3d6b369a18514d656dac149de807becacbdf7" },
       lazy = true,
     },
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     config = function()
       local cmp_status_ok, cmp = pcall(require, "cmp")
       if not cmp_status_ok then
@@ -58,12 +60,26 @@ return {
       if not snip_status_ok then
         print("Luasnip not found!")
       end
+      local git_status_ok, cmp_git = pcall(require, "cmp_git")
+      if not git_status_ok then
+        print("cmp_git not found!")
+      end
+      cmp_git.setup()
       local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
       if not icons_ok then
         print("Unable to import icons!")
       end
+      vim.g.codeium_disable_bindings = 1
+      vim.keymap.set("i", "<C-a>", function()
+        return vim.fn["codeium#Accept"]()
+      end, { expr = true, silent = true })
+      vim.keymap.set("i", "<c-f>", function()
+        return vim.fn["codeium#CycleCompletions"](1)
+      end, { expr = true, silent = true })
+      vim.keymap.set("i", "<c-b>", function()
+        return vim.fn["codeium#CycleCompletions"](-1)
+      end, { expr = true, silent = true })
       local kind_icons = icons.kind
-      local set = vim.keymap.set
       local feedkey = function(key, mode)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
       end
@@ -81,29 +97,23 @@ return {
       end
       vim.api.nvim_set_hl(0, "NeutronCmpNormal", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "NeutronCmpBorder", { fg = "lightblue", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "NeutronCmpCursorLine", { fg = "aqua", bg = "NONE", italic = true })
       vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "silver", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "lime", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ff3e00", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "salmon" })
+      vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "deepskyblue" })
       vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "pink", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "goldenrod", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "yellow", bg = "NONE" })
       vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "lightgreen", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "orange" })
+      vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
+      vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
+      vim.api.nvim_set_hl(0, "CmpItemKindFolder", { fg = "#D4A959", bg = "NONE" })
+      vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
       local border_opts = {
         border = "rounded",
-        winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:NeutronCmpCursorLine,Search:CmpItemAbbrMatchFuzzy",
+        winhighlight = "Normal:NeutronCmpNormal,FloatBorder:NeutronCmpBorder,CursorLine:PmenuSel,Search:CmpItemAbbrMatchFuzzy",
       }
-      set("i", "<C-a>", function()
-        return vim.fn["codeium#Accept"]()
-      end, { expr = true })
-      set("i", "<c-b>", function()
-        return vim.fn["codeium#CycleCompletions"](1)
-      end, { expr = true })
-      set("i", "<c-f>", function()
-        return vim.fn["codeium#CycleCompletions"](-1)
-      end, { expr = true })
-      set("i", "<c-x>", function()
-        return vim.fn["codeium#Clear"]()
-      end, { expr = true })
       ---@diagnostic disable-next-line: missing-fields, redundant-parameter
       cmp.setup({
         preselect = cmp.PreselectMode.None,
@@ -116,14 +126,19 @@ return {
               .. (
                 ({
                   nvim_lsp = "｢LSP｣",
+                  gh_issues = "｢Issues｣",
+                  nvim_lua = "｢API｣",
                   buffer = "｢Buffer｣",
                   luasnip = "｢Snip｣",
                   treesitter = "｢Treesitter｣",
                   calc = "｢Calc｣",
                   emoji = "｢Emoji｣",
+                  rg = "｢rg｣",
+                  dap = "｢DAP｣",
                   async_path = "｢Path｣",
                   nvim_lsp_signature_help = "｢Signature｣",
                   cmdline = "｢Cmd｣",
+                  cmdline_history = "｢History｣",
                 })[entry.source.name] or "🚀 "
               )
             return item
@@ -190,6 +205,7 @@ return {
           end, { "i", "s" }),
         },
         sources = cmp.config.sources({
+          { name = "calc", priority_weight = 10 },
           {
             name = "nvim_lsp",
             entry_filter = function(entry, context)
@@ -212,16 +228,38 @@ return {
               end
               return true
             end,
-            priority = 1000,
+            max_item_count = 20,
+            priority_weight = 1000,
           },
-          { name = "luasnip", priority = 750 },
-          { name = "treesitter", priority = 750 },
-          { name = "nvim_lsp_signature_help", priority = 500 },
-          { name = "buffer", priority = 500 },
-          { name = "nvim_lua", priority = 500 },
-          { name = "codeium", priority = 500 },
-          { name = "async_path", priority = 250 },
-          { name = "emoji", priority = 200 },
+          { name = "luasnip", priority_weight = 750 },
+          { name = "treesitter", priority_weight = 750 },
+          { name = "nvim_lsp_signature_help", priority_weight = 500 },
+          { name = "dap", priority_weight = 110 },
+          { name = "git", priority_weight = 110 },
+          {
+            name = "rg",
+            keyword_length = 5,
+            max_item_count = 5,
+            priority_weight = 60,
+            option = {
+              additional_arguments = "--smart-case --hidden",
+            },
+            entry_filter = function(entry)
+              return not entry.exact
+            end,
+          },
+          {
+            name = "buffer",
+            max_item_count = 5,
+            priority_weight = 50,
+            entry_filter = function(entry)
+              return not entry.exact
+            end,
+          },
+          { name = "nvim_lua", priority_weight = 500 },
+          { name = "codeium", priority_weight = 500 },
+          { name = "async_path", priority_weight = 250 },
+          { name = "emoji", priority_weight = 200 },
         }),
       })
       ---@diagnostic disable-next-line: missing-fields, undefined-field
@@ -236,6 +274,7 @@ return {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
           { name = "buffer" },
+          { name = "cmdline_history" },
         },
       })
       ---@diagnostic disable-next-line: missing-fields, undefined-field
@@ -244,6 +283,8 @@ return {
         sources = cmp.config.sources({
           { name = "async_path" },
           { name = "cmdline" },
+          { name = "cmdline_history" },
+          { name = "buffer" },
         }),
         enabled = function()
           local disabled = {

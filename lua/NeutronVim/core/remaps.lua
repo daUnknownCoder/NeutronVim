@@ -31,7 +31,7 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
 -- Clear search
-map("n", "<esc>", ":noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+map("n", "<esc>", ":noh<cr><esc>", { desc = "Escape and clear hlsearch", silent = true })
 
 -- Better Yank to clipboard
 map("v", "<leader>yy", [["+y]], { desc = "Yank to clipboard" })

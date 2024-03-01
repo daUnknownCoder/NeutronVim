@@ -103,10 +103,6 @@ return {
       if not animate_status_ok then
         print("mini.animate not found!")
       end
-      animate.setup({
-        open = { enable = false },
-        close = { enable = false },
-      })
       return {
         resize = {
           timing = animate.gen_timing.linear({ duration = 100, unit = "total" }),

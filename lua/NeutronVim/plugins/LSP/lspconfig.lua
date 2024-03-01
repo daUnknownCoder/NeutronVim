@@ -12,7 +12,7 @@ return {
       {
         "ray-x/lsp_signature.nvim",
         lazy = true,
-        event = "LspAttach",
+        event = "InsertEnter",
       },
     },
     config = function()

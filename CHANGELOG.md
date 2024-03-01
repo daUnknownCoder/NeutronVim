@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.5.0...v6.0.0) (2024-03-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **no-null-ls:** conform.nvim and nvim-lint introduced again after v1.0.0
+
+### Features
+
+* **no-null-ls:** Remove null-ls, replace with conform and nvim-lint ([5cbae70](https://github.com/daUnknownCoder/NeutronVim/commit/5cbae7031efc119334406e6e2ed0dc94a02be57d))
+
 ## [5.5.0](https://github.com/daUnknownCoder/NeutronVim/compare/v5.4.0...v5.5.0) (2024-03-01)
 
 

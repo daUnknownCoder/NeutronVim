@@ -12,24 +12,27 @@ return {
     if not dashboard_status_ok then
       print("alpha.dashboard not found!")
     end
-    local logo = [[
-       ███╗   ██╗███████╗██╗   ██╗████████╗██████╗  ██████╗ ███╗   ██╗
-       ████╗  ██║██╔════╝██║   ██║╚══██╔══╝██╔══██╗██╔═══██╗████╗  ██║
-       ██╔██╗ ██║█████╗  ██║   ██║   ██║   ██████╔╝██║   ██║██╔██╗ ██║
-       ██║╚██╗██║██╔══╝  ██║   ██║   ██║   ██╔══██╗██║   ██║██║╚██╗██║
-       ██║ ╚████║███████╗╚██████╔╝   ██║   ██║  ██║╚██████╔╝██║ ╚████║
-       ╚═╝  ╚═══╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
-                          ██╗   ██╗██╗███╗   ███╗
-                          ██║   ██║██║████╗ ████║
-                          ██║   ██║██║██╔████╔██║
-                          ╚██╗ ██╔╝██║██║╚██╔╝██║
-                           ╚████╔╝ ██║██║ ╚═╝ ██║
-                            ╚═══╝  ╚═╝╚═╝     ╚═╝]]
-    dashboard.section.header.val = vim.split(logo, "\n")
+    dashboard.section.header.val = {
+"███╗   ██╗███████╗██╗   ██╗████████╗██████╗  ██████╗ ███╗   ██╗",
+"████╗  ██║██╔════╝██║   ██║╚══██╔══╝██╔══██╗██╔═══██╗████╗  ██║",
+"██╔██╗ ██║█████╗  ██║   ██║   ██║   ██████╔╝██║   ██║██╔██╗ ██║",
+"██║╚██╗██║██╔══╝  ██║   ██║   ██║   ██╔══██╗██║   ██║██║╚██╗██║",
+"██║ ╚████║███████╗╚██████╔╝   ██║   ██║  ██║╚██████╔╝██║ ╚████║",
+"╚═╝  ╚═══╝╚══════╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝",
+      " ",
+"                   ██╗   ██╗██╗███╗   ███╗                        ",
+"                   ██║   ██║██║████╗ ████║                        ",
+"                   ██║   ██║██║██╔████╔██║                        ",
+"                   ╚██╗ ██╔╝██║██║╚██╔╝██║                        ",
+"                    ╚████╔╝ ██║██║ ╚═╝ ██║                        ",
+"                     ╚═══╝  ╚═╝╚═╝     ╚═╝                        ",
+    }
     dashboard.section.buttons.val = {
       dashboard.button("f", icons.ui.Rocket .. " Find file", ":Telescope find_files <CR>"),
+      dashboard.button("e", icons.ui.GitHub .. " Find edited Git files", ":Telescope git_status <CR>"),
       dashboard.button("n", icons.ui.Project .. " File Manager [Nvim-Tree]", ":NvimTreeFindFileToggle <CR>"),
       dashboard.button("N", icons.ui.NewFile .. " New file", ":ene <BAR> startinsert <CR>"),
+      dashboard.button("r", icons.ui.History .. " Recent files", ":Telescope oldfiles <CR>"),
       dashboard.button("g", icons.kind.Text .. " Find text", ":Telescope live_grep <CR>"),
       dashboard.button("l", icons.ui.Sleep .. " Lazy", ":Lazy <CR>"),
       dashboard.button("q", icons.ui.SignIn .. " Quit", ":qa <CR>"),
@@ -41,7 +44,14 @@ return {
     dashboard.section.header.opts.hl = "AlphaHeader"
     dashboard.section.buttons.opts.hl = "AlphaButtons"
     dashboard.section.footer.opts.hl = "AlphaFooter"
-    dashboard.opts.layout[1].val = 10
+    dashboard.config.layout = {
+      { type = "padding", val = vim.fn.max { 1, vim.fn.floor(vim.fn.winheight(0) * 0.08) } },
+      dashboard.section.header,
+      { type = "padding", val = 2 },
+      dashboard.section.buttons,
+      { type = "padding", val = 1 },
+      dashboard.section.footer,
+    }
     return dashboard
   end,
   config = function(_, dashboard)

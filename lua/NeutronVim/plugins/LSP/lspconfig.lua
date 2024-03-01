@@ -10,6 +10,12 @@ return {
         lazy = true,
       },
       {
+        "antosha417/nvim-lsp-file-operations",
+        event = { "BufReadPost", "BufNewFile" },
+        lazy = true,
+        config = true,
+      },
+      {
         "ray-x/lsp_signature.nvim",
         lazy = true,
         event = "InsertEnter",
@@ -93,7 +99,7 @@ return {
         update_in_insert = false,
         signs = true,
         underline = true,
-        severity_sort = false,
+        severity_sort = true,
       })
       lspconfig["rust_analyzer"].setup({
         capabilities = capabilities,
@@ -109,15 +115,31 @@ return {
         capabilities = capabilities,
         on_attach = on_attach,
       })
+      lspconfig["tsserver"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+      lspconfig["clangd"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+      lspconfig["eslint"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+      lspconfig["cmake"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
+      lspconfig["bashls"].setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
       lspconfig["pyright"].setup({
         capabilities = capabilities,
         on_attach = on_attach,
       })
       lspconfig["cssls"].setup({
-        capabilities = capabilities,
-        on_attach = on_attach,
-      })
-      lspconfig["gopls"].setup({
         capabilities = capabilities,
         on_attach = on_attach,
       })

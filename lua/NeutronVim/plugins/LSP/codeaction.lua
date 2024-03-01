@@ -3,7 +3,6 @@ return {
     "aznhe21/actions-preview.nvim",
     keys = {
       { "\\a", "<cmd>lua require('actions-preview').code_actions()<CR>", desc = "CodeActionMenu" },
-      { "\\A", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", desc = "Range Code Action" },
     },
     lazy = true,
     event = "LspAttach",

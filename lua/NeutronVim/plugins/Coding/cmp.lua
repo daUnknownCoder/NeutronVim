@@ -216,26 +216,6 @@ return {
           { name = "calc", priority_weight = 10 },
           {
             name = "nvim_lsp",
-            entry_filter = function(entry, context)
-              local kind = entry:get_kind()
-              local line = context.cursor_line
-              local col = context.cursor.col
-              local char_before_cursor = string.sub(line, col - 1, col)
-              if char_before_cursor == "." then
-                if kind == 2 or kind == 5 then
-                  return true
-                else
-                  return false
-                end
-              elseif string.match(line, "^%s*%w*$") then
-                if kind == 2 or kind == 5 then
-                  return true
-                else
-                  return false
-                end
-              end
-              return true
-            end,
             max_item_count = 20,
             priority_weight = 1000,
           },

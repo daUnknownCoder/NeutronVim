@@ -1,6 +1,7 @@
 return {
   "folke/which-key.nvim",
   keys = { "<leader>", "<c-w>", ";", "\\", "v", "g", "f" },
+  event = { "VimEnter" },
   cmd = "WhichKey",
   lazy = true,
   config = function()

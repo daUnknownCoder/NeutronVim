@@ -47,6 +47,12 @@ return {
           },
           {
             function()
+              local status_string = vim.api.nvim_call_function("codeium#GetStatusString", {})
+              return status_string
+            end,
+          },
+          {
+            function()
               local msg = "No Active Lsp"
               local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
               local clients = vim.lsp.get_active_clients()

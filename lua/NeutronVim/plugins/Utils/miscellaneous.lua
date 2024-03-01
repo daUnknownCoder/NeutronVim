@@ -148,10 +148,41 @@ return {
     lazy = true,
     cmd = "CodeSnapPreviewOn",
     config = function()
+      local home_dir = os.getenv("HOME") -- Get the home directory
+      local bufnr = vim.fn.bufnr("%")
+
+      -- Get the full path of the current file
+      local current_file_path = vim.api.nvim_buf_get_name(bufnr)
+      local relative_file_path = current_file_path:gsub(home_dir, "~") -- Replace home directory with ~
+
+      -- Split the path into directory components
+      local components = {}
+      for component in relative_file_path:gmatch("[^/]+") do
+        table.insert(components, component)
+      end
+
+      -- Check if the length of the path exceeds 50 characters
+      local path_length = #relative_file_path
+      local max_length = 50
+      if path_length > max_length then
+        -- Truncate directory components except for the last one
+        local truncated_path = ""
+        for i, component in ipairs(components) do
+          local max_component_length = component:sub(1, 1) == "." and 2 or 1 -- Set max_length based on whether directory starts with '.'
+          if i == #components then
+            truncated_path = truncated_path .. "/" .. component
+          else
+            truncated_path = truncated_path .. "/" .. component:sub(1, max_component_length)
+          end
+        end
+        relative_file_path = truncated_path:sub(2) -- Remove leading '/'
+      end
+
+      -- Set up the watermark
       require("codesnap").setup({
         mac_window_bar = true,
         opacity = true,
-        watermark = (vim.fn.getcwd():gsub(os.getenv("HOME"), "~")),
+        watermark = relative_file_path,
       })
     end,
   },

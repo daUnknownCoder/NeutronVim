@@ -42,6 +42,18 @@ return {
           },
           {
             function()
+              local lint_progress = function()
+                local linters = require("lint").get_running()
+                if #linters == 0 then
+                  return "󰦕 Linting completed"
+                end
+                return "󱉶 Linting with '" .. table.concat(linters, ", ") .. "' in progress"
+              end
+              return lint_progress()
+            end,
+          },
+          {
+            function()
               return "%="
             end,
           },
@@ -73,6 +85,11 @@ return {
           },
         },
         lualine_x = {
+          {
+            function()
+              return "%="
+            end,
+          },
           {
             "diff",
             symbols = {

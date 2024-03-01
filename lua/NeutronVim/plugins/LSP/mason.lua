@@ -4,18 +4,10 @@ return {
   lazy = true,
   dependencies = {
     { "williamboman/mason-lspconfig.nvim", cmd = { "LspInstall", "LspUninstall" } },
+    { "WhoIsSethDaniel/mason-tool-installer.nvim" },
   },
   opts = {
-    ensure_installed = {
-      "black",
-      "isort",
-      "flake8",
-      "ruff",
-      "eslint_d",
-      "luacheck",
-      "prettierd",
-      "stylua",
-    },
+    ensure_installed = {},
   },
   config = function()
     local icons_ok, icons = pcall(require, "NeutronVim.core.icons")
@@ -30,11 +22,10 @@ return {
     if not mason_lspconfig_status_ok then
       print("mason-lspconfig not found!")
     end
-    local mason_null_ls_status_ok, mason_null_ls = pcall(require, "mason-null-ls")
-    if not mason_null_ls_status_ok then
-      print("mason-null-ls not found!")
+    local mason_tool_installer_status_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
+    if not mason_tool_installer_status_ok then
+      print("mason-tool-installer not found!")
     end
-
     mason.setup({
       ui = {
         icons = {
@@ -52,19 +43,32 @@ return {
         "lua_ls",
         "pyright",
         "marksman",
+        "eslint",
+        "clangd",
+        "cmake",
+        "bashls",
       },
       automatic_installation = true,
     })
-    mason_null_ls.setup({
+    mason_tool_installer.setup({
       ensure_installed = {
         "prettierd",
+        "eslint_d",
         "stylua",
         "black",
         "isort",
-        "ruff",
-        "eslint_d",
+        "pylint",
         "luacheck",
+        "ruff",
+        "rustfmt",
+        "clang-format",
+        "cmakelang",
+        "codespell",
+        "shfmt",
       },
+      auto_update = true,
+      run_on_start = true,
+      start_delay = 5000,
     })
   end,
 }

@@ -1,4 +1,4 @@
-*NeutronVim.txt*         For Neovim >= 0.9.0         Last change: 2024 June 07
+*NeutronVim.txt*         For Neovim >= 0.9.0         Last change: 2024 July 10
 
 ==============================================================================
 Table of Contents                               *NeutronVim-table-of-contents*

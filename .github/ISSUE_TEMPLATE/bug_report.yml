@@ -1,0 +1,113 @@
+name: Bug report
+description: "Report a bug/issue here."
+title: "bug: "
+labels: [bug]
+assignees: [daUnknownCoder]
+body:
+  - type: markdown
+    id: notice
+    attributes:
+      value: |
+        **Before reporting any bug/issue, please make sure to search among [existing issues](https://github.com/daUnknownCoder/NeutronVim/issues).**
+  - type: checkboxes
+    id: check-params
+    attributes:
+      label: Did you browse among the existing issues?
+      description: Make sure to check all among the below options before reporting a bug/issue.
+      options:
+        - label: I have searched the existing issues of NeutronVim.
+          required: true
+        - label: I have searched the existing issues of plugins related to this issue.
+          required: true
+        - label: I have replicated the bug with the minimal `repro.lua` provided below.
+          required: true
+  - type: input
+    id: nvim-version
+    attributes:
+      label: "Neovim version ($ nvim --version)"
+      placeholder: "e.g. 0.8.0 commit db1b0ee3b30f"
+    validations:
+      required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: "Operating system/version ($ uname -a)"
+      placeholder: "e.g. macOS 11.5"
+    validations:
+      required: true
+  - type: input
+    id: terminal-info
+    attributes:
+      label: "Terminal name and version ($ <terminal> -v/--version)"
+      placeholder: "e.g. kitty 0.38.0"
+    validations:
+      required: true
+  - type: textarea
+    id: bug
+    attributes:
+      label: "Describe the bug"
+      placeholder: "A clear and concise description of the bug you are facing."
+  - type: textarea
+    id: reproduce
+    validations:
+      required: true
+    attributes:
+      label: "Steps to reproduce"
+      description: "Steps to reproduce the bug."
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected behavior"
+      description: "Describe the expected behavior."
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: "Upload Screenshots/Screen Recording here"
+      description: "Additional Screenshots/Screen Recording ([Asciinema](asciinema.org)) to help explain the issue you are facing."
+  - type: textarea
+    id: Additional
+    attributes:
+      label: "Additional info"
+      description: "Provide any additional info pertaining to the problem"
+  - type: textarea
+    validations:
+      required: true
+    attributes:
+      label: Repro
+      description: Minimal `init.lua` to reproduce this issue. Save as `repro.lua` and run with `nvim -u repro.lua`
+      value: |
+        -- Save as repro.lua
+        -- run with `nvim -u repro.lua`
+        -- DO NOT change the paths
+        local root = vim.fn.fnamemodify("./.repro", ":p")
+
+        -- set stdpaths to use .repro
+        for _, name in ipairs({ "config", "data", "state", "runtime", "cache" }) do
+          vim.env[("XDG_%s_HOME"):format(name:upper())] = root .. "/" .. name
+        end
+
+        -- bootstrap lazy
+        local lazypath = root .. "/plugins/lazy.nvim"
+        if not vim.loop.fs_stat(lazypath) then
+          vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
+        end
+        vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+
+        -- install plugins
+        local plugins = {
+          -- add plugins/customizations here
+        }
+        require("lazy").setup(plugins, {
+          root = root .. "/plugins",
+        })
+
+        -- add anything else here (autocommands, vim.filetype, etc.)
+      render: Lua

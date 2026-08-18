@@ -1,0 +1,163 @@
+-- return {
+--   {
+--     "nvim-treesitter/nvim-treesitter",
+--     version = false, 
+--     branch = "main",
+--     build = ":TSUpdate",
+--     lazy = vim.fn.argc(-1) == 0,
+--     event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+--     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+--
+--     dependencies = {
+--       { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+--       { "RRethy/nvim-treesitter-endwise", lazy = true },
+--       { "windwp/nvim-ts-autotag", lazy = true, config = true },
+--       {
+--         "Wansmer/binary-swap.nvim",
+--         lazy = true,
+--         keys = { { "<leader>es", "<cmd>lua require('binary-swap').swap_operands()<CR>", desc = "Swap Operand" } },
+--       },
+--       {
+--         "Wansmer/sibling-swap.nvim",
+--         lazy = true,
+--         keys = {
+--           { "<C-.>", "<cmd>lua require('sibling-swap').swap_with_right()<CR>", desc = "Swap Sibling [Right]" },
+--           { "<C-,>", "<cmd>lua require('sibling-swap').swap_with_left()<CR>", desc = "Swap Sibling [Left]" },
+--           { "<leader>e.", "<cmd>lua require('sibling-swap').swap_with_right_with_opp()<CR>", desc = "Swap Sibling [Opposite Right]" },
+--           { "<leader>e,", "<cmd>lua require('sibling-swap').swap_with_left_with_opp()<CR>", desc = "Swap Sibling [Opposite Left]" },
+--         },
+--         config = function()
+--           require("sibling-swap").setup({
+--             -- stylua: ignore
+--             allowed_separators = {",", ";", "and", "or", "&&", ["&"] = false, "||", "|", "==", "===", "!=", "!==", "-", "+", ["<"] = ">", ["<="] = ">=", [">"] = "<", [">="] = "<=",},
+--             use_default_keymaps = false,
+--             highlight_node_at_cursor = true,
+--             ignore_injected_langs = false,
+--             allow_interline_swaps = true,
+--             interline_swaps_without_separator = false,
+--           })
+--         end,
+--       },
+--     },
+--
+--     init = function(plugin)
+--       vim.opt.runtimepath:prepend(vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/parser")
+--       require("lazy.core.loader").add_to_rtp(plugin)
+--       -- require("nvim-treesitter.query_predicates")
+--       -- vim.o.foldmethod = "expr"
+--       -- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+--     end,
+--
+--     keys = {
+--       { "<c-space>", desc = "Increment Selection" },
+--       { "<bs>", desc = "Decrement Selection", mode = "x" },
+--     },
+--
+--     config = function()
+--       local configs_status_ok, configs = pcall(require, "nvim-treesitter")
+--       if not configs_status_ok then
+--         return vim.api.nvim_err_writeln("Critical Error: nvim-treesitter core not found!")
+--       end
+--
+--       -- Force the exact command execution
+--       vim.env.CC = "zig cc"
+--       vim.g.skip_ts_context_commentstring_module = true
+--       require("ts_context_commentstring").setup({
+--         enable_autocmd = false,
+--         languages = { hyprlang = "# %s" },
+--       })
+--
+--       configs.setup({
+--         ensure_installed = {
+--           "bash", "css", "diff", "html", "hyprlang", "javascript", "jsdoc",
+--           "json", "jsonc", "lua", "luadoc", "luap", "markdown", "markdown_inline",
+--           "python", "query", "regex", "toml", "rust", "nix", "tsx", "typescript",
+--           "vim", "vimdoc", "yaml",
+--         },
+--         sync_install = false,
+--         prefer_git=false,
+--         auto_install = true,
+--
+--         highlight = {
+--           enable = true,
+--           additional_vim_regex_highlighting = { "markdown" },
+--           disable = function(_, buf)
+--             local max_filesize = 500 * 1024
+--             local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+--             if ok and stats and stats.size > max_filesize then
+--               return true
+--             end
+--           end,
+--         },
+--
+--         indent = { enable = true },
+--
+--         incremental_selection = {
+--           enable = true,
+--           keymaps = {
+--             init_selection = "<c-space>",
+--             node_incremental = "<c-space>",
+--             scope_incremental = false,
+--             node_decremental = "<bs>",
+--           },
+--         },
+--
+--         textobjects = {
+--           select = {
+--             enable = true,
+--             keymaps = { ["af"] = "@function.outer", ["if"] = "@function.inner" },
+--           },
+--           move = {
+--             enable = true,
+--             set_jumps = true,
+--             goto_next_start = { ["]f"] = "@function.outer" },
+--             goto_next_end = { ["]F"] = "@function.outer" },
+--             goto_previous_start = { ["[f"] = "@function.outer" },
+--             goto_previous_end = { ["[F"] = "@function.outer" },
+--           },
+--         },
+--         endwise = { enable = true },
+--       })
+--     end,
+--   },
+--
+--   -- {
+--   --   "nvim-treesitter/nvim-treesitter-textobjects",
+--   --   event = "VeryLazy",
+--   --   enabled = false
+--   --   config = function()
+--   --     local move = require("nvim-treesitter.textobjects.move")
+--   --     local configs = require("nvim-treesitter.configs")
+--   --
+--   --     for name, fn in pairs(move) do
+--   --       if name:find("goto") == 1 then
+--   --         move[name] = function(q, ...)
+--   --           if vim.wo.diff then
+--   --             local config = configs.get_module("textobjects.move")[name]
+--   --             for key, query in pairs(config or {}) do
+--   --               if q == query and key:find("[%]%[][cC]") then
+--   --                 vim.cmd("normal! " .. key)
+--   --                 return
+--   --               end
+--   --             end
+--   --           end
+--   --           return fn(q, ...)
+--   --         end
+--   --       end
+--   --     end
+--   --   end,
+--   -- },
+-- }
+
+return {
+  "https://github.com/nvim-treesitter/nvim-treesitter",
+  branch = "main",
+  event = "BufReadPre",
+  opts = {
+      prefer_git = false, 
+  
+  -- Explicitly turn off local compiler calls
+  sync_install = true,
+  auto_install = false,
+}
+}
